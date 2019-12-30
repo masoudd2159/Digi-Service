@@ -1,9 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splashScreenActivity_RelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.SplashScreenActivity">
+    tools:context=".activity.SplashScreenActivity"
+    tools:ignore="MissingPrefix">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/splashScreenActivity_LinearLayout_Center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/splashScreenActivity_LinearLayout_Bottom"
+        android:layout_marginBottom="256dp"
+        android:gravity="center"
+        android:layoutDirection="ltr"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/splashScreenActivity_ImageView_SkuIcon"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_gravity="center"
+            android:layout_margin="3dp"
+            android:layoutDirection="ltr"
+            android:src="@drawable/ic_responsive" />
+
+        <ImageView
+            android:id="@+id/splashScreenActivity_ImageView_DigiServiceIcon"
+            android:layout_width="256dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:layout_margin="3dp"
+            android:layoutDirection="ltr"
+            android:src="@drawable/ic_about_us" />
+
+        <TextView
+            android:id="@+id/splashScreenActivity_TextView_ReservationSystemText"
+            fontPath="fonts/IRANSansMobile_Medium.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/reservation_system"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/splashScreenActivity_LinearLayout_Bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/splashScreenActivity_ImageView_ResponsiveIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:src="@drawable/ic_responsive" />
+
+        <Button
+            android:id="@+id/splashScreenActivity_Button_TryAgain"
+            style="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:layoutDirection="ltr"
+            android:text="@string/try_again"
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
+    </LinearLayout>
+</RelativeLayout>

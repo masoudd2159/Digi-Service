@@ -1,4 +1,11 @@
 <resources>
+    <!-- App Name -->
     <string name="app_name">Digi Service</string>
     <string name="app_name_fa">دیجی سرویس</string>
+
+    <!-- Splash Screen -->
+    <string name="reservation_system">سامانه ی جامع رزرو منابع</string>
+    <string name="try_again">تلاش مجدد</string>
+
+
 </resources>

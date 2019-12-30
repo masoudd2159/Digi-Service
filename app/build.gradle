@@ -47,12 +47,11 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.airbnb.android:lottie:2.8.0'
     implementation 'co.ronash.android:pushe-base:1.6.3'
     implementation 'org.apache.httpcomponents:httpcore:4.4.10'
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
-    implementation 'com.google.firebase:firebase-core:17.2.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

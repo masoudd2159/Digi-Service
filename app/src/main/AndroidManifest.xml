@@ -18,7 +18,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-
+        <activity android:name=".activity.main.MainActivity"></activity>
+        <activity android:name=".activity.phoneLogin.VerificationActivity" />
+        <activity android:name=".activity.phoneLogin.LoginActivity" />
         <activity
             android:name=".activity.SplashScreenActivity"
             android:screenOrientation="portrait"
