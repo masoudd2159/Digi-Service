@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/splashScreenActivity_RelativeLayout"
     android:layout_width="match_parent"
@@ -25,16 +26,16 @@
             android:layout_gravity="center"
             android:layout_margin="3dp"
             android:layoutDirection="ltr"
-            android:src="@drawable/ic_responsive" />
+            android:src="@drawable/ic_sku" />
 
         <ImageView
             android:id="@+id/splashScreenActivity_ImageView_DigiServiceIcon"
             android:layout_width="256dp"
-            android:layout_height="64dp"
+            android:layout_height="55dp"
             android:layout_gravity="center"
             android:layout_margin="3dp"
             android:layoutDirection="ltr"
-            android:src="@drawable/ic_about_us" />
+            android:src="@drawable/ic_digiservice" />
 
         <TextView
             android:id="@+id/splashScreenActivity_TextView_ReservationSystemText"
@@ -42,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/reservation_system"
             android:textAlignment="center"
@@ -64,7 +66,8 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_margin="15dp"
-            android:src="@drawable/ic_responsive" />
+            android:src="@drawable/ic_responsive"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/splashScreenActivity_Button_TryAgain"

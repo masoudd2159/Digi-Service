@@ -16,9 +16,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.MainActivity;
@@ -61,10 +63,20 @@ public class SplashScreenActivity extends MyActivity {
         changeStatusBarColor();
         init();
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                YoYo.with(Techniques.SlideInUp)
+                        .duration(300)
+                        .playOn(responsive);
+                responsive.setVisibility(View.VISIBLE);
+            }
+        }, 500);
+
         preferenceManager = new UserProfilePreferenceManager(SplashScreenActivity.this);
         appInfo = new AppInfo();
-       // getBasicAppInformation();
-        new BackgroundTask().execute();
+         getBasicAppInformation();
+        // new BackgroundTask().execute();
     }
 
     private void init() {

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layoutDirection="ltr"
+    app:cardCornerRadius="25dp"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_weight="4"
+            android:gravity="center_horizontal"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:layoutDirection="ltr"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_no_connection" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="5"
+            android:layoutDirection="ltr"
+            android:orientation="vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layoutDirection="ltr"
+                android:text="@string/disconnect_title"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                fontPath="fonts/IRANSansMobile.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:layoutDirection="ltr"
+                android:text="@string/disconnect_description"
+                android:textColor="@android:color/tertiary_text_dark"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="2.5"
+            android:background="@color/colorPrimary"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/disconnect_WiFi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:layoutDirection="ltr"
+                android:text="@string/disconnect_wifi"
+                android:textColor="@android:color/white"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:background="@android:color/white"
+                android:layoutDirection="ltr" />
+
+            <Button
+                android:id="@+id/disconnect_MobileData"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:layoutDirection="ltr"
+                android:text="@string/disconnect_data"
+                android:textColor="@android:color/white"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

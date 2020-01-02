@@ -7,5 +7,11 @@
     <string name="reservation_system">سامانه ی جامع رزرو منابع</string>
     <string name="try_again">تلاش مجدد</string>
 
+    <!-- Dialog Disconnect -->
+    <string name="disconnect_title">عدم اتصال به اینترنت</string>
+    <string name="disconnect_description">اتصال شما به اینترنت برقرار نیست. برای استفاده از دیجی سرویس به اینترنت متصل شوید.</string>
+    <string name="disconnect_wifi">اینترنت Wi-Fi</string>
+    <string name="disconnect_data">اینترنت موبایل</string>
+
 
 </resources>
