@@ -75,7 +75,7 @@ public class SplashScreenActivity extends MyActivity {
 
         preferenceManager = new UserProfilePreferenceManager(SplashScreenActivity.this);
         appInfo = new AppInfo();
-         getBasicAppInformation();
+        getBasicAppInformation();
         // new BackgroundTask().execute();
     }
 
@@ -142,7 +142,7 @@ public class SplashScreenActivity extends MyActivity {
     private void checkVersionCode(AppInfo applicationInformation) {
         try {
             PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            if (packageInfo.versionCode < appInfo.getData().getLatestVersion()) {
+            if (packageInfo.versionCode < appInfo.getData().get(0).getLatestVersion()) {
                 showDialogVersionChecker();
             } else {
                 new BackgroundTask().execute();

@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 
 import ir.ac.sku.service.digiservice.config.MyAPI;
 import ir.ac.sku.service.digiservice.util.ManagerHelper;
@@ -18,7 +19,8 @@ public class AppInfo {
     private boolean ok;
     private int code;
     private String message;
-    private Data data;
+    private List<Data> data = null;
+
 
     public boolean isOk() {
         return ok;
@@ -44,11 +46,11 @@ public class AppInfo {
         this.message = message;
     }
 
-    public Data getData() {
+    public List<Data> getData() {
         return data;
     }
 
-    public void setData(Data data) {
+    public void setData(List<Data> data) {
         this.data = data;
     }
 
