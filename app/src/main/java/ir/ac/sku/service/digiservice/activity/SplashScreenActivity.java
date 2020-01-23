@@ -186,14 +186,15 @@ public class SplashScreenActivity extends MyActivity {
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
             Log.i(MyLog.SPLASH_SCREEN_ACTIVITY, "Check Preference Manager : " + preferenceManager.startApplication());
-            if (preferenceManager.startApplication()) {
+            startActivity(intentMainActivity);
+            /*if (preferenceManager.startApplication()) {
                 Log.i(MyLog.SPLASH_SCREEN_ACTIVITY, "Start Activity : Login Activity");
                 //intentLoginActivity.putExtra("AppInfo", appInfo);
                 startActivity(intentLoginActivity);
             } else {
                 Log.i(MyLog.SPLASH_SCREEN_ACTIVITY, "Start Activity : Main Activity");
                 startActivity(intentMainActivity);
-            }
+            }*/
             finish();
         }
     }
