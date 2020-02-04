@@ -4,26 +4,26 @@
     tools:ignore="MissingPrefix">
 
     <item
-        android:id="@+id/tab_Search"
+        android:id="@+id/bottomNavigationViewTab_Search"
         fontPath="fonts/IRANSans.ttf"
         android:enabled="true"
         android:icon="@drawable/ic_search"
         android:title="@string/search" />
 
     <item
-        android:id="@+id/tab_Office"
+        android:id="@+id/bottomNavigationViewTab_Office"
         fontPath="fonts/IRANSans.ttf"
         android:icon="@drawable/ic_laboratory"
         android:title="@string/office" />
 
     <item
-        android:id="@+id/tab_Event"
+        android:id="@+id/bottomNavigationViewTab_Event"
         fontPath="fonts/IRANSans.ttf"
         android:icon="@drawable/ic_calendar"
         android:title="@string/event" />
 
     <item
-        android:id="@+id/tab_Home"
+        android:id="@+id/bottomNavigationViewTab_Home"
         fontPath="fonts/IRANSans.ttf"
         android:icon="@drawable/ic_home_"
         android:title="@string/home" />

@@ -9,4 +9,7 @@ public class PreferenceName {
     public static final String USER_PROFILE_IMAGE = "Image";
     public static final String USER_PROFILE_NAME = "Name";
 
+    public static final String PREFERENCES_FILE = "mymaterialapp_settings";
+    public static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
+
 }

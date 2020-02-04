@@ -1,78 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activityMain_RelativeLayout"
+    android:id="@+id/activityMain_DrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:layoutDirection="ltr"
     tools:context=".activity.main.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/activityMain_ToolBar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:layoutDirection="ltr"
-        app:contentInsetEnd="0dp"
-        app:contentInsetLeft="0dp"
-        app:contentInsetRight="0dp"
-        app:contentInsetStart="0dp"
-        app:layout_collapseMode="pin"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/ic_digiservice" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/activityMain_ToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            android:layoutDirection="ltr">
 
-    </androidx.appcompat.widget.Toolbar>
+            <ImageButton
+                android:id="@+id/activityMain_ImageButtonDrawer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/ic_action_menu" />
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/activityMain_FragmentHolder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/activityMain_ShadowView"
-        android:layout_below="@id/activityMain_ToolBar"
-        android:layoutDirection="ltr"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            <ImageView
+                android:id="@+id/activityMain_DigiServiceIcon"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/ic_digiservice" />
 
-    <com.loopeer.shadow.ShadowView
-        android:id="@+id/activityMain_ShadowView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="1dp"
-        android:background="@android:color/transparent"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        app:cornerRadiusTL="30dp"
-        app:cornerRadiusTR="30dp"
-        app:shadowColor="#FFC6C6"
-        app:shadowMarginLeft="1dp"
-        app:shadowMarginRight="1dp"
-        app:shadowMarginTop="8dp"
-        app:shadowRadius="8dp">
+        </androidx.appcompat.widget.Toolbar>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/activityMain_BottomNavigationView"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/activityMain_CoordinatorLayout_FragmentHolder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/activityMain_ShadowView"
+            android:layout_below="@id/activityMain_ToolBar"
+            android:layoutDirection="ltr" />
+
+        <com.loopeer.shadow.ShadowView
+            android:id="@+id/activityMain_ShadowView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/withe"
-            android:layoutDirection="ltr"
-            android:theme="@style/Widget.BottomNavigationView"
-            app:itemBackground="@color/withe"
-            app:labelVisibilityMode="auto"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:menu="@menu/bottom_navigation_view_item" />
+            android:layout_alignParentBottom="true"
+            android:layout_margin="1dp"
+            android:background="@android:color/transparent"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            app:cornerRadiusTL="30dp"
+            app:cornerRadiusTR="30dp"
+            app:shadowColor="#FFC6C6"
+            app:shadowMarginLeft="1dp"
+            app:shadowMarginRight="1dp"
+            app:shadowMarginTop="8dp"
+            app:shadowRadius="8dp">
 
-    </com.loopeer.shadow.ShadowView>
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/activityMain_BottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/withe"
+                android:layoutDirection="ltr"
+                android:theme="@style/Widget.BottomNavigationView"
+                app:itemBackground="@color/withe"
+                app:labelVisibilityMode="auto"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:menu="@menu/bottom_navigation_view_item" />
+
+        </com.loopeer.shadow.ShadowView>
+
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/activityMain_NavigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:fitsSystemWindows="true"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/drawer_navigation_view_item" />
 
 
-</RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

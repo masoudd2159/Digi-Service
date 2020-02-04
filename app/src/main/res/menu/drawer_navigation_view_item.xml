@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawerNavigationViewTab_Questions"
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:icon="@drawable/ic_questions"
+            android:title="@string/questions" />
+
+        <item
+            android:id="@+id/drawerNavigationViewTab_Guide"
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:icon="@drawable/ic_icon"
+            android:title="@string/systemGuide" />
+
+        <item
+            android:id="@+id/drawerNavigationViewTab_Rules"
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:icon="@drawable/ic_icon"
+            android:title="@string/rules" />
+
+        <item
+            android:id="@+id/drawerNavigationViewTab_Settings"
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:icon="@drawable/ic_setting"
+            android:title="@string/settings" />
+
+        <item
+            android:id="@+id/drawerNavigationViewTab_AboutUs"
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:icon="@drawable/ic_about_us"
+            android:title="@string/aboutUs" />
+    </group>
+
+
+</menu>
