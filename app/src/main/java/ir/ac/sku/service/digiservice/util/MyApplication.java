@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
+import io.github.inflationx.calligraphy3.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
+import io.github.inflationx.viewpump.ViewPump;
 import ir.ac.sku.service.digiservice.R;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 @SuppressLint("Registered")
 public class MyApplication extends Application {
@@ -15,9 +17,12 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/IRANSansMobile(FaNum).ttf")
-                .setFontAttrId(R.attr.fontPath)
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder()
+                                .setDefaultFontPath("fonts/IRANSansMobile(FaNum).ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
                 .build());
     }
 

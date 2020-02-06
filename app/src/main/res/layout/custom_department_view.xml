@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.loopeer.shadow.ShadowView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/customDepartmentView_ShadowView"
+    android:layout_width="175dp"
+    android:layout_height="175dp"
+    android:background="@color/withe"
+    app:cornerRadius="30dp"
+    android:padding="8dp"
+    app:shadowColor="#FFC6C6"
+    app:shadowMargin="10dp"
+    app:shadowRadius="10dp">
+
+    <LinearLayout
+        android:id="@+id/customDepartmentView_LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/customDepartmentView_ImageView"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_laboratory"
+            app:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/customDepartmentView_TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+</com.loopeer.shadow.ShadowView>

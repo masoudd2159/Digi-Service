@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.OfficesFragment">
+    android:orientation="vertical"
+    tools:context=".fragment.OfficesFragment"
+    tools:ignore="MissingPrefix">
 
     <TextView
+        android:id="@+id/fragmentOffice_TextViewTitle"
+        fontPath="fonts/IRANSansMobile_Black.ttf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="25dp"
+        android:paddingTop="10dp"
+        android:paddingRight="25dp"
+        android:text="@string/office"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp" />
+
+
+    <com.yarolegovich.discretescrollview.DiscreteScrollView
+        android:id="@+id/fragmentOffice_DiscreteScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        app:dsv_orientation="horizontal" />
+
+    <me.relex.circleindicator.CircleIndicator2
+        android:id="@+id/fragmentOffice_PagerIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="@string/office"
-        android:textColor="@color/colorAccentDark"
-        android:textSize="20sp" />
+        android:layoutDirection="ltr"
+        android:orientation="horizontal"
+        app:ci_drawable="@drawable/bg_selected_circle_indicator"
+        app:ci_drawable_unselected="@drawable/bg_unselected_circle_indicator" />
 
-</FrameLayout>
+</LinearLayout>
