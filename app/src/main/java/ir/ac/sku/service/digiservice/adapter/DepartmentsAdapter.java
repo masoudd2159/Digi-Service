@@ -35,20 +35,6 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentsAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
         myViewHolder.bind(departmentsModel.getData().get(position));
-
-        myViewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                index = position;
-                notifyDataSetChanged();
-            }
-        });
-
-        if (index == position) {
-            myViewHolder.linearLayout.setBackgroundResource(R.drawable.bg_department_selected);
-        } else {
-
-        }
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
 
     //* ٰ Views
     private Toolbar toolbar;
+    private CoordinatorLayout holder;
     private ImageButton drawerButton;
     private DrawerLayout drawerLayout;
     private ImageView digiServiceIcon;
@@ -113,19 +115,19 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
                 menuItem.setChecked(true);
                 switch (menuItem.getItemId()) {
                     case R.id.drawerNavigationViewTab_Questions:
-                        Snackbar.make(fragmentHolder, "سوالات متداول", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(holder, "سوالات متداول", Snackbar.LENGTH_SHORT).show();
                         return true;
                     case R.id.drawerNavigationViewTab_Guide:
-                        Snackbar.make(fragmentHolder, "راهنمای سامانه", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(holder, "راهنمای سامانه", Snackbar.LENGTH_SHORT).show();
                         return true;
                     case R.id.drawerNavigationViewTab_Rules:
-                        Snackbar.make(fragmentHolder, "قوانین", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(holder, "قوانین", Snackbar.LENGTH_SHORT).show();
                         return true;
                     case R.id.drawerNavigationViewTab_Settings:
-                        Snackbar.make(fragmentHolder, "تنظیمات", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(holder, "تنظیمات", Snackbar.LENGTH_SHORT).show();
                         return true;
                     case R.id.drawerNavigationViewTab_AboutUs:
-                        Snackbar.make(fragmentHolder, "درباره ما", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(holder, "درباره ما", Snackbar.LENGTH_SHORT).show();
                         return true;
                     default:
                         return true;
@@ -195,7 +197,7 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
     public void onNetworkConnectionChange(boolean isConnected) {
         if (starter) {
             if (!isConnected) {
-                ColoredSnackBar.error(Snackbar.make(fragmentHolder, "مشکلی در اتصال به اینترنت به وجود آمده!", Snackbar.LENGTH_SHORT)).show();
+                ColoredSnackBar.error(Snackbar.make(holder, "مشکلی در اتصال به اینترنت به وجود آمده!", Snackbar.LENGTH_SHORT)).show();
             }
         } else {
             starter = true;
@@ -207,6 +209,7 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
         drawerLayout = findViewById(R.id.activityMain_DrawerLayout);
         navigationView = findViewById(R.id.activityMain_NavigationView);
         drawerButton = findViewById(R.id.activityMain_ImageButtonDrawer);
+        holder = findViewById(R.id.activityMain_CoordinatorLayout_Holder);
         digiServiceIcon = findViewById(R.id.activityMain_DigiServiceIcon);
         bottomNavigationView = findViewById(R.id.activityMain_BottomNavigationView);
         fragmentHolder = findViewById(R.id.activityMain_CoordinatorLayout_FragmentHolder);

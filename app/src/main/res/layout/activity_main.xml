@@ -44,9 +44,16 @@
             android:id="@+id/activityMain_CoordinatorLayout_FragmentHolder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/activityMain_ShadowView"
             android:layout_below="@id/activityMain_ToolBar"
             android:layoutDirection="ltr" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/activityMain_CoordinatorLayout_Holder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/activityMain_ShadowView"
+            android:layout_below="@id/activityMain_ToolBar"
+            android:layoutDirection="rtl" />
 
         <com.loopeer.shadow.ShadowView
             android:id="@+id/activityMain_ShadowView"
