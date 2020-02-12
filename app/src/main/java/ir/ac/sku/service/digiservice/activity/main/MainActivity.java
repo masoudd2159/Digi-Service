@@ -1,13 +1,16 @@
 package ir.ac.sku.service.digiservice.activity.main;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -21,6 +24,8 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Objects;
 
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.fragment.EventsFragment;
@@ -44,12 +49,6 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
     private CoordinatorLayout fragmentHolder;
     private BottomNavigationView bottomNavigationView;
 
-    //* Fragments
-    private HomeFragment homeFragment;
-    private EventsFragment eventsFragment;
-    private SearchFragment searchFragment;
-    private OfficesFragment officesFragment;
-
     //* Requirements
     private boolean starter = false;
     private boolean doubleBackToExitPressedOnce = false;
@@ -65,11 +64,6 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
         init();
 
         receiver = new ConnectivityReceiver();
-
-        homeFragment = new HomeFragment();
-        eventsFragment = new EventsFragment();
-        searchFragment = new SearchFragment();
-        officesFragment = new OfficesFragment();
 
         setUpNavigationDrawerView();
         setUpNavigationBottomView();
@@ -92,6 +86,34 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
         super.onDestroy();
         receiver.setListener(null);
         unregisterReceiver(receiver);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        View v = getCurrentFocus();
+        boolean ret = super.dispatchTouchEvent(event);
+        if (v instanceof EditText) {
+            View w = getCurrentFocus();
+            int[] scrCoords = new int[2];
+            if (w != null) {
+                w.getLocationOnScreen(scrCoords);
+            }
+            float x = 0;
+            if (w != null) {
+                x = event.getRawX() + w.getLeft() - scrCoords[0];
+            }
+            float y = 0;
+            if (w != null) {
+                y = event.getRawY() + w.getTop() - scrCoords[1];
+            }
+            if (w != null && event.getAction() == MotionEvent.ACTION_UP && (x < w.getLeft() || x >= w.getRight() || y < w.getTop() || y > w.getBottom())) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(Objects.requireNonNull(getWindow().getCurrentFocus()).getWindowToken(), 0);
+                }
+            }
+        }
+        return ret;
     }
 
     private void setUpNavigationDrawerView() {
@@ -142,19 +164,19 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.bottomNavigationViewTab_Home:
-                        setUpFragment(homeFragment);
+                        setUpFragment(new HomeFragment());
                         return true;
                     case R.id.bottomNavigationViewTab_Event:
-                        setUpFragment(eventsFragment);
+                        setUpFragment(new EventsFragment());
                         return true;
                     case R.id.bottomNavigationViewTab_Office:
-                        setUpFragment(officesFragment);
+                        setUpFragment(new OfficesFragment());
                         return true;
                     case R.id.bottomNavigationViewTab_Search:
-                        setUpFragment(searchFragment);
+                        setUpFragment(new SearchFragment());
                         return true;
                     default:
-                        setUpFragment(homeFragment);
+                        setUpFragment(new HomeFragment());
                         return true;
                 }
             }

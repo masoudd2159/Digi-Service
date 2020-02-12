@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +27,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.ac.sku.service.digiservice.R;
+import ir.ac.sku.service.digiservice.activity.SplashScreenActivity;
 import ir.ac.sku.service.digiservice.adapter.AreasAdapter;
 import ir.ac.sku.service.digiservice.adapter.DepartmentsAdapter;
+import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.model.AreasModel;
 import ir.ac.sku.service.digiservice.model.DepartmentsModel;
+import ir.ac.sku.service.digiservice.util.ManagerHelper;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 import me.relex.circleindicator.CircleIndicator2;
 
@@ -58,17 +62,21 @@ public class OfficesFragment extends Fragment implements
     }
 
     private void prepareAreasData() {
-        AreasModel.fetchFromWeb(rootView.getContext(), null, new MyHandler() {
-            @Override
-            public void onResponse(boolean ok, Object obj) {
-                if (ok) {
-                    areasModel = new AreasModel();
-                    areasModel = (AreasModel) obj;
+        if (ManagerHelper.isNOTOnline(rootView.getContext())) {
+            ManagerHelper.noInternetAccess(rootView.getContext());
+        } else {
+            AreasModel.fetchFromWeb(rootView.getContext(), null, new MyHandler() {
+                @Override
+                public void onResponse(boolean ok, Object obj) {
+                    if (ok) {
+                        areasModel = new AreasModel();
+                        areasModel = (AreasModel) obj;
 
-                    prepareDepartmentsData();
+                        prepareDepartmentsData();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     private void prepareDepartmentsData() {

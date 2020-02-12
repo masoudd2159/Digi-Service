@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -60,6 +61,20 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentsAdapter.
             departmentTitle.setText(data.getTitle());
             //Glide.with(context).load(data.getPicture()).diskCacheStrategy(DiskCacheStrategy.ALL).into(departmentImage);
 
+            switch (data.getId()) {
+                case 1:
+                    departmentImage.setImageResource(R.drawable.ic_laboratory);
+                    break;
+                case 2:
+                    departmentImage.setImageResource(R.drawable.ic_conference);
+                    break;
+                case 3:
+                    departmentImage.setImageResource(R.drawable.ic_offices);
+                    break;
+                case 4:
+                    departmentImage.setImageResource(R.drawable.ic_employee_welfare);
+                    break;
+            }
         }
 
         public void setBackground() {

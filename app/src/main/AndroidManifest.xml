@@ -19,11 +19,20 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity
-            android:name=".activity.main.MainActivity"
+            android:name=".activity.main.AreaSelectedActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MyTheme.Detail" />
-        <activity android:name=".activity.phoneLogin.VerificationActivity" />
-        <activity android:name=".activity.phoneLogin.LoginActivity" />
+        <activity
+            android:name=".activity.main.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.Detail"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activity.phoneLogin.VerificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.phoneLogin.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SplashScreenActivity"
             android:screenOrientation="portrait"
@@ -44,7 +53,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
     </application>
 
 </manifest>

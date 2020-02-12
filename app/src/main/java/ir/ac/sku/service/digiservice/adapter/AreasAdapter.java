@@ -1,6 +1,7 @@
 package ir.ac.sku.service.digiservice.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ir.ac.sku.service.digiservice.R;
+import ir.ac.sku.service.digiservice.activity.main.AreaSelectedActivity;
 import ir.ac.sku.service.digiservice.model.AreasModel;
 
 public class AreasAdapter extends RecyclerView.Adapter<AreasAdapter.MyViewHolder> {
@@ -53,15 +55,26 @@ public class AreasAdapter extends RecyclerView.Adapter<AreasAdapter.MyViewHolder
         return data.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView persianTitle;
         private ImageView line;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
             persianTitle = itemView.findViewById(R.id.customAreasListView_TextViewPersianTitle);
             line = itemView.findViewById(R.id.customAreasListView_ImageViewLine);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, AreaSelectedActivity.class);
+            intent.putExtra("id", data.get(getLayoutPosition()).getId());
+            intent.putExtra("title", data.get(getLayoutPosition()).getTitle());
+            context.startActivity(intent);
         }
     }
 }

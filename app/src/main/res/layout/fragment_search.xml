@@ -1,17 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.SearchFragment">
+    android:orientation="vertical"
+    tools:context=".fragment.SearchFragment"
+    tools:ignore="MissingPrefix">
 
     <TextView
+        android:id="@+id/fragmentOffice_TextViewTitle"
+        fontPath="fonts/IRANSansMobile_Black.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="25dp"
+        android:paddingTop="10dp"
+        android:paddingRight="25dp"
+        android:text="@string/searchInResource"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center"
-        android:text="@string/search"
-        android:textColor="@color/colorAccentDark"
-        android:textSize="20sp" />
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/fragmentSearch_ImageViewSearch"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_selected_circle_indicator"
+            android:padding="12dp"
+            android:src="@drawable/ic_search" />
+
+        <com.loopeer.shadow.ShadowView
+            android:id="@+id/fragmentSearch_ShadowView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            app:cornerRadius="55dp"
+            app:shadowColor="#FFC6C6"
+            app:shadowMargin="10dp"
+            app:shadowRadius="10dp">
+
+            <EditText
+                android:id="@+id/fragmentSearch_EditTextSearch"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="@string/searchTextHint"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:singleLine="true"
+                android:textColorHint="#FFC6C6"
+                android:textSize="14sp" />
+
+        </com.loopeer.shadow.ShadowView>
+
+    </LinearLayout>
+
+</LinearLayout>

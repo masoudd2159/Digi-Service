@@ -15,7 +15,7 @@
 
     <!-- Bottom Navigation View Items -->
     <string name="search">جست و جو</string>
-    <string name="office">ادارات</string>
+    <string name="office">اداره ها</string>
     <string name="event">رویداد ها</string>
     <string name="home">خانه</string>
 
@@ -26,7 +26,8 @@
     <string name="settings">تنظیمات</string>
     <string name="aboutUs">درباره ی ما</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Search Fragment -->
+    <string name="searchInResource">جست و جو در منابع</string>
+    <string name="searchTextHint">آزمایشگاه ها , ابزار , سالن و …</string>
 
 </resources>

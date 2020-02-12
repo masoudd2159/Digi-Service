@@ -18,15 +18,17 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
+            android:gravity="center_vertical"
             android:layoutDirection="ltr">
 
             <ImageButton
                 android:id="@+id/activityMain_ImageButtonDrawer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/ic_action_menu" />
+                android:layout_width="30dp"
+                android:layout_height="27dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="17dp"
+                android:background="@drawable/ic_menu"
+                android:layoutDirection="ltr" />
 
             <ImageView
                 android:id="@+id/activityMain_DigiServiceIcon"
