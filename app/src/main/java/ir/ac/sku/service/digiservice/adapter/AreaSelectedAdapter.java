@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,6 @@ import java.util.List;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.config.MyAPI;
 import ir.ac.sku.service.digiservice.model.ResourcesModel;
-import ir.ac.sku.service.digiservice.util.ManagerHelper;
 
 public class AreaSelectedAdapter extends RecyclerView.Adapter<AreaSelectedAdapter.MyViewHolder> {
 
@@ -50,7 +49,7 @@ public class AreaSelectedAdapter extends RecyclerView.Adapter<AreaSelectedAdapte
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imageView;
+        private RoundedImageView imageView;
         private TextView textView;
 
         MyViewHolder(@NonNull View itemView) {
@@ -63,7 +62,11 @@ public class AreaSelectedAdapter extends RecyclerView.Adapter<AreaSelectedAdapte
 
         void bind(ResourcesModel.Data dataModel) {
             textView.setText(dataModel.getTitle());
-            Glide.with(context).load(MyAPI.DIGI_SERVICE + dataModel.getPicture()).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+            Glide
+                    .with(context)
+                    .load(MyAPI.DIGI_SERVICE + dataModel.getPicture())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imageView);
         }
     }
 }
