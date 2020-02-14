@@ -25,9 +25,11 @@
     <string name="rules">قوانین</string>
     <string name="settings">تنظیمات</string>
     <string name="aboutUs">درباره ی ما</string>
+    <string name="accountManagement">مدیریت حساب کاربری</string>
 
     <!-- Search Fragment -->
     <string name="searchInResource">جست و جو در منابع</string>
     <string name="searchTextHint">آزمایشگاه ها , ابزار , سالن و …</string>
+    <string name="space" />
 
 </resources>

@@ -132,24 +132,30 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("WrongConstant")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 menuItem.setChecked(true);
                 switch (menuItem.getItemId()) {
                     case R.id.drawerNavigationViewTab_Questions:
                         Snackbar.make(holder, "سوالات متداول", Snackbar.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawer(Gravity.END);
                         return true;
                     case R.id.drawerNavigationViewTab_Guide:
                         Snackbar.make(holder, "راهنمای سامانه", Snackbar.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawer(Gravity.END);
                         return true;
                     case R.id.drawerNavigationViewTab_Rules:
                         Snackbar.make(holder, "قوانین", Snackbar.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawer(Gravity.END);
                         return true;
                     case R.id.drawerNavigationViewTab_Settings:
                         Snackbar.make(holder, "تنظیمات", Snackbar.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawer(Gravity.END);
                         return true;
                     case R.id.drawerNavigationViewTab_AboutUs:
                         Snackbar.make(holder, "درباره ما", Snackbar.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawer(Gravity.END);
                         return true;
                     default:
                         return true;

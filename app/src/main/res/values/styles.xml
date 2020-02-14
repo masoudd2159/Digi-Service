@@ -42,4 +42,8 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <style name="NavigationView">
+        <item name="android:listDivider">@color/gray</item>
+    </style>
+
 </resources>
