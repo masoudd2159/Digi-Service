@@ -23,6 +23,6 @@
         android:layout_height="2dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="#949494" />
+        android:background="#80949494" />
 
 </LinearLayout>

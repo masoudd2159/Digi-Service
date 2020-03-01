@@ -57,7 +57,7 @@
                     android:layoutDirection="rtl"
                     android:singleLine="true"
                     android:text="سید مسیح جزایری جونقانی"
-                    android:textColor="@color/withe"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
 
                 <TextView
@@ -68,7 +68,7 @@
                     android:layoutDirection="rtl"
                     android:singleLine="true"
                     android:text="متقاضی"
-                    android:textColor="@color/withe"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
 
             </LinearLayout>

@@ -4,10 +4,10 @@
     android:id="@+id/customDepartmentView_ShadowView"
     android:layout_width="175dp"
     android:layout_height="175dp"
-    android:background="@color/withe"
-    app:cornerRadius="30dp"
+    android:background="@color/white"
     android:padding="8dp"
-    app:shadowColor="#FFC6C6"
+    app:cornerRadius="30dp"
+    app:shadowColor="@color/colorPrimaryShadow"
     app:shadowMargin="10dp"
     app:shadowRadius="10dp">
 

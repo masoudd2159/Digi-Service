@@ -45,7 +45,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             app:cornerRadius="55dp"
-            app:shadowColor="#FFC6C6"
+            app:shadowColor="@color/colorPrimaryShadow"
             app:shadowMargin="10dp"
             app:shadowRadius="10dp">
 

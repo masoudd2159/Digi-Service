@@ -7,7 +7,7 @@
     android:layout_marginTop="3dp"
     android:layout_marginRight="15dp"
     android:layout_marginBottom="4dp"
-    android:background="@color/withe"
+    android:background="@color/white"
     android:padding="5dp"
     app:cornerRadius="30dp"
     app:shadowColor="#FFC6C6"

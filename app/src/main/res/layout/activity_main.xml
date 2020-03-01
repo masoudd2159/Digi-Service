@@ -16,15 +16,15 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/activityMain_ToolBar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="65dp"
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:layoutDirection="ltr">
 
             <ImageButton
                 android:id="@+id/activityMain_ImageButtonDrawer"
-                android:layout_width="30dp"
-                android:layout_height="27dp"
+                android:layout_width="26dp"
+                android:layout_height="23dp"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="17dp"
                 android:background="@drawable/ic_menu"
@@ -34,10 +34,7 @@
                 android:id="@+id/activityMain_DigiServiceIcon"
                 android:layout_width="130dp"
                 android:layout_height="40dp"
-                android:layout_gravity="start"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
+                android:layout_gravity="start|center_vertical"
                 android:src="@drawable/ic_digiservice" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -68,7 +65,7 @@
             android:paddingRight="30dp"
             app:cornerRadiusTL="30dp"
             app:cornerRadiusTR="30dp"
-            app:shadowColor="#FFC6C6"
+            app:shadowColor="@color/colorPrimaryShadow"
             app:shadowMarginLeft="1dp"
             app:shadowMarginRight="1dp"
             app:shadowMarginTop="8dp"
@@ -78,10 +75,10 @@
                 android:id="@+id/activityMain_BottomNavigationView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/withe"
+                android:background="@color/white"
                 android:layoutDirection="ltr"
                 android:theme="@style/Widget.BottomNavigationView"
-                app:itemBackground="@color/withe"
+                app:itemBackground="@color/white"
                 app:labelVisibilityMode="auto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
