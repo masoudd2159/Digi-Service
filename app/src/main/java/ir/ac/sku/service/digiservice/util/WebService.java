@@ -5,15 +5,11 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
-import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,16 +18,14 @@ import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.model.IsOK;
 
 public class WebService {
-    private Context context;
-    private RequestQueue queue;
     private Gson gson;
     private IsOK isOK;
+    private Context context;
 
     @SuppressLint("LongLogTag")
     public WebService(Context context) {
         Log.i(MyLog.WEB_SERVICE, "Context : " + context.toString());
         this.context = context;
-        queue = Volley.newRequestQueue(context);
         gson = new Gson();
         isOK = new IsOK();
     }
@@ -41,7 +35,7 @@ public class WebService {
         Log.i(MyLog.WEB_SERVICE, "Handler : ‌" + handler.toString());
         Log.i(MyLog.WEB_SERVICE, "URL : ‌" + url);
 
-        queue.add(new StringRequest(
+        MyApplication.getRequestQueue().add(new StringRequest(
                 method,
                 url,
                 new Response.Listener<String>() {
@@ -82,7 +76,7 @@ public class WebService {
         Log.i(MyLog.WEB_SERVICE, "URL : " + url);
         Log.i(MyLog.WEB_SERVICE, "Params : " + params.toString());
 
-        queue.add(new StringRequest(
+        MyApplication.getRequestQueue().add(new StringRequest(
                 method,
                 url,
                 new Response.Listener<String>() {
