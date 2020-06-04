@@ -20,7 +20,7 @@
         android:id="@+id/bottomNavigationViewTab_Event"
         fontPath="fonts/IRANSans.ttf"
         android:icon="@drawable/ic_calendar"
-        android:title="@string/event" />
+        android:title="@string/news" />
 
     <item
         android:id="@+id/bottomNavigationViewTab_Home"

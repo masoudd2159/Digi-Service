@@ -14,47 +14,45 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.makeramen.roundedimageview.RoundedImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.ItemSelectedActivity;
 import ir.ac.sku.service.digiservice.config.MyAPI;
-import ir.ac.sku.service.digiservice.model.ResourcesModel;
+import ir.ac.sku.service.digiservice.model.SearchModel;
 
-public class AreaSelectedAdapter extends RecyclerView.Adapter<AreaSelectedAdapter.MyViewHolder> {
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
 
     private Context context;
-    private List<ResourcesModel.Data> data;
+    private List<SearchModel.Data> modelData;
 
-    public AreaSelectedAdapter(Context context, List<ResourcesModel.Data> data) {
+    public SearchAdapter(Context context, List<SearchModel.Data> modelData) {
         this.context = context;
-        this.data = (data == null) ? new ArrayList<ResourcesModel.Data>() : data;
+        this.modelData = modelData;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_area_selected_list, parent, false));
+        return new SearchAdapter.MyViewHolder(LayoutInflater.from(context).inflate(R.layout.custom_area_selected_list, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.bind(data.get(position));
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
+        myViewHolder.bind(modelData.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return modelData.size();
     }
 
-
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private RoundedImageView imageView;
         private TextView textView;
 
-        MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.customAreaSelectedList_ImageView);
@@ -63,11 +61,11 @@ public class AreaSelectedAdapter extends RecyclerView.Adapter<AreaSelectedAdapte
             itemView.setOnClickListener(this);
         }
 
-        void bind(ResourcesModel.Data dataModel) {
-            textView.setText(dataModel.getTitle());
+        void bind(SearchModel.Data data) {
+            textView.setText(data.getLabName());
             Glide
                     .with(context)
-                    .load(MyAPI.DIGI_SERVICE + dataModel.getPicture())
+                    .load(MyAPI.DIGI_SERVICE + data.getPicture())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageView)
             ;
@@ -76,7 +74,7 @@ public class AreaSelectedAdapter extends RecyclerView.Adapter<AreaSelectedAdapte
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(context, ItemSelectedActivity.class);
-            intent.putExtra("id", data.get(getLayoutPosition()).getId());
+            intent.putExtra("id", modelData.get(getLayoutPosition()).getId());
             context.startActivity(intent);
         }
     }

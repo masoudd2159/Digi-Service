@@ -56,7 +56,7 @@
                     android:ellipsize="end"
                     android:layoutDirection="rtl"
                     android:singleLine="true"
-                    android:text="سید مسیح جزایری جونقانی"
+                    android:text="مسعود دباغی"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
