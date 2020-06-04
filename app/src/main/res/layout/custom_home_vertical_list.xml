@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
     android:layoutDirection="rtl"
     android:orientation="vertical"
     tools:ignore="MissingPrefix">
@@ -17,13 +16,12 @@
         android:layoutDirection="rtl"
         android:padding="10dp"
         android:textColor="@color/colorPrimary"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/customHomeVerticalList_RecyclerViewHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
         android:layoutDirection="rtl" />
 
 </LinearLayout>

@@ -18,13 +18,14 @@
         android:layoutDirection="ltr">
 
         <ImageButton
-            android:id="@+id/activityMain_ImageButtonDrawer"
+            android:id="@+id/activityAreaSelected_ImageButtonBack"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_gravity="end|center_vertical"
             android:layout_marginEnd="17dp"
             android:background="@drawable/ic_right_black"
-            android:layoutDirection="ltr" />
+            android:layoutDirection="ltr"
+            android:onClick="onBackImageClick" />
 
         <ImageView
             android:id="@+id/activityAreaSelected_DigiServiceIcon"

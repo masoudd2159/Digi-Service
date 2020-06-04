@@ -74,6 +74,15 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentsAdapter.
                 case 4:
                     departmentImage.setImageResource(R.drawable.ic_employee_welfare);
                     break;
+                case 5:
+                    departmentImage.setImageResource(R.drawable.ic_ict);
+                    break;
+                case 6:
+                    departmentImage.setImageResource(R.drawable.ic_university);
+                    break;
+                case 12:
+                    departmentImage.setImageResource(R.drawable.ic_idea);
+                    break;
             }
         }
 

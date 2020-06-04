@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.loopeer.shadow.ShadowView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customHomeHorizontalView_ShadowView"
+    android:layout_width="190dp"
+    android:layout_height="250dp"
+    android:background="@color/white"
+    android:padding="8dp"
+    app:cornerRadius="30dp"
+    app:shadowColor="@color/colorPrimaryShadow"
+    app:shadowMargin="10dp"
+    app:shadowRadius="10dp"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:id="@+id/customHomeHorizontalView_LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/customHomeHorizontalView_ImageView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="5dp"
+            android:scaleType="fitCenter"
+            app:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/customHomeHorizontalView_TextView"
+            fontPath="fonts/IRANSansMobile(FaNum)_Bold.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+</com.loopeer.shadow.ShadowView>

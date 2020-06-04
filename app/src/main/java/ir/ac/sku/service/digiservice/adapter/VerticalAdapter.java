@@ -11,19 +11,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import ir.ac.sku.service.digiservice.R;
-import ir.ac.sku.service.digiservice.model.HomeModel;
+import ir.ac.sku.service.digiservice.config.MyAPI;
+import ir.ac.sku.service.digiservice.model.HomePageModel;
+import ir.ac.sku.service.digiservice.util.MyHandler;
 
 public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.MyViewHolder> {
 
-    private List<HomeModel.Data> data;
     private Context context;
+    private List<HomePageModel> homePageModelList;
 
-    public VerticalAdapter(Context context, List<HomeModel.Data> data) {
-        this.data = data;
+    public VerticalAdapter(Context context, List<HomePageModel> homePageModelList) {
         this.context = context;
+        this.homePageModelList = homePageModelList;
     }
 
     @NonNull
@@ -34,12 +38,35 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.bind(data.get(position));
+        switch (position) {
+            case 0:
+                holder.categoryTitle.setText("جدیدترین های منابع");
+                setUpRecyclerView(homePageModelList.get(position), holder);
+                break;
+            case 1:
+                holder.categoryTitle.setText("جدیدترین های آموزشی");
+                setUpRecyclerView(homePageModelList.get(position), holder);
+                break;
+            case 2:
+                holder.categoryTitle.setText("محبوب ترین منابع");
+                setUpRecyclerView(homePageModelList.get(position), holder);
+                break;
+            case 3:
+                holder.categoryTitle.setText("محبوب ترین های آموزشی");
+                setUpRecyclerView(homePageModelList.get(position), holder);
+                break;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return homePageModelList.size();
+    }
+
+    private void setUpRecyclerView(HomePageModel model, MyViewHolder holder) {
+        holder.recyclerViewHorizontal.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_from_right));
+        holder.recyclerViewHorizontal.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        holder.recyclerViewHorizontal.setAdapter(new HorizontalAdapter(context, model.getData()));
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -51,12 +78,6 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.MyView
             super(itemView);
             categoryTitle = itemView.findViewById(R.id.customHomeVerticalList_CategoryTitle);
             recyclerViewHorizontal = itemView.findViewById(R.id.customHomeVerticalList_RecyclerViewHorizontal);
-        }
-
-        void bind(HomeModel.Data dataModel) {
-            recyclerViewHorizontal.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_from_right));
-            recyclerViewHorizontal.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            recyclerViewHorizontal.setAdapter(new HorizontalAdapter(context, dataModel.getItems()));
         }
     }
 }

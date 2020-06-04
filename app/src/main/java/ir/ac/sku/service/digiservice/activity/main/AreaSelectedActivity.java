@@ -74,4 +74,8 @@ public class AreaSelectedActivity extends MyActivity {
         labName = findViewById(R.id.activityAreaSelected_TextViewLabName);
         recyclerView = findViewById(R.id.activityAreaSelected_RecyclerView);
     }
+
+    public void onBackImageClick(View view) {
+        finish();
+    }
 }

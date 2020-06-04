@@ -32,4 +32,19 @@
     <string name="searchTextHint">آزمایشگاه ها , ابزار , سالن و …</string>
     <string name="space" />
 
+    <!-- Selected Resources -->
+    <string name="scheduling">زمان بندی</string>
+    <string name="applying">ثبت درخواست</string>/>
+
+    <!-- Page Titles -->
+    <string name="pagerTitle_1">مشخصات</string>
+    <string name="pagerTitle_2">نظرات</string>
+    <string name="pagerTitle_3">پرسش و پاسخ</string>
+
+    <string-array name="pagerTitles">
+        <item>@string/pagerTitle_1</item>
+        <item>@string/pagerTitle_2</item>
+        <item>@string/pagerTitle_3</item>
+    </string-array>
+
 </resources>
