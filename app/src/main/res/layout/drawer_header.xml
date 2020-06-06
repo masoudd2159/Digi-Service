@@ -33,7 +33,7 @@
                 android:layoutDirection="rtl"
                 android:padding="1dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/men"
+                android:src="@drawable/tiida_logo"
                 app:riv_border_color="#DDDDDD"
                 app:riv_border_width="1dip"
                 app:riv_corner_radius="40dip" />
@@ -56,7 +56,7 @@
                     android:ellipsize="end"
                     android:layoutDirection="rtl"
                     android:singleLine="true"
-                    android:text="مسعود دباغی"
+                    android:text="شرکت تاج یاقوت دانش آینده (تیدا)"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 

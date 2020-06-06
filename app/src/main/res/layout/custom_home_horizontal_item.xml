@@ -24,7 +24,7 @@
         <ImageView
             android:id="@+id/customHomeHorizontalView_ImageView"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="145dp"
             android:layout_margin="5dp"
             android:scaleType="fitCenter"
             app:layout_gravity="center" />
@@ -42,6 +42,16 @@
             android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/customHomeHorizontalView_ImageViewMore"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_more" />
 
     </LinearLayout>
 

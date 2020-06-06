@@ -104,8 +104,6 @@ public class OfficesFragment extends Fragment implements
         pagerSnapHelper.attachToRecyclerView(scrollView);
 
         pagerIndicator.attachToRecyclerView(scrollView, pagerSnapHelper);
-
-
     }
 
 

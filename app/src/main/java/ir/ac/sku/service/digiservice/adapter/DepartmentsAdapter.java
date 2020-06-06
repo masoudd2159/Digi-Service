@@ -30,7 +30,7 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentsAdapter.
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        return new DepartmentsAdapter.MyViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom_department_view, viewGroup, false));
+        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.custom_department_view, viewGroup, false));
     }
 
     @Override
