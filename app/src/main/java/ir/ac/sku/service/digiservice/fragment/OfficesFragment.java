@@ -24,6 +24,7 @@ import com.yarolegovich.discretescrollview.DiscreteScrollView;
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import ir.ac.sku.service.digiservice.R;
@@ -72,15 +73,17 @@ public class OfficesFragment extends Fragment implements
                         areasModel = new AreasModel();
                         areasModel = (AreasModel) obj;
 
-                        prepareDepartmentsData();
+                        prepareDepartmentsData("10");
                     }
                 }
             });
         }
     }
 
-    private void prepareDepartmentsData() {
-        DepartmentsModel.fetchFromWeb(rootView.getContext(), null, new MyHandler() {
+    private void prepareDepartmentsData(String status) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("status", status);
+        DepartmentsModel.fetchFromWeb(rootView.getContext(), params, new MyHandler() {
             @Override
             public void onResponse(boolean ok, Object obj) {
                 if (ok) {
@@ -117,7 +120,9 @@ public class OfficesFragment extends Fragment implements
             if (areasModel != null) {
                 for (int j = 0; j < areasModel.getData().size(); j++) {
                     if (areasModel.getData().get(j).getDepartmentId() == (i + 1)) {
-                        data.add(areasModel.getData().get(j));
+                        if (areasModel.getData().get(j).isActived()) {
+                            data.add(areasModel.getData().get(j));
+                        }
                     }
                 }
                 AreasAdapter adapter = new AreasAdapter(rootView.getContext(), data);

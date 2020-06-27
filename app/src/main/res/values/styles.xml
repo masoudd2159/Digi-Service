@@ -46,4 +46,9 @@
         <item name="android:listDivider">@color/gray</item>
     </style>
 
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slideup</item>
+        <item name="android:windowExitAnimation">@anim/slidebottom</item>
+    </style>
+
 </resources>

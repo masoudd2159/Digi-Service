@@ -116,4 +116,25 @@ public class ManagerHelper {
 
         return output;
     }
+
+    public static String getStyle(String font_family, String font_size, String text_align, String fontColor) {
+        return "<style>" +
+                ".center {" +
+                "    max-width: 100%;" +
+                "    display: block;" +
+                "    margin-left: auto;" +
+                "    margin-right: auto;" +
+                "}" +
+                "@font-face {" +
+                "    font-family: font;" +
+                "    src: url(\"file:///android_asset/" + font_family + "\")" +
+                "}" +
+                "body {" +
+                "    font-family: font;" +
+                "    font-size: " + font_size + "px;" +
+                "    text-align: " + text_align + ";" +
+                "    color: " + fontColor + ";" +
+                "}" +
+                "</style>";
+    }
 }

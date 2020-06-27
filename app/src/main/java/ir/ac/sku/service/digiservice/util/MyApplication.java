@@ -2,7 +2,6 @@ package ir.ac.sku.service.digiservice.util;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
-import android.content.Context;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;

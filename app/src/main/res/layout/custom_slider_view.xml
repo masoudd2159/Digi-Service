@@ -31,7 +31,7 @@
             app:riv_corner_radius="20dp" />
 
         <!--        <TextView
-                    android:id="@+id/activityItemSelected_Title"
+                    android:id="@+id/customSliderView_Title"
                     fontPath="fonts/IRANSansMobile_Black.ttf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                     android:textSize="22sp" />-->
 
         <ImageView
-            android:id="@+id/customHomeHorizontalView_ImageViewMore"
+            android:id="@+id/customSliderView_ImageViewMore"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_alignParentLeft="true"

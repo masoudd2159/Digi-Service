@@ -1,6 +1,8 @@
 package ir.ac.sku.service.digiservice.model;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.google.gson.Gson;
@@ -10,17 +12,16 @@ import java.util.HashMap;
 import java.util.List;
 
 import ir.ac.sku.service.digiservice.config.MyAPI;
+import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.util.ManagerHelper;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 import ir.ac.sku.service.digiservice.util.WebService;
 
-public class DepartmentsModel {
-
+public class SchedulingModel {
     private boolean ok;
-    private int code;
+    private long code;
     private String message;
-    private List<Data> data = null;
-
+    private List<Data> data;
 
     public boolean isOk() {
         return ok;
@@ -30,11 +31,11 @@ public class DepartmentsModel {
         this.ok = ok;
     }
 
-    public int getCode() {
+    public long getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(long code) {
         this.code = code;
     }
 
@@ -55,32 +56,14 @@ public class DepartmentsModel {
     }
 
     public class Data {
-        private int id;
-        private String title;
-        private String picture;
+        private String schTable;
 
-        public int getId() {
-            return id;
+        public String getSchTable() {
+            return schTable;
         }
 
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getPicture() {
-            return picture;
-        }
-
-        public void setPicture(String picture) {
-            this.picture = picture;
+        public void setSchTable(String schTable) {
+            this.schTable = schTable;
         }
     }
 
@@ -88,14 +71,17 @@ public class DepartmentsModel {
         Gson gson = new Gson();
 
         WebService webService = new WebService(context);
-        String url = MyAPI.DEPARTMENTS_FILTER + "?" + ManagerHelper.enCodeParameters(params);
+        String url = MyAPI.SCHEDULE + "?" + ManagerHelper.enCodeParameters(params);
         webService.requestAPI(url, Request.Method.GET, new MyHandler() {
+            @SuppressLint("LongLogTag")
             @Override
             public void onResponse(boolean ok, Object obj) {
                 if (ok) {
-                    DepartmentsModel departmentsModel = gson.fromJson(new String(obj.toString().getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8), DepartmentsModel.class);
-                    if (departmentsModel.ok)
-                        handler.onResponse(true, departmentsModel);
+                    SchedulingModel schedulingModel = gson.fromJson(new String(obj.toString().getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8), SchedulingModel.class);
+                    if (schedulingModel.ok)
+                        handler.onResponse(true, schedulingModel);
+                } else {
+                    handler.onResponse(ok, "");
                 }
             }
         });

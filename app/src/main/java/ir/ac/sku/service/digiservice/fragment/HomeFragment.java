@@ -87,19 +87,19 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUpDiscreteScrollView(List<String> pictureURL) {
-            scrollView.setOrientation(DSVOrientation.HORIZONTAL);
-            scrollView.setSlideOnFling(true);
-            scrollView.setAdapter(new SliderAdapter(rootView.getContext(), pictureURL));
+        scrollView.setOrientation(DSVOrientation.HORIZONTAL);
+        scrollView.setSlideOnFling(true);
+        scrollView.setAdapter(new SliderAdapter(rootView.getContext(), pictureURL));
             /*scrollView.addOnItemChangedListener(this);
             scrollView.addScrollStateChangeListener(this);*/
-            scrollView.setItemTransformer(new ScaleTransformer.Builder()
-                    .setMinScale(0.8f)
-                    .build());
+        scrollView.setItemTransformer(new ScaleTransformer.Builder()
+                .setMinScale(0.8f)
+                .build());
 
-            PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
-            pagerSnapHelper.attachToRecyclerView(scrollView);
+        PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
+        pagerSnapHelper.attachToRecyclerView(scrollView);
 
-            pagerIndicator.attachToRecyclerView(scrollView, pagerSnapHelper);
+        pagerIndicator.attachToRecyclerView(scrollView, pagerSnapHelper);
     }
 
     private void prepareHomePageModelData(String urlApi, String status) {
@@ -114,12 +114,8 @@ public class HomeFragment extends Fragment {
                     homePageModelList.add((HomePageModel) obj);
                     recyclerHandler++;
                     if (recyclerHandler == 1) {
-                        prepareHomePageModelData(MyAPI.RECENT_RESOURCES, "01");
-                    } else if (recyclerHandler == 2) {
                         prepareHomePageModelData(MyAPI.POPULAR_RESOURCES, "10");
-                    } else if (recyclerHandler == 3) {
-                        prepareHomePageModelData(MyAPI.POPULAR_RESOURCES, "01");
-                    } else if (recyclerHandler == 4) {
+                    } else if (recyclerHandler == 2) {
                         setUpRecyclerView(homePageModelList);
                         loadingAnimationView.setVisibility(View.INVISIBLE);
                     }

@@ -39,7 +39,6 @@ public class AreasAdapter extends RecyclerView.Adapter<AreasAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         myViewHolder.persianTitle.setText(data.get(i).getTitle());
-
         Log.i("Masoud", "i : " + String.valueOf(i));
         Log.i("Masoud", "size : " + String.valueOf(data.size()));
 

@@ -41,6 +41,7 @@
     <string name="pagerTitle_1">مشخصات</string>
     <string name="pagerTitle_2">نظرات</string>
     <string name="pagerTitle_3">پرسش و پاسخ</string>
+    <string name="close">بستن</string>
 
     <string-array name="pagerTitles">
         <item>@string/pagerTitle_1</item>

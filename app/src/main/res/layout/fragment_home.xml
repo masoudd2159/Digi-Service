@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="60dp"
     tools:context=".fragment.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -13,7 +14,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="60dp"
             android:orientation="vertical">
 
             <com.yarolegovich.discretescrollview.DiscreteScrollView
@@ -49,7 +49,6 @@
         android:layout_width="256dp"
         android:layout_height="256dp"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="32dp"
         android:visibility="visible"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"

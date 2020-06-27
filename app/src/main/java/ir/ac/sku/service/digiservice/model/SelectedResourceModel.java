@@ -58,6 +58,7 @@ public class SelectedResourceModel {
         private int primaryAreaId;
         private String labName;
         private String nameEnglish;
+        private String description;
         private String usagePeriodType;
         private int quantity;
         private int cost;
@@ -67,6 +68,8 @@ public class SelectedResourceModel {
         private int maxSelectableValue;
         private boolean isPanelActived;
         private String picture;
+        private String head;
+        private String schTable;
 
         public int getId() {
             return id;
@@ -98,6 +101,14 @@ public class SelectedResourceModel {
 
         public void setNameEnglish(String nameEnglish) {
             this.nameEnglish = nameEnglish;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
         }
 
         public String getUsagePeriodType() {
@@ -170,6 +181,22 @@ public class SelectedResourceModel {
 
         public void setPicture(String picture) {
             this.picture = picture;
+        }
+
+        public String getHead() {
+            return head;
+        }
+
+        public void setHead(String head) {
+            this.head = head;
+        }
+
+        public String getSchTable() {
+            return schTable;
+        }
+
+        public void setSchTable(String schTable) {
+            this.schTable = schTable;
         }
     }
 

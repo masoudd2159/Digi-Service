@@ -14,13 +14,11 @@ import ir.ac.sku.service.digiservice.util.ManagerHelper;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 import ir.ac.sku.service.digiservice.util.WebService;
 
-public class DepartmentsModel {
-
+public class NewsModel {
     private boolean ok;
     private int code;
     private String message;
-    private List<Data> data = null;
-
+    private List<Data> data;
 
     public boolean isOk() {
         return ok;
@@ -56,8 +54,9 @@ public class DepartmentsModel {
 
     public class Data {
         private int id;
-        private String title;
         private String picture;
+        private String title;
+        private String body;
 
         public int getId() {
             return id;
@@ -65,6 +64,14 @@ public class DepartmentsModel {
 
         public void setId(int id) {
             this.id = id;
+        }
+
+        public String getPicture() {
+            return picture;
+        }
+
+        public void setPicture(String picture) {
+            this.picture = picture;
         }
 
         public String getTitle() {
@@ -75,12 +82,12 @@ public class DepartmentsModel {
             this.title = title;
         }
 
-        public String getPicture() {
-            return picture;
+        public String getBody() {
+            return body;
         }
 
-        public void setPicture(String picture) {
-            this.picture = picture;
+        public void setBody(String body) {
+            this.body = body;
         }
     }
 
@@ -88,14 +95,14 @@ public class DepartmentsModel {
         Gson gson = new Gson();
 
         WebService webService = new WebService(context);
-        String url = MyAPI.DEPARTMENTS_FILTER + "?" + ManagerHelper.enCodeParameters(params);
+        String url = MyAPI.NEWS + "?" + ManagerHelper.enCodeParameters(params);
         webService.requestAPI(url, Request.Method.GET, new MyHandler() {
             @Override
             public void onResponse(boolean ok, Object obj) {
                 if (ok) {
-                    DepartmentsModel departmentsModel = gson.fromJson(new String(obj.toString().getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8), DepartmentsModel.class);
-                    if (departmentsModel.ok)
-                        handler.onResponse(true, departmentsModel);
+                    NewsModel newsModel = gson.fromJson(new String(obj.toString().getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8), NewsModel.class);
+                    if (newsModel.ok)
+                        handler.onResponse(true, newsModel);
                 }
             }
         });

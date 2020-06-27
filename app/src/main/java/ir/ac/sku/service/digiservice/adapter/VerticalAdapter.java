@@ -44,15 +44,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.MyView
                 setUpRecyclerView(homePageModelList.get(position), holder);
                 break;
             case 1:
-                holder.categoryTitle.setText("جدیدترین های آموزشی");
-                setUpRecyclerView(homePageModelList.get(position), holder);
-                break;
-            case 2:
                 holder.categoryTitle.setText("محبوب ترین منابع");
-                setUpRecyclerView(homePageModelList.get(position), holder);
-                break;
-            case 3:
-                holder.categoryTitle.setText("محبوب ترین های آموزشی");
                 setUpRecyclerView(homePageModelList.get(position), holder);
                 break;
         }

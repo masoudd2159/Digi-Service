@@ -9,31 +9,11 @@
     tools:context=".fragment.EventsFragment"
     tools:ignore="MissingPrefix">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragmentEvent_RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="256dp"
-            android:layout_height="256dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_programmer" />
-
-        <TextView
-            fontPath="fonts/IRANSansMobile_Black.ttf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:padding="20dp"
-            android:text="برنامه نویسان مشغول کاراند!"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp" />
-
-    </LinearLayout>
+        android:layout_marginBottom="60dp" />
 
 
 </FrameLayout>

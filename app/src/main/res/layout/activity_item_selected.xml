@@ -43,120 +43,115 @@
         android:background="#DDDDDD"
         android:layoutDirection="rtl" />
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:layout_marginTop="4dp"
+            android:layoutDirection="rtl">
+
+            <ImageView
+                android:id="@+id/activityItemSelected_Picture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layoutDirection="rtl" />
+
+            <TextView
+                android:id="@+id/activityItemSelected_Title"
+                fontPath="fonts/IRANSansMobile_Black.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#80000000"
+                android:layoutDirection="rtl"
+                android:paddingLeft="8dp"
+                android:paddingTop="6dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="6dp"
+                android:textColor="@color/yellow"
+                android:textSize="22sp" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/activityItemSelected_Head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:paddingLeft="16dp"
+            android:paddingTop="10dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="10dp"
+            android:textColor="#2C2C2C"
+            android:textSize="19sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="4dp"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="256dp"
-                android:layout_marginTop="4dp"
-                android:layoutDirection="rtl">
-
-                <ImageView
-                    android:id="@+id/activityItemSelected_Picture"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layoutDirection="rtl" />
-
-                <TextView
-                    android:id="@+id/activityItemSelected_Title"
-                    fontPath="fonts/IRANSansMobile_Black.ttf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="#80000000"
-                    android:layoutDirection="rtl"
-                    android:paddingLeft="8dp"
-                    android:paddingTop="6dp"
-                    android:paddingRight="8dp"
-                    android:paddingBottom="6dp"
-                    android:textColor="@color/yellow"
-                    android:textSize="22sp" />
-
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/activityItemSelected_category"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/activityItemSelected_scheduling"
+                fontPath="fonts/IRANSansMobile(FaNum)_Bold.ttf"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layoutDirection="rtl"
-                android:paddingLeft="16dp"
-                android:paddingTop="10dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="10dp"
-                android:text="دسته بندی :‌ تعریف نشده"
-                android:textColor="#2C2C2C"
-                android:textSize="19sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_oval_white_red_stroke"
+                android:gravity="center"
                 android:layoutDirection="rtl"
-                android:orientation="horizontal">
+                android:text="@string/scheduling"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
-                <Button
-
-                    android:id="@+id/activityItemSelected_scheduling"
-                    fontPath="fonts/IRANSansMobile(FaNum)_Bold.ttf"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_oval_white_red_stroke"
-                    android:gravity="center"
-                    android:layoutDirection="rtl"
-                    android:text="@string/scheduling"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/activityItemSelected_applying"
-                    fontPath="fonts/IRANSansMobile(FaNum)_Bold.ttf"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_oval_red_solid"
-                    android:gravity="center"
-                    android:layoutDirection="rtl"
-                    android:text="@string/applying"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/activityItemSelected_TabLayout"
-                fontPath="fonts/IRANSansMobile_Bold.ttf"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/activityItemSelected_applying"
+                fontPath="fonts/IRANSansMobile(FaNum)_Bold.ttf"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_oval_red_solid"
+                android:gravity="center"
                 android:layoutDirection="rtl"
-                app:tabGravity="fill"
-                app:tabMode="fixed" />
-
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/activityItemSelected_ViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/gray"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                android:text="@string/applying"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/activityItemSelected_TabLayout"
+            fontPath="fonts/IRANSansMobile_Bold.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            app:tabGravity="fill"
+            app:tabMode="fixed" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/activityItemSelected_ViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:layoutDirection="rtl"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+    </LinearLayout>
 
 </LinearLayout>

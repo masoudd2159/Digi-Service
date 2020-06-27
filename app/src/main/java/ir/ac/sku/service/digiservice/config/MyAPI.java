@@ -14,6 +14,7 @@ public class MyAPI {
     public static final String DEPARTMENTS              = "http://service.sku.ac.ir/tiidapi/departments";          //
     public static final String SYSTEM_INFO              = "http://service.sku.ac.ir/tiidapi/systeminfo";           //
     public static final String RESOURCES                = "http://service.sku.ac.ir/tiidapi/resources";            // areaId [get from Area field id]
+    public static final String SCHEDULE                 = "http://service.sku.ac.ir/tiidapi/schedule";             // id [get from Selected Resources field id]
     public static final String SLIDER                   = "http://service.sku.ac.ir/tiidapi/slider";               // eventId [0 -> Resources | -1 -> Educational]
     public static final String SEARCH                   = "http://service.sku.ac.ir/tiidapi/search";               // filter [Search Text] & eventId [0 -> Resources | -1 -> Educational]
     public static final String AREAS                    = "http://service.sku.ac.ir/tiidapi/areas";                //

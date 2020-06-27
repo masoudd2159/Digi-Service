@@ -20,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -56,12 +57,20 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
     //* Helper Class
     private ConnectivityReceiver receiver;
 
+    //* Fragments
+    private HomeFragment homeFragment;
+    private EventsFragment eventsFragment;
+    private OfficesFragment officesFragment;
+    private SearchFragment searchFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         init();
+
+        setupFragments();
 
         receiver = new ConnectivityReceiver();
 
@@ -72,6 +81,20 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
             bottomNavigationView.setSelectedItemId(R.id.bottomNavigationViewTab_Home);
         }
 
+    }
+
+    private void setupFragments() {
+        homeFragment = new HomeFragment();
+        eventsFragment = new EventsFragment();
+        officesFragment = new OfficesFragment();
+        searchFragment = new SearchFragment();
+
+        final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, homeFragment);
+        fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, eventsFragment);
+        fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, officesFragment);
+        //fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, searchFragment);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -168,21 +191,69 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+
                 switch (menuItem.getItemId()) {
                     case R.id.bottomNavigationViewTab_Home:
-                        setUpFragment(new HomeFragment());
+                        fragmentTransaction.show(homeFragment);
+
+                        fragmentTransaction.hide(eventsFragment);
+                        fragmentTransaction.hide(officesFragment);
+                        fragmentTransaction.hide(searchFragment);
+
+                        fragmentTransaction.commit();
                         return true;
                     case R.id.bottomNavigationViewTab_Event:
-                        setUpFragment(new EventsFragment());
+                        if (!eventsFragment.isAdded()) {
+                            fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, eventsFragment);
+                        }
+                        /*fragmentTransaction.detach(eventsFragment);
+                        fragmentTransaction.attach(eventsFragment);*/
+                        fragmentTransaction.show(eventsFragment);
+
+                        fragmentTransaction.hide(homeFragment);
+                        fragmentTransaction.hide(officesFragment);
+                        fragmentTransaction.hide(searchFragment);
+
+                        fragmentTransaction.commit();
                         return true;
                     case R.id.bottomNavigationViewTab_Office:
-                        setUpFragment(new OfficesFragment());
+                        if (!officesFragment.isAdded()) {
+                            fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, officesFragment);
+                        }
+
+                        /*fragmentTransaction.detach(officesFragment);
+                        fragmentTransaction.attach(officesFragment);*/
+                        fragmentTransaction.show(officesFragment);
+
+                        fragmentTransaction.hide(homeFragment);
+                        fragmentTransaction.hide(eventsFragment);
+                        fragmentTransaction.hide(searchFragment);
+
+                        fragmentTransaction.commit();
                         return true;
                     case R.id.bottomNavigationViewTab_Search:
-                        setUpFragment(new SearchFragment());
+                        if (!searchFragment.isAdded()) {
+                            fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, searchFragment);
+                        }
+                        /*fragmentTransaction.detach(searchFragment);
+                        fragmentTransaction.attach(searchFragment);*/
+                        fragmentTransaction.show(searchFragment);
+
+                        fragmentTransaction.hide(homeFragment);
+                        fragmentTransaction.hide(eventsFragment);
+                        fragmentTransaction.hide(officesFragment);
+
+                        fragmentTransaction.commit();
                         return true;
                     default:
-                        setUpFragment(new HomeFragment());
+                        fragmentTransaction.show(homeFragment);
+                        fragmentTransaction.hide(eventsFragment);
+                        fragmentTransaction.hide(officesFragment);
+                        fragmentTransaction.hide(searchFragment);
+                        fragmentTransaction.commit();
                         return true;
                 }
             }
