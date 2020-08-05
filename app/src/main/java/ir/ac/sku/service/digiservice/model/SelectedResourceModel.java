@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.android.volley.Request;
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -15,10 +17,38 @@ import ir.ac.sku.service.digiservice.util.MyHandler;
 import ir.ac.sku.service.digiservice.util.WebService;
 
 public class SelectedResourceModel {
+    @SerializedName("ok")
+    @Expose
     private boolean ok;
+
+    @SerializedName("code")
+    @Expose
     private int code;
+
+    @SerializedName("message")
+    @Expose
     private String message;
+
+    @SerializedName("data")
+    @Expose
     private List<Data> data = null;
+
+    public static void fetchFromWeb(Context context, HashMap<String, String> params, MyHandler handler) {
+        Gson gson = new Gson();
+
+        WebService webService = new WebService(context);
+        String url = MyAPI.SELECTED_RESOURCES + "?" + ManagerHelper.enCodeParameters(params);
+        webService.requestAPI(url, Request.Method.GET, new MyHandler() {
+            @Override
+            public void onResponse(boolean ok, Object obj) {
+                if (ok) {
+                    SelectedResourceModel selectedResourceModel = gson.fromJson(new String(obj.toString().getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8), SelectedResourceModel.class);
+                    if (selectedResourceModel.ok)
+                        handler.onResponse(true, selectedResourceModel);
+                }
+            }
+        });
+    }
 
     public boolean isOk() {
         return ok;
@@ -53,22 +83,68 @@ public class SelectedResourceModel {
     }
 
     public class Data {
-
+        @SerializedName("id")
+        @Expose
         private int id;
+
+        @SerializedName("primaryAreaId")
+        @Expose
         private int primaryAreaId;
+
+        @SerializedName("labName")
+        @Expose
         private String labName;
+
+        @SerializedName("nameEnglish")
+        @Expose
         private String nameEnglish;
+
+        @SerializedName("description")
+        @Expose
         private String description;
+
+        @SerializedName("usagePeriodType")
+        @Expose
         private String usagePeriodType;
+
+        @SerializedName("quantity")
+        @Expose
         private int quantity;
+
+        @SerializedName("cost")
+        @Expose
         private int cost;
+
+        @SerializedName("isActived")
+        @Expose
         private boolean isActived;
+
+        @SerializedName("score")
+        @Expose
         private int score;
+
+        @SerializedName("scoreCount")
+        @Expose
         private int scoreCount;
+
+        @SerializedName("maxSelectableValue")
+        @Expose
         private int maxSelectableValue;
+
+        @SerializedName("isPanelActived")
+        @Expose
         private boolean isPanelActived;
+
+        @SerializedName("picture")
+        @Expose
         private String picture;
+
+        @SerializedName("head")
+        @Expose
         private String head;
+
+        @SerializedName("schTable")
+        @Expose
         private String schTable;
 
         public int getId() {
@@ -198,22 +274,5 @@ public class SelectedResourceModel {
         public void setSchTable(String schTable) {
             this.schTable = schTable;
         }
-    }
-
-    public static void fetchFromWeb(Context context, HashMap<String, String> params, MyHandler handler) {
-        Gson gson = new Gson();
-
-        WebService webService = new WebService(context);
-        String url = MyAPI.SELECTED_RESOURCES + "?" + ManagerHelper.enCodeParameters(params);
-        webService.requestAPI(url, Request.Method.GET, new MyHandler() {
-            @Override
-            public void onResponse(boolean ok, Object obj) {
-                if (ok) {
-                    SelectedResourceModel selectedResourceModel = gson.fromJson(new String(obj.toString().getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8), SelectedResourceModel.class);
-                    if (selectedResourceModel.ok)
-                        handler.onResponse(true, selectedResourceModel);
-                }
-            }
-        });
     }
 }

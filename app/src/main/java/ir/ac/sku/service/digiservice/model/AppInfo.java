@@ -1,10 +1,11 @@
 package ir.ac.sku.service.digiservice.model;
 
 import android.content.Context;
-import android.view.textclassifier.TextLinks;
 
 import com.android.volley.Request;
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -16,11 +17,38 @@ import ir.ac.sku.service.digiservice.util.MyHandler;
 import ir.ac.sku.service.digiservice.util.WebService;
 
 public class AppInfo {
+    @SerializedName("ok")
+    @Expose
     private boolean ok;
+
+    @SerializedName("code")
+    @Expose
     private int code;
+
+    @SerializedName("message")
+    @Expose
     private String message;
+
+    @SerializedName("data")
+    @Expose
     private List<Data> data = null;
 
+    public static void fetchFromWeb(Context context, HashMap<String, String> params, MyHandler handler) {
+        Gson gson = new Gson();
+
+        WebService webService = new WebService(context);
+        String url = MyAPI.SYSTEM_INFO + "?" + ManagerHelper.enCodeParameters(params);
+        webService.requestAPI(url, Request.Method.GET, new MyHandler() {
+            @Override
+            public void onResponse(boolean ok, Object obj) {
+                if (ok) {
+                    AppInfo appInfo = gson.fromJson(new String(obj.toString().getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8), AppInfo.class);
+                    if (appInfo.ok)
+                        handler.onResponse(true, appInfo);
+                }
+            }
+        });
+    }
 
     public boolean isOk() {
         return ok;
@@ -55,14 +83,40 @@ public class AppInfo {
     }
 
     public class Data {
+        @SerializedName("id")
+        @Expose
         private int id;
+
+        @SerializedName("minimumVersion")
+        @Expose
         private int minimumVersion;
+
+        @SerializedName("latestVersion")
+        @Expose
         private int latestVersion;
+
+        @SerializedName("downloadAndroidUrl")
+        @Expose
         private String downloadAndroidUrl;
+
+        @SerializedName("updateMessage")
+        @Expose
         private String updateMessage;
+
+        @SerializedName("forceUpdateMessage")
+        @Expose
         private String forceUpdateMessage;
+
+        @SerializedName("developmentTeamUrl")
+        @Expose
         private String developmentTeamUrl;
+
+        @SerializedName("contactSupportId")
+        @Expose
         private String contactSupportId;
+
+        @SerializedName("runnable")
+        @Expose
         private boolean runnable;
 
         public int getId() {
@@ -136,22 +190,5 @@ public class AppInfo {
         public void setRunnable(boolean runnable) {
             this.runnable = runnable;
         }
-    }
-
-    public static void fetchFromWeb(Context context, HashMap<String, String> params, MyHandler handler) {
-        Gson gson = new Gson();
-
-        WebService webService = new WebService(context);
-        String url = MyAPI.SYSTEM_INFO + "?" + ManagerHelper.enCodeParameters(params);
-        webService.requestAPI(url, Request.Method.GET, new MyHandler() {
-            @Override
-            public void onResponse(boolean ok, Object obj) {
-                if (ok) {
-                    AppInfo appInfo = gson.fromJson(new String(obj.toString().getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8), AppInfo.class);
-                    if (appInfo.ok)
-                        handler.onResponse(true, appInfo);
-                }
-            }
-        });
     }
 }

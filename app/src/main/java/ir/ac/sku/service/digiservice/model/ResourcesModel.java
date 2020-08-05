@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.android.volley.Request;
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -15,11 +17,38 @@ import ir.ac.sku.service.digiservice.util.MyHandler;
 import ir.ac.sku.service.digiservice.util.WebService;
 
 public class ResourcesModel {
+    @SerializedName("ok")
+    @Expose
     private boolean ok;
+
+    @SerializedName("code")
+    @Expose
     private int code;
+
+    @SerializedName("message")
+    @Expose
     private String message;
+
+    @SerializedName("data")
+    @Expose
     private List<Data> data = null;
 
+    public static void fetchFromWeb(Context context, HashMap<String, String> params, MyHandler handler) {
+        Gson gson = new Gson();
+
+        WebService webService = new WebService(context);
+        String url = MyAPI.RESOURCES + "?" + ManagerHelper.enCodeParameters(params);
+        webService.requestAPI(url, Request.Method.GET, new MyHandler() {
+            @Override
+            public void onResponse(boolean ok, Object obj) {
+                if (ok) {
+                    ResourcesModel resourcesModel = gson.fromJson(new String(obj.toString().getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8), ResourcesModel.class);
+                    if (resourcesModel.ok)
+                        handler.onResponse(true, resourcesModel);
+                }
+            }
+        });
+    }
 
     public boolean isOk() {
         return ok;
@@ -54,21 +83,61 @@ public class ResourcesModel {
     }
 
     public class Data {
+        @SerializedName("id")
+        @Expose
         private int id;
-        private int primaryAreaId;
-        private String labName;
-        private String title;
-        private String titleEnglish;
-        private String usagePeriodType;
-        private int quantity;
-        private int cost;
-        private boolean isActived;
-        private int score;
-        private int scoreCount;
-        private int maxSelectableValue;
-        private boolean isPanelActived;
-        private String picture;
 
+        @SerializedName("primaryAreaId")
+        @Expose
+        private int primaryAreaId;
+
+        @SerializedName("labName")
+        @Expose
+        private String labName;
+
+        @SerializedName("title")
+        @Expose
+        private String title;
+
+        @SerializedName("titleEnglish")
+        @Expose
+        private String titleEnglish;
+
+        @SerializedName("usagePeriodType")
+        @Expose
+        private String usagePeriodType;
+
+        @SerializedName("quantity")
+        @Expose
+        private int quantity;
+
+        @SerializedName("cost")
+        @Expose
+        private int cost;
+
+        @SerializedName("isActived")
+        @Expose
+        private boolean isActived;
+
+        @SerializedName("score")
+        @Expose
+        private int score;
+
+        @SerializedName("scoreCount")
+        @Expose
+        private int scoreCount;
+
+        @SerializedName("maxSelectableValue")
+        @Expose
+        private int maxSelectableValue;
+
+        @SerializedName("isPanelActived")
+        @Expose
+        private boolean isPanelActived;
+
+        @SerializedName("picture")
+        @Expose
+        private String picture;
 
         public int getId() {
             return id;
@@ -181,22 +250,5 @@ public class ResourcesModel {
         public void setPicture(String picture) {
             this.picture = picture;
         }
-    }
-
-    public static void fetchFromWeb(Context context, HashMap<String, String> params, MyHandler handler) {
-        Gson gson = new Gson();
-
-        WebService webService = new WebService(context);
-        String url = MyAPI.RESOURCES + "?" + ManagerHelper.enCodeParameters(params);
-        webService.requestAPI(url, Request.Method.GET, new MyHandler() {
-            @Override
-            public void onResponse(boolean ok, Object obj) {
-                if (ok) {
-                    ResourcesModel resourcesModel = gson.fromJson(new String(obj.toString().getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8), ResourcesModel.class);
-                    if (resourcesModel.ok)
-                        handler.onResponse(true, resourcesModel);
-                }
-            }
-        });
     }
 }
