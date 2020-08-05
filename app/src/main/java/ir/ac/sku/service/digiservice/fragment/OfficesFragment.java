@@ -2,6 +2,12 @@ package ir.ac.sku.service.digiservice.fragment;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,14 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
-import android.widget.TextView;
-
 import com.yarolegovich.discretescrollview.DSVOrientation;
 import com.yarolegovich.discretescrollview.DiscreteScrollView;
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer;
@@ -27,11 +25,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
-import ir.ac.sku.service.digiservice.activity.SplashScreenActivity;
 import ir.ac.sku.service.digiservice.adapter.AreasAdapter;
 import ir.ac.sku.service.digiservice.adapter.DepartmentsAdapter;
-import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.model.AreasModel;
 import ir.ac.sku.service.digiservice.model.DepartmentsModel;
 import ir.ac.sku.service.digiservice.util.ManagerHelper;
@@ -43,23 +41,22 @@ public class OfficesFragment extends Fragment implements
         DiscreteScrollView.OnItemChangedListener<DepartmentsAdapter.MyViewHolder>,
         DiscreteScrollView.ScrollStateChangeListener<DepartmentsAdapter.MyViewHolder> {
 
+    //* Views
+    @BindView(R.id.fragmentOffice_TextViewTitle) TextView title;
+    @BindView(R.id.fragmentOffice_CardView) CardView cardView;
+    @BindView(R.id.fragmentOffice_RecyclerView) RecyclerView recyclerView;
+    @BindView(R.id.fragmentOffice_DiscreteScrollView) DiscreteScrollView scrollView;
+    @BindView(R.id.fragmentOffice_PagerIndicator) CircleIndicator2 pagerIndicator;
     private View rootView;
-    private TextView title;
-    private CardView cardView;
-    private RecyclerView recyclerView;
-    private DiscreteScrollView scrollView;
-    private CircleIndicator2 pagerIndicator;
-
     private AreasModel areasModel;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_offices, container, false);
-        this.rootView = view;
-        init();
+        rootView = inflater.inflate(R.layout.fragment_offices, container, false);
+        ButterKnife.bind(this, rootView);
         prepareAreasData();
-        return view;
+        return rootView;
     }
 
     private void prepareAreasData() {
@@ -147,13 +144,5 @@ public class OfficesFragment extends Fragment implements
     @Override
     public void onScroll(float position, int currentIndex, int newIndex, @Nullable DepartmentsAdapter.MyViewHolder currentHolder, @Nullable DepartmentsAdapter.MyViewHolder newHolder) {
 
-    }
-
-    private void init() {
-        cardView = rootView.findViewById(R.id.fragmentOffice_CardView);
-        title = rootView.findViewById(R.id.fragmentOffice_TextViewTitle);
-        recyclerView = rootView.findViewById(R.id.fragmentOffice_RecyclerView);
-        scrollView = rootView.findViewById(R.id.fragmentOffice_DiscreteScrollView);
-        pagerIndicator = rootView.findViewById(R.id.fragmentOffice_PagerIndicator);
     }
 }

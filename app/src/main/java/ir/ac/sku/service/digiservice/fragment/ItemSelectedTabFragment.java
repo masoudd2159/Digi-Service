@@ -5,20 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.util.ManagerHelper;
 
 public class ItemSelectedTabFragment extends Fragment {
 
+    //* Views
+    @BindView(R.id.fragmentWebView_WebView) WebView webView;
     private View rootView;
-    private WebView webView;
-
     private String htmlCode;
 
     public static ItemSelectedTabFragment newInstance(String htmlCode) {
@@ -39,7 +40,7 @@ public class ItemSelectedTabFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_web_view, container, false);
-        init();
+        ButterKnife.bind(this, rootView);
         setUpView(htmlCode);
         return rootView;
     }
@@ -56,9 +57,5 @@ public class ItemSelectedTabFragment extends Fragment {
                 "text/html",
                 "utf-8",
                 "");
-    }
-
-    private void init() {
-        webView = rootView.findViewById(R.id.fragmentWebView_WebView);
     }
 }

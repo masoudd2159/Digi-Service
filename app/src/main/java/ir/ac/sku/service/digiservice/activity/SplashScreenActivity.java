@@ -22,30 +22,32 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.MainActivity;
 import ir.ac.sku.service.digiservice.activity.phoneLogin.LoginActivity;
+import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.model.AppInfo;
 import ir.ac.sku.service.digiservice.util.ManagerHelper;
 import ir.ac.sku.service.digiservice.util.MyActivity;
-import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 import ir.ac.sku.service.digiservice.util.UserProfilePreferenceManager;
 
 public class SplashScreenActivity extends MyActivity {
 
 
-    //* Splash Screen Views
-    private RelativeLayout relativeLayout;
-    private LinearLayout centerLayout;
-    private ImageView skuIcon;
-    private ImageView digiServiceIcon;
-    private ImageView responsive;
-    private TextView reservationSystem;
-    private Button tryAgain;
-
     //* Static Method
     public static final int SPLASH_TIME = 1700;
+
+    //* Views
+    @BindView(R.id.splashScreenActivity_RelativeLayout) RelativeLayout relativeLayout;
+    @BindView(R.id.splashScreenActivity_LinearLayout_Center) LinearLayout centerLayout;
+    @BindView(R.id.splashScreenActivity_ImageView_SkuIcon) ImageView skuIcon;
+    @BindView(R.id.splashScreenActivity_ImageView_DigiServiceIcon) ImageView digiServiceIcon;
+    @BindView(R.id.splashScreenActivity_ImageView_ResponsiveIcon) ImageView responsive;
+    @BindView(R.id.splashScreenActivity_TextView_ReservationSystemText) TextView reservationSystem;
+    @BindView(R.id.splashScreenActivity_Button_TryAgain) Button tryAgain;
 
     //* Utils
     private UserProfilePreferenceManager preferenceManager;
@@ -60,8 +62,8 @@ public class SplashScreenActivity extends MyActivity {
         super.onCreate(savedInstanceState);
         Log.i(MyLog.SPLASH_SCREEN_ACTIVITY, "___Splash Screen___");
         setContentView(R.layout.activity_splash_screen);
+        ButterKnife.bind(this);
         changeStatusBarColor();
-        init();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -77,16 +79,6 @@ public class SplashScreenActivity extends MyActivity {
         appInfo = new AppInfo();
         getBasicAppInformation();
         // new BackgroundTask().execute();
-    }
-
-    private void init() {
-        relativeLayout = findViewById(R.id.splashScreenActivity_RelativeLayout);
-        centerLayout = findViewById(R.id.splashScreenActivity_LinearLayout_Center);
-        skuIcon = findViewById(R.id.splashScreenActivity_ImageView_SkuIcon);
-        digiServiceIcon = findViewById(R.id.splashScreenActivity_ImageView_DigiServiceIcon);
-        responsive = findViewById(R.id.splashScreenActivity_ImageView_ResponsiveIcon);
-        reservationSystem = findViewById(R.id.splashScreenActivity_TextView_ReservationSystemText);
-        tryAgain = findViewById(R.id.splashScreenActivity_Button_TryAgain);
     }
 
     @SuppressLint("LongLogTag")

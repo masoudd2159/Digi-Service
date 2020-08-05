@@ -11,14 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
-import ir.ac.sku.service.digiservice.config.MyAPI;
 import ir.ac.sku.service.digiservice.model.HomePageModel;
-import ir.ac.sku.service.digiservice.util.MyHandler;
 
 public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.MyViewHolder> {
 
@@ -63,13 +61,12 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.MyView
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView categoryTitle;
-        private RecyclerView recyclerViewHorizontal;
+        @BindView(R.id.customHomeVerticalList_CategoryTitle) TextView categoryTitle;
+        @BindView(R.id.customHomeVerticalList_RecyclerViewHorizontal) RecyclerView recyclerViewHorizontal;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            categoryTitle = itemView.findViewById(R.id.customHomeVerticalList_CategoryTitle);
-            recyclerViewHorizontal = itemView.findViewById(R.id.customHomeVerticalList_RecyclerViewHorizontal);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

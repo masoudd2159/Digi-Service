@@ -14,6 +14,8 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.config.MyAPI;
 
@@ -45,11 +47,11 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private RoundedImageView imageView;
+        @BindView(R.id.customSliderView_ImageView) RoundedImageView imageView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.customSliderView_ImageView);
+            ButterKnife.bind(this, itemView);
         }
 
         public void bind(String url) {

@@ -17,6 +17,8 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.ItemSelectedActivity;
 import ir.ac.sku.service.digiservice.config.MyAPI;
@@ -51,14 +53,12 @@ public class AreaSelectedAdapter extends RecyclerView.Adapter<AreaSelectedAdapte
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private RoundedImageView imageView;
-        private TextView textView;
+        @BindView(R.id.customAreaSelectedList_ImageView) RoundedImageView imageView;
+        @BindView(R.id.customAreaSelectedList_TextView) TextView textView;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            imageView = itemView.findViewById(R.id.customAreaSelectedList_ImageView);
-            textView = itemView.findViewById(R.id.customAreaSelectedList_TextView);
+            ButterKnife.bind(this, itemView);
 
             itemView.setOnClickListener(this);
         }

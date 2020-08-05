@@ -7,12 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.model.DepartmentsModel;
 
@@ -45,16 +46,13 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentsAdapter.
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView departmentTitle;
-        private ImageView departmentImage;
-        private LinearLayout linearLayout;
+        @BindView(R.id.customDepartmentView_TextView) TextView departmentTitle;
+        @BindView(R.id.customDepartmentView_ImageView) ImageView departmentImage;
+        @BindView(R.id.customDepartmentView_LinearLayout) LinearLayout linearLayout;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            departmentTitle = itemView.findViewById(R.id.customDepartmentView_TextView);
-            departmentImage = itemView.findViewById(R.id.customDepartmentView_ImageView);
-            linearLayout = itemView.findViewById(R.id.customDepartmentView_LinearLayout);
+            ButterKnife.bind(this, itemView);
         }
 
         void bind(DepartmentsModel.Data data) {

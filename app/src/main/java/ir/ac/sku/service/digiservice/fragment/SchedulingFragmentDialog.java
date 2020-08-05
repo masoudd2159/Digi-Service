@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,19 +20,22 @@ import androidx.fragment.app.DialogFragment;
 import java.util.HashMap;
 import java.util.Objects;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
-import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.model.SchedulingModel;
 import ir.ac.sku.service.digiservice.util.ManagerHelper;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 
 public class SchedulingFragmentDialog extends DialogFragment {
 
+    //* Views
+    @BindView(R.id.dialogFragmentScheduling_WebView) WebView webView;
+    @BindView(R.id.dialogFragmentScheduling_ButtonClose) Button close;
+    private View rootView;
+    //* Dependence
     private int id;
     private String schTable;
-    private View rootView;
-    private WebView webView;
-    private Button close;
 
     public SchedulingFragmentDialog(int id, String schTable) {
         this.id = id;
@@ -51,11 +52,11 @@ public class SchedulingFragmentDialog extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.dialog_fragment_scheduling, container, false);
+        ButterKnife.bind(this, rootView);
 
         if (getDialog() != null && getDialog().isShowing()) {
             dismiss();
         }
-        init();
 
         getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -109,11 +110,6 @@ public class SchedulingFragmentDialog extends DialogFragment {
                 "text/html",
                 "utf-8",
                 "");
-    }
-
-    private void init() {
-        webView = rootView.findViewById(R.id.dialogFragmentScheduling_WebView);
-        close = rootView.findViewById(R.id.dialogFragmentScheduling_ButtonClose);
     }
 
     private void changeDialogSize() {

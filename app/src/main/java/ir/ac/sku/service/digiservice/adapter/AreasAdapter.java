@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.AreaSelectedActivity;
 import ir.ac.sku.service.digiservice.model.AreasModel;
@@ -56,14 +58,12 @@ public class AreasAdapter extends RecyclerView.Adapter<AreasAdapter.MyViewHolder
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView persianTitle;
-        private ImageView line;
+        @BindView(R.id.customAreasListView_TextViewPersianTitle) TextView persianTitle;
+        @BindView(R.id.customAreasListView_ImageViewLine) ImageView line;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            persianTitle = itemView.findViewById(R.id.customAreasListView_TextViewPersianTitle);
-            line = itemView.findViewById(R.id.customAreasListView_ImageViewLine);
+            ButterKnife.bind(this, itemView);
 
             itemView.setOnClickListener(this);
         }

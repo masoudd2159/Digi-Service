@@ -2,7 +2,6 @@ package ir.ac.sku.service.digiservice.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.ItemSelectedActivity;
 import ir.ac.sku.service.digiservice.config.MyAPI;
@@ -52,15 +52,12 @@ class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.MyViewHol
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView resourceTitle;
-        private ImageView resourcePicture;
+        @BindView(R.id.customHomeHorizontalView_TextView) TextView resourceTitle;
+        @BindView(R.id.customHomeHorizontalView_ImageView) ImageView resourcePicture;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            resourceTitle = itemView.findViewById(R.id.customHomeHorizontalView_TextView);
-            resourcePicture = itemView.findViewById(R.id.customHomeHorizontalView_ImageView);
-
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
         }
 

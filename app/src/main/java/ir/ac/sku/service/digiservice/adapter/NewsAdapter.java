@@ -16,6 +16,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.uncopt.android.widget.text.justify.JustifiedTextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.config.MyAPI;
 import ir.ac.sku.service.digiservice.model.NewsModel;
@@ -48,17 +50,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private RoundedImageView picture;
-        private TextView title;
-        private JustifiedTextView body;
+        @BindView(R.id.customNewsView_ImageView) RoundedImageView picture;
+        @BindView(R.id.customNewsView_Title) TextView title;
+        @BindView(R.id.customNewsView_TextViewBody) JustifiedTextView body;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            picture = itemView.findViewById(R.id.customNewsView_ImageView);
-            title = itemView.findViewById(R.id.customNewsView_Title);
-            body = itemView.findViewById(R.id.customNewsView_TextViewBody);
-
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
         }
 

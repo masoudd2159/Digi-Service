@@ -28,6 +28,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.fragment.EventsFragment;
 import ir.ac.sku.service.digiservice.fragment.HomeFragment;
@@ -40,15 +42,15 @@ import ir.ac.sku.service.digiservice.util.MyActivity;
 
 public class MainActivity extends MyActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
-    //* ٰ Views
-    private Toolbar toolbar;
-    private CoordinatorLayout holder;
-    private ImageButton drawerButton;
-    private DrawerLayout drawerLayout;
-    private ImageView digiServiceIcon;
-    private NavigationView navigationView;
-    private CoordinatorLayout fragmentHolder;
-    private BottomNavigationView bottomNavigationView;
+    //* Views
+    @BindView(R.id.activityMain_ToolBar) Toolbar toolbar;
+    @BindView(R.id.activityMain_CoordinatorLayout_Holder) CoordinatorLayout holder;
+    @BindView(R.id.activityMain_ImageButtonDrawer) ImageButton drawerButton;
+    @BindView(R.id.activityMain_DrawerLayout) DrawerLayout drawerLayout;
+    @BindView(R.id.activityMain_DigiServiceIcon) ImageView digiServiceIcon;
+    @BindView(R.id.activityMain_NavigationView) NavigationView navigationView;
+    @BindView(R.id.activityMain_CoordinatorLayout_FragmentHolder) CoordinatorLayout fragmentHolder;
+    @BindView(R.id.activityMain_BottomNavigationView) BottomNavigationView bottomNavigationView;
 
     //* Requirements
     private boolean starter = false;
@@ -67,8 +69,7 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        init();
+        ButterKnife.bind(this);
 
         setupFragments();
 
@@ -301,16 +302,5 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
         } else {
             starter = true;
         }
-    }
-
-    private void init() {
-        toolbar = findViewById(R.id.activityMain_ToolBar);
-        drawerLayout = findViewById(R.id.activityMain_DrawerLayout);
-        navigationView = findViewById(R.id.activityMain_NavigationView);
-        drawerButton = findViewById(R.id.activityMain_ImageButtonDrawer);
-        holder = findViewById(R.id.activityMain_CoordinatorLayout_Holder);
-        digiServiceIcon = findViewById(R.id.activityMain_DigiServiceIcon);
-        bottomNavigationView = findViewById(R.id.activityMain_BottomNavigationView);
-        fragmentHolder = findViewById(R.id.activityMain_CoordinatorLayout_FragmentHolder);
     }
 }

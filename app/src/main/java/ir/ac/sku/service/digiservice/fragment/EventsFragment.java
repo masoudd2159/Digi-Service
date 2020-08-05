@@ -3,38 +3,36 @@ package ir.ac.sku.service.digiservice.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.HashMap;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.adapter.NewsAdapter;
-import ir.ac.sku.service.digiservice.adapter.VerticalAdapter;
 import ir.ac.sku.service.digiservice.model.NewsModel;
-import ir.ac.sku.service.digiservice.model.SliderModel;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 
 public class EventsFragment extends Fragment {
+
+    //* Views
+    @BindView(R.id.fragmentEvent_RecyclerView) RecyclerView recyclerView;
     private View rootView;
-    private RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_events, container, false);
-        this.rootView = view;
-        init();
-
+        rootView = inflater.inflate(R.layout.fragment_events, container, false);
+        ButterKnife.bind(this, rootView);
         prepareNews("0");
-
-        return view;
+        return rootView;
     }
 
     private void prepareNews(String eventId) {
@@ -56,9 +54,5 @@ public class EventsFragment extends Fragment {
         recyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(rootView.getContext(), R.anim.layout_animation_from_right));
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(new NewsAdapter(rootView.getContext(), newsModel));
-    }
-
-    private void init() {
-        recyclerView = rootView.findViewById(R.id.fragmentEvent_RecyclerView);
     }
 }
