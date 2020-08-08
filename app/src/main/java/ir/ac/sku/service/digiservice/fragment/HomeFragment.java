@@ -3,12 +3,12 @@ package ir.ac.sku.service.digiservice.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,49 +23,50 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.adapter.SliderAdapter;
 import ir.ac.sku.service.digiservice.adapter.VerticalAdapter;
+import ir.ac.sku.service.digiservice.api.home.HomePageModel;
+import ir.ac.sku.service.digiservice.api.home.SliderModel;
+import ir.ac.sku.service.digiservice.base.BaseFragment;
 import ir.ac.sku.service.digiservice.config.MyAPI;
-import ir.ac.sku.service.digiservice.model.HomePageModel;
-import ir.ac.sku.service.digiservice.model.SliderModel;
+import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 import me.relex.circleindicator.CircleIndicator2;
 
-public class HomeFragment extends Fragment {
+@SuppressLint("LongLogTag")
+public class HomeFragment extends BaseFragment {
 
     //* Views
     @BindView(R.id.fragmentHome_RecyclerView) RecyclerView recyclerView;
-    @BindView(R.id.fragmentHome_AnimationView) LottieAnimationView loadingAnimationView;
-    @BindView(R.id.fragmentHome_DiscreteScrollView) DiscreteScrollView scrollView;
     @BindView(R.id.fragmentHome_PagerIndicator) CircleIndicator2 pagerIndicator;
-    private View rootView;
-    private int recyclerHandler = 0;
+    @BindView(R.id.fragmentHome_DiscreteScrollView) DiscreteScrollView scrollView;
+    @BindView(R.id.fragmentHome_AnimationView) LottieAnimationView loadingAnimationView;
+
+    //* Requirement
+    private List<String> pictureURL = new ArrayList<String>();
     private List<HomePageModel> homePageModelList = new ArrayList<HomePageModel>();
 
-    private List<String> pictureURL = new ArrayList<String>();
+    //* View Inflater
+    @Override protected int getLayoutResource() {
+        return R.layout.fragment_home;
+    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        ButterKnife.bind(this, rootView);
+    @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         loadingAnimationView.setVisibility(View.VISIBLE);
 
         prepareHomePageModelData(MyAPI.RECENT_RESOURCES, "10");
         prepareHomePageSlider("0");
-
-
-        return rootView;
     }
 
     private void prepareHomePageSlider(String eventId) {
         HashMap<String, String> params = new HashMap<>();
         params.put("eventId", eventId);
+        Log.i(MyLog.SLIDER, "Event ID : " + eventId);
 
-        SliderModel.fetchFromWeb(rootView.getContext(), params, new MyHandler() {
-            @SuppressLint("LongLogTag")
+        SliderModel.fetchFromWeb(getContext(), params, new MyHandler() {
             @Override
             public void onResponse(boolean ok, Object obj) {
                 if (ok) {
@@ -88,9 +89,7 @@ public class HomeFragment extends Fragment {
     private void setUpDiscreteScrollView(List<String> pictureURL) {
         scrollView.setOrientation(DSVOrientation.HORIZONTAL);
         scrollView.setSlideOnFling(true);
-        scrollView.setAdapter(new SliderAdapter(rootView.getContext(), pictureURL));
-            /*scrollView.addOnItemChangedListener(this);
-            scrollView.addScrollStateChangeListener(this);*/
+        scrollView.setAdapter(new SliderAdapter(getContext(), pictureURL));
         scrollView.setItemTransformer(new ScaleTransformer.Builder()
                 .setMinScale(0.8f)
                 .build());
@@ -102,19 +101,20 @@ public class HomeFragment extends Fragment {
     }
 
     private void prepareHomePageModelData(String urlApi, String status) {
+        Log.i(MyLog.HOME, "Status : " + status);
+        Log.i(MyLog.HOME, "URL to Request : " + urlApi);
+
         HashMap<String, String> params = new HashMap<>();
         params.put("status", status);
 
-        HomePageModel.fetchFromWeb(rootView.getContext(), urlApi, params, new MyHandler() {
-            @SuppressLint("LongLogTag")
+        HomePageModel.fetchFromWeb(getContext(), urlApi, params, new MyHandler() {
             @Override
             public void onResponse(boolean ok, Object obj) {
                 if (ok) {
                     homePageModelList.add((HomePageModel) obj);
-                    recyclerHandler++;
-                    if (recyclerHandler == 1) {
+                    if (urlApi.equals(MyAPI.RECENT_RESOURCES)) {
                         prepareHomePageModelData(MyAPI.POPULAR_RESOURCES, "10");
-                    } else if (recyclerHandler == 2) {
+                    } else if (urlApi.equals(MyAPI.POPULAR_RESOURCES)) {
                         setUpRecyclerView(homePageModelList);
                         loadingAnimationView.setVisibility(View.INVISIBLE);
                     }
@@ -124,8 +124,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUpRecyclerView(List<HomePageModel> homePageModelList) {
-        recyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(rootView.getContext(), R.anim.layout_animation_from_right));
-        recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(new VerticalAdapter(rootView.getContext(), homePageModelList));
+        recyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_from_right));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(new VerticalAdapter(getContext(), homePageModelList));
     }
 }

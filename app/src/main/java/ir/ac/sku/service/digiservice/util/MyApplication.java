@@ -3,24 +3,27 @@ package ir.ac.sku.service.digiservice.util;
 import android.annotation.SuppressLint;
 import android.app.Application;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
 import io.github.inflationx.viewpump.ViewPump;
 import ir.ac.sku.service.digiservice.R;
+import ir.ac.sku.service.digiservice.api.OkClientFactory;
+import okhttp3.OkHttpClient;
 
 @SuppressLint("Registered")
 public class MyApplication extends Application {
-    private static RequestQueue requestQueue;
     private static MyApplication appInstance;
+    private static OkHttpClient mOkHttpClient;
+
+    public static MyApplication getAppInstance() {
+        return appInstance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        appInstance = this;
+        initializeOkHttpClient();
 
         ViewPump.init(ViewPump.builder()
                 .addInterceptor(new CalligraphyInterceptor(
@@ -29,13 +32,14 @@ public class MyApplication extends Application {
                                 .setFontAttrId(R.attr.fontPath)
                                 .build()))
                 .build());
-
-        requestQueue = Volley.newRequestQueue(getApplicationContext());
     }
 
-    public static synchronized RequestQueue getRequestQueue() {
-        if (requestQueue == null)
-            requestQueue = Volley.newRequestQueue(MyApplication.appInstance);
-        return requestQueue;
+    public OkHttpClient getOkHttpClient() {
+        return mOkHttpClient;
+    }
+
+    private void initializeOkHttpClient() {
+        appInstance = this;
+        mOkHttpClient = OkClientFactory.provideOkHttpClient(this);
     }
 }

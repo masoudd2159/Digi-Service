@@ -16,7 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
-import ir.ac.sku.service.digiservice.model.HomePageModel;
+import ir.ac.sku.service.digiservice.api.home.HomePageModel;
 
 public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.MyViewHolder> {
 

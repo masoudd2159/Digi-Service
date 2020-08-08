@@ -19,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,16 +28,15 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.Objects;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
-import ir.ac.sku.service.digiservice.fragment.EventsFragment;
+import ir.ac.sku.service.digiservice.fragment.NewsFragment;
 import ir.ac.sku.service.digiservice.fragment.HomeFragment;
 import ir.ac.sku.service.digiservice.fragment.OfficesFragment;
 import ir.ac.sku.service.digiservice.fragment.SearchFragment;
 import ir.ac.sku.service.digiservice.util.ColoredSnackBar;
 import ir.ac.sku.service.digiservice.util.ConnectivityReceiver;
 import ir.ac.sku.service.digiservice.util.CustomToastExit;
-import ir.ac.sku.service.digiservice.util.MyActivity;
+import ir.ac.sku.service.digiservice.base.MyActivity;
 
 public class MainActivity extends MyActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
@@ -61,15 +59,19 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
 
     //* Fragments
     private HomeFragment homeFragment;
-    private EventsFragment eventsFragment;
+    private NewsFragment newsFragment;
     private OfficesFragment officesFragment;
     private SearchFragment searchFragment;
+
+    //* Set Content View
+    @Override
+    protected int getLayoutResource() {
+        return R.layout.activity_main;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
 
         setupFragments();
 
@@ -86,13 +88,13 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
 
     private void setupFragments() {
         homeFragment = new HomeFragment();
-        eventsFragment = new EventsFragment();
+        newsFragment = new NewsFragment();
         officesFragment = new OfficesFragment();
         searchFragment = new SearchFragment();
 
         final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, homeFragment);
-        fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, eventsFragment);
+        fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, newsFragment);
         fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, officesFragment);
         //fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, searchFragment);
         fragmentTransaction.commit();
@@ -200,19 +202,19 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
                     case R.id.bottomNavigationViewTab_Home:
                         fragmentTransaction.show(homeFragment);
 
-                        fragmentTransaction.hide(eventsFragment);
+                        fragmentTransaction.hide(newsFragment);
                         fragmentTransaction.hide(officesFragment);
                         fragmentTransaction.hide(searchFragment);
 
                         fragmentTransaction.commit();
                         return true;
                     case R.id.bottomNavigationViewTab_Event:
-                        if (!eventsFragment.isAdded()) {
-                            fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, eventsFragment);
+                        if (!newsFragment.isAdded()) {
+                            fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, newsFragment);
                         }
-                        /*fragmentTransaction.detach(eventsFragment);
-                        fragmentTransaction.attach(eventsFragment);*/
-                        fragmentTransaction.show(eventsFragment);
+                        /*fragmentTransaction.detach(newsFragment);
+                        fragmentTransaction.attach(newsFragment);*/
+                        fragmentTransaction.show(newsFragment);
 
                         fragmentTransaction.hide(homeFragment);
                         fragmentTransaction.hide(officesFragment);
@@ -230,7 +232,7 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
                         fragmentTransaction.show(officesFragment);
 
                         fragmentTransaction.hide(homeFragment);
-                        fragmentTransaction.hide(eventsFragment);
+                        fragmentTransaction.hide(newsFragment);
                         fragmentTransaction.hide(searchFragment);
 
                         fragmentTransaction.commit();
@@ -244,14 +246,14 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
                         fragmentTransaction.show(searchFragment);
 
                         fragmentTransaction.hide(homeFragment);
-                        fragmentTransaction.hide(eventsFragment);
+                        fragmentTransaction.hide(newsFragment);
                         fragmentTransaction.hide(officesFragment);
 
                         fragmentTransaction.commit();
                         return true;
                     default:
                         fragmentTransaction.show(homeFragment);
-                        fragmentTransaction.hide(eventsFragment);
+                        fragmentTransaction.hide(newsFragment);
                         fragmentTransaction.hide(officesFragment);
                         fragmentTransaction.hide(searchFragment);
                         fragmentTransaction.commit();
@@ -259,13 +261,6 @@ public class MainActivity extends MyActivity implements ConnectivityReceiver.Con
                 }
             }
         });
-    }
-
-    private void setUpFragment(Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.activityMain_CoordinatorLayout_FragmentHolder, fragment)
-                .commit();
     }
 
     @SuppressLint("WrongConstant")

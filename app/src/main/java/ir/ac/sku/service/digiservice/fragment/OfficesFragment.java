@@ -1,10 +1,9 @@
 package ir.ac.sku.service.digiservice.fragment;
 
-
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.TextView;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,61 +24,62 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.adapter.AreasAdapter;
 import ir.ac.sku.service.digiservice.adapter.DepartmentsAdapter;
-import ir.ac.sku.service.digiservice.model.AreasModel;
-import ir.ac.sku.service.digiservice.model.DepartmentsModel;
-import ir.ac.sku.service.digiservice.util.ManagerHelper;
+import ir.ac.sku.service.digiservice.api.office.AreasModel;
+import ir.ac.sku.service.digiservice.api.office.DepartmentsModel;
+import ir.ac.sku.service.digiservice.base.BaseFragment;
+import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 import me.relex.circleindicator.CircleIndicator2;
 
-
-public class OfficesFragment extends Fragment implements
+@SuppressLint("LongLogTag")
+public class OfficesFragment extends BaseFragment implements
         DiscreteScrollView.OnItemChangedListener<DepartmentsAdapter.MyViewHolder>,
         DiscreteScrollView.ScrollStateChangeListener<DepartmentsAdapter.MyViewHolder> {
 
     //* Views
-    @BindView(R.id.fragmentOffice_TextViewTitle) TextView title;
     @BindView(R.id.fragmentOffice_CardView) CardView cardView;
+    @BindView(R.id.fragmentOffice_TextViewTitle) TextView title;
     @BindView(R.id.fragmentOffice_RecyclerView) RecyclerView recyclerView;
-    @BindView(R.id.fragmentOffice_DiscreteScrollView) DiscreteScrollView scrollView;
     @BindView(R.id.fragmentOffice_PagerIndicator) CircleIndicator2 pagerIndicator;
-    private View rootView;
+    @BindView(R.id.fragmentOffice_DiscreteScrollView) DiscreteScrollView scrollView;
+
+    //* Class Model
     private AreasModel areasModel;
 
-
+    //* View Inflater
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_offices, container, false);
-        ButterKnife.bind(this, rootView);
+    protected int getLayoutResource() {
+        return R.layout.fragment_offices;
+    }
+
+    @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        areasModel = new AreasModel();
         prepareAreasData();
-        return rootView;
     }
 
     private void prepareAreasData() {
-        if (ManagerHelper.isNOTOnline(rootView.getContext())) {
-            ManagerHelper.noInternetAccess(rootView.getContext());
-        } else {
-            AreasModel.fetchFromWeb(rootView.getContext(), null, new MyHandler() {
-                @Override
-                public void onResponse(boolean ok, Object obj) {
-                    if (ok) {
-                        areasModel = new AreasModel();
-                        areasModel = (AreasModel) obj;
-
-                        prepareDepartmentsData("10");
-                    }
+        Log.i(MyLog.AREAS, "Prepare Areas Data");
+        AreasModel.fetchFromWeb(getContext(), null, new MyHandler() {
+            @Override
+            public void onResponse(boolean ok, Object obj) {
+                if (ok) {
+                    areasModel = (AreasModel) obj;
+                    prepareDepartmentsData("10");
                 }
-            });
-        }
+            }
+        });
     }
 
     private void prepareDepartmentsData(String status) {
         HashMap<String, String> params = new HashMap<>();
         params.put("status", status);
-        DepartmentsModel.fetchFromWeb(rootView.getContext(), params, new MyHandler() {
+        Log.i(MyLog.AREAS, "status : " + status);
+
+        DepartmentsModel.fetchFromWeb(getContext(), params, new MyHandler() {
             @Override
             public void onResponse(boolean ok, Object obj) {
                 if (ok) {
@@ -93,7 +92,7 @@ public class OfficesFragment extends Fragment implements
     private void setUpDiscreteScrollView(DepartmentsModel departmentsModel) {
         scrollView.setOrientation(DSVOrientation.HORIZONTAL);
         scrollView.setSlideOnFling(true);
-        scrollView.setAdapter(new DepartmentsAdapter(rootView.getContext(), departmentsModel));
+        scrollView.setAdapter(new DepartmentsAdapter(getContext(), departmentsModel));
         scrollView.addOnItemChangedListener(this);
         scrollView.addScrollStateChangeListener(this);
         scrollView.setItemTransformer(new ScaleTransformer.Builder()
@@ -122,10 +121,10 @@ public class OfficesFragment extends Fragment implements
                         }
                     }
                 }
-                AreasAdapter adapter = new AreasAdapter(rootView.getContext(), data);
-                LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(rootView.getContext(), R.anim.layout_animation_from_right);
+                AreasAdapter adapter = new AreasAdapter(getContext(), data);
+                LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_from_right);
                 recyclerView.setLayoutAnimation(animation);
-                recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
                 recyclerView.setAdapter(adapter);
             }
         }

@@ -1,22 +1,30 @@
-package ir.ac.sku.service.digiservice.model;
+package ir.ac.sku.service.digiservice.api.office;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 
-import ir.ac.sku.service.digiservice.config.MyAPI;
+import ir.ac.sku.service.digiservice.R;
+import ir.ac.sku.service.digiservice.api.ApiFactory;
+import ir.ac.sku.service.digiservice.api.RxApiCallHelper;
+import ir.ac.sku.service.digiservice.api.RxApiCallback;
+import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.util.ManagerHelper;
 import ir.ac.sku.service.digiservice.util.MyHandler;
-import ir.ac.sku.service.digiservice.util.WebService;
+import rx.Observable;
 
-public class AreasModel {
+@SuppressLint("LongLogTag")
+public class DepartmentsModel {
+
     @SerializedName("ok")
     @Expose
     private boolean ok;
@@ -34,18 +42,26 @@ public class AreasModel {
     private List<Data> data = null;
 
     public static void fetchFromWeb(Context context, HashMap<String, String> params, MyHandler handler) {
-        Gson gson = new Gson();
+        if (!ManagerHelper.isInternetAvailable(context)) {
+            Log.i(MyLog.DEPARTMENTS, "No Internet Access");
+            ManagerHelper.noInternetAccess(context);
+            return;
+        }
 
-        WebService webService = new WebService(context);
-        String url = MyAPI.AREAS + "?" + ManagerHelper.enCodeParameters(params);
-        webService.requestAPI(url, Request.Method.GET, new MyHandler() {
-            @Override
-            public void onResponse(boolean ok, Object obj) {
-                if (ok) {
-                    AreasModel areasModel = gson.fromJson(new String(obj.toString().getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8), AreasModel.class);
-                    if (areasModel.ok)
-                        handler.onResponse(true, areasModel);
+        Observable<JsonObject> observable = ApiFactory.createProvideApiService(OfficeService.class).getDepartments(params);
+
+        RxApiCallHelper.call(observable, new RxApiCallback<JsonObject>() {
+            @Override public void onSuccess(JsonObject jsonObject) {
+                Log.i(MyLog.DEPARTMENTS, "Object Successfully Receive");
+                DepartmentsModel response = new Gson().fromJson(jsonObject, DepartmentsModel.class);
+                if (response.isOk()) {
+                    handler.onResponse(true, response);
                 }
+            }
+
+            @Override public void onFailed(String errorMsg) {
+                Log.i(MyLog.DEPARTMENTS, errorMsg);
+                Toast.makeText(context, R.string.unable_to_connect_to_the_server, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -87,21 +103,13 @@ public class AreasModel {
         @Expose
         private int id;
 
-        @SerializedName("departmentId")
-        @Expose
-        private int departmentId;
-
         @SerializedName("title")
         @Expose
         private String title;
 
-        @SerializedName("titleEnglish")
+        @SerializedName("picture")
         @Expose
-        private String titleEnglish;
-
-        @SerializedName("isActived")
-        @Expose
-        private boolean isActived;
+        private String picture;
 
         public int getId() {
             return id;
@@ -109,14 +117,6 @@ public class AreasModel {
 
         public void setId(int id) {
             this.id = id;
-        }
-
-        public int getDepartmentId() {
-            return departmentId;
-        }
-
-        public void setDepartmentId(int departmentId) {
-            this.departmentId = departmentId;
         }
 
         public String getTitle() {
@@ -127,20 +127,12 @@ public class AreasModel {
             this.title = title;
         }
 
-        public String getTitleEnglish() {
-            return titleEnglish;
+        public String getPicture() {
+            return picture;
         }
 
-        public void setTitleEnglish(String titleEnglish) {
-            this.titleEnglish = titleEnglish;
-        }
-
-        public boolean isActived() {
-            return isActived;
-        }
-
-        public void setActived(boolean actived) {
-            isActived = actived;
+        public void setPicture(String picture) {
+            this.picture = picture;
         }
     }
 }

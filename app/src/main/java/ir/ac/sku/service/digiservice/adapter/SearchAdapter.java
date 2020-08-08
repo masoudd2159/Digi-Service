@@ -19,9 +19,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
-import ir.ac.sku.service.digiservice.activity.main.ItemSelectedActivity;
+import ir.ac.sku.service.digiservice.activity.main.SelectedResourceActivity;
 import ir.ac.sku.service.digiservice.config.MyAPI;
-import ir.ac.sku.service.digiservice.model.SearchModel;
+import ir.ac.sku.service.digiservice.api.search.SearchModel;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
 
@@ -72,7 +72,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(context, ItemSelectedActivity.class);
+            Intent intent = new Intent(context, SelectedResourceActivity.class);
             intent.putExtra("id", modelData.get(getLayoutPosition()).getId());
             context.startActivity(intent);
         }

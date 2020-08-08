@@ -1,6 +1,8 @@
 package ir.ac.sku.service.digiservice.activity.main;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
@@ -12,13 +14,14 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.adapter.AreaSelectedAdapter;
-import ir.ac.sku.service.digiservice.model.ResourcesModel;
-import ir.ac.sku.service.digiservice.util.MyActivity;
+import ir.ac.sku.service.digiservice.api.office.ResourcesModel;
+import ir.ac.sku.service.digiservice.base.MyActivity;
+import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 
+@SuppressLint("LongLogTag")
 public class AreaSelectedActivity extends MyActivity {
     //* Views
     @BindView(R.id.activityAreaSelected_TextViewTitle) TextView title;
@@ -26,10 +29,13 @@ public class AreaSelectedActivity extends MyActivity {
     @BindView(R.id.activityAreaSelected_RecyclerView) RecyclerView recyclerView;
 
     @Override
+    protected int getLayoutResource() {
+        return R.layout.activity_area_selected;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_area_selected);
-        ButterKnife.bind(this);
         setUpTextView();
         setUpDataResource();
 
@@ -52,6 +58,7 @@ public class AreaSelectedActivity extends MyActivity {
     private void setUpDataResource() {
         HashMap<String, String> params = new HashMap<>();
         params.put("areaId", String.valueOf(Objects.requireNonNull(getIntent().getExtras()).getInt("id")));
+        Log.i(MyLog.RESOURCES, "area Id : " + params.get("areaId"));
 
         ResourcesModel.fetchFromWeb(AreaSelectedActivity.this, params, new MyHandler() {
             @Override

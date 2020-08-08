@@ -19,7 +19,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity
-            android:name=".activity.main.ItemSelectedActivity"
+            android:name=".activity.main.SelectedResourceActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

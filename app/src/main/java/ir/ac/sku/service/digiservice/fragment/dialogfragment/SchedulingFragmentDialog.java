@@ -1,13 +1,12 @@
-package ir.ac.sku.service.digiservice.fragment;
+package ir.ac.sku.service.digiservice.fragment.dialogfragment;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
@@ -15,49 +14,51 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 
 import java.util.HashMap;
 import java.util.Objects;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
-import ir.ac.sku.service.digiservice.model.SchedulingModel;
+import ir.ac.sku.service.digiservice.api.scheduling.SchedulingModel;
+import ir.ac.sku.service.digiservice.base.BaseDialogFragment;
+import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.util.ManagerHelper;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 
-public class SchedulingFragmentDialog extends DialogFragment {
+@SuppressLint("LongLogTag")
+public class SchedulingFragmentDialog extends BaseDialogFragment {
 
     //* Views
     @BindView(R.id.dialogFragmentScheduling_WebView) WebView webView;
     @BindView(R.id.dialogFragmentScheduling_ButtonClose) Button close;
-    private View rootView;
+
     //* Dependence
     private int id;
     private String schTable;
 
+    //* Constructor
     public SchedulingFragmentDialog(int id, String schTable) {
         this.id = id;
         this.schTable = schTable;
     }
 
+    //* View Inflater
     @Override
-    public void onResume() {
-        super.onResume();
-        changeDialogSize();
+    public int getLayoutResource() {
+        return R.layout.dialog_fragment_scheduling;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.dialog_fragment_scheduling, container, false);
-        ButterKnife.bind(this, rootView);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         if (getDialog() != null && getDialog().isShowing()) {
+            Log.i(MyLog.SCHEDULING, "Dismiss Scheduling Dialog Fragment");
             dismiss();
         }
 
+        Log.i(MyLog.SCHEDULING, "Open Scheduling Dialog Fragment");
         getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -71,18 +72,25 @@ public class SchedulingFragmentDialog extends DialogFragment {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i(MyLog.SCHEDULING, "Dismiss Scheduling Dialog Fragment");
                 dismiss();
             }
         });
+    }
 
-        return rootView;
+    @Override
+    public void onResume() {
+        super.onResume();
+        changeDialogSize();
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private void setUpData() {
         HashMap<String, String> params = new HashMap<>();
         params.put("id", String.valueOf(id));
-        SchedulingModel.fetchFromWeb(rootView.getContext(), params, new MyHandler() {
+        Log.i(MyLog.SCHEDULING, "Scheduling ID : " + id);
+
+        SchedulingModel.fetchFromWeb(getContext(), params, new MyHandler() {
             @SuppressLint("LongLogTag")
             @Override
             public void onResponse(boolean ok, Object obj) {
@@ -113,6 +121,7 @@ public class SchedulingFragmentDialog extends DialogFragment {
     }
 
     private void changeDialogSize() {
+        Log.i(MyLog.SCHEDULING, "Change Dialog Display Metrics");
         DisplayMetrics displayMetrics = new DisplayMetrics();
         Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         Objects.requireNonNull(Objects.requireNonNull(getDialog()).getWindow()).setLayout(

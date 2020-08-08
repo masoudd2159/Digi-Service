@@ -2,6 +2,7 @@ package ir.ac.sku.service.digiservice.activity.main;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
@@ -19,35 +19,39 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.adapter.ViewPagerAdapter;
+import ir.ac.sku.service.digiservice.api.selectedResource.SelectedResourceModel;
+import ir.ac.sku.service.digiservice.base.MyActivity;
 import ir.ac.sku.service.digiservice.config.MyAPI;
+import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.fragment.ItemSelectedTabFragment;
-import ir.ac.sku.service.digiservice.fragment.SchedulingFragmentDialog;
-import ir.ac.sku.service.digiservice.model.SelectedResourceModel;
-import ir.ac.sku.service.digiservice.util.MyActivity;
+import ir.ac.sku.service.digiservice.fragment.dialogfragment.SchedulingFragmentDialog;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 
-public class ItemSelectedActivity extends MyActivity {
+@SuppressLint("LongLogTag")
+public class SelectedResourceActivity extends MyActivity {
 
     //* Views
     @BindView(R.id.activityItemSelected_Head) TextView head;
     @BindView(R.id.activityItemSelected_Title) TextView title;
-    @BindView(R.id.activityItemSelected_applying) Button applying;
-    @BindView(R.id.activityItemSelected_scheduling) Button scheduling;
     @BindView(R.id.activityItemSelected_Picture) ImageView picture;
+    @BindView(R.id.activityItemSelected_applying) Button applying;
     @BindView(R.id.activityItemSelected_TabLayout) TabLayout tabLayout;
     @BindView(R.id.activityItemSelected_ViewPager) ViewPager viewPager;
+    @BindView(R.id.activityItemSelected_scheduling) Button scheduling;
 
     //* Adapter
     private ViewPagerAdapter adapter;
 
     @Override
+    protected int getLayoutResource() {
+        return R.layout.activity_item_selected;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_selected);
-        ButterKnife.bind(this);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         setUpData();
     }
@@ -55,13 +59,14 @@ public class ItemSelectedActivity extends MyActivity {
     private void setUpData() {
         HashMap<String, String> params = new HashMap<>();
         params.put("id", String.valueOf(getIntent().getExtras().getInt("id")));
-        SelectedResourceModel.fetchFromWeb(ItemSelectedActivity.this, params, new MyHandler() {
+        Log.i(MyLog.SELECTED_RESOURCES, "Id : " + params.get("id"));
+
+        SelectedResourceModel.fetchFromWeb(SelectedResourceActivity.this, params, new MyHandler() {
             @Override
             public void onResponse(boolean ok, Object obj) {
                 if (ok) {
                     SelectedResourceModel selectedResourceModel = (SelectedResourceModel) obj;
                     if (selectedResourceModel.isOk()) {
-
                         showData(selectedResourceModel.getData().get(0));
                     }
                 }
@@ -70,21 +75,21 @@ public class ItemSelectedActivity extends MyActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    private void showData(SelectedResourceModel.Data dataSelectedResourceModel) {
-        if (dataSelectedResourceModel.isActived()) {
-            title.setText(dataSelectedResourceModel.getLabName());
+    private void showData(SelectedResourceModel.Data dataModel) {
+        if (dataModel.isActived()) {
+            title.setText(dataModel.getLabName());
 
             Glide
-                    .with(ItemSelectedActivity.this)
-                    .load(MyAPI.DIGI_SERVICE + dataSelectedResourceModel.getPicture())
+                    .with(SelectedResourceActivity.this)
+                    .load(MyAPI.DIGI_SERVICE + dataModel.getPicture())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .skipMemoryCache(true)
                     .into(picture)
             ;
 
-            head.setText("مسئول آزمایشگاه " + dataSelectedResourceModel.getHead());
+            head.setText("مسئول آزمایشگاه " + dataModel.getHead());
 
-            adapter.addFragment(ItemSelectedTabFragment.newInstance(dataSelectedResourceModel.getDescription()), getString(R.string.pagerTitle_1));
+            adapter.addFragment(ItemSelectedTabFragment.newInstance(dataModel.getDescription()), getString(R.string.pagerTitle_1));
             adapter.addFragment(ItemSelectedTabFragment.newInstance(""), getString(R.string.pagerTitle_2));
             adapter.addFragment(ItemSelectedTabFragment.newInstance(""), getString(R.string.pagerTitle_3));
             viewPager.setAdapter(adapter);
@@ -98,7 +103,7 @@ public class ItemSelectedActivity extends MyActivity {
             scheduling.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    showDialogScheduling(dataSelectedResourceModel.getId(), dataSelectedResourceModel.getSchTable());
+                    showDialogScheduling(dataModel.getId(), dataModel.getSchTable());
                 }
             });
 
@@ -109,14 +114,10 @@ public class ItemSelectedActivity extends MyActivity {
     }
 
     private void showDialogScheduling(int id, String schTable) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        Log.i(MyLog.SELECTED_RESOURCES, "Dialog Scheduling");
         SchedulingFragmentDialog fragment = new SchedulingFragmentDialog(id, schTable);
         fragment.show(getSupportFragmentManager(), "addUserPersonalInfo");
 
-    }
-
-    private ItemSelectedTabFragment getItemSelectedTabFragment(String htmlCode) {
-        return ItemSelectedTabFragment.newInstance(htmlCode);
     }
 
     public void onBackImageClick(View view) {

@@ -23,19 +23,17 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.MainActivity;
 import ir.ac.sku.service.digiservice.activity.phoneLogin.LoginActivity;
+import ir.ac.sku.service.digiservice.api.appInfo.AppInfo;
 import ir.ac.sku.service.digiservice.config.MyLog;
-import ir.ac.sku.service.digiservice.model.AppInfo;
 import ir.ac.sku.service.digiservice.util.ManagerHelper;
-import ir.ac.sku.service.digiservice.util.MyActivity;
+import ir.ac.sku.service.digiservice.base.MyActivity;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 import ir.ac.sku.service.digiservice.util.UserProfilePreferenceManager;
 
 public class SplashScreenActivity extends MyActivity {
-
 
     //* Static Method
     public static final int SPLASH_TIME = 1700;
@@ -52,17 +50,17 @@ public class SplashScreenActivity extends MyActivity {
     //* Utils
     private UserProfilePreferenceManager preferenceManager;
 
-    //* Models
-    private AppInfo appInfo;
-
+    //* Set Content View
+    @Override
+    protected int getLayoutResource() {
+        return R.layout.activity_splash_screen;
+    }
 
     @SuppressLint("LongLogTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(MyLog.SPLASH_SCREEN_ACTIVITY, "___Splash Screen___");
-        setContentView(R.layout.activity_splash_screen);
-        ButterKnife.bind(this);
         changeStatusBarColor();
 
         new Handler().postDelayed(new Runnable() {
@@ -76,7 +74,6 @@ public class SplashScreenActivity extends MyActivity {
         }, 500);
 
         preferenceManager = new UserProfilePreferenceManager(SplashScreenActivity.this);
-        appInfo = new AppInfo();
         getBasicAppInformation();
         // new BackgroundTask().execute();
     }
@@ -94,7 +91,7 @@ public class SplashScreenActivity extends MyActivity {
 
     @SuppressLint("LongLogTag")
     private void getBasicAppInformation() {
-        if (ManagerHelper.isNOTOnline(SplashScreenActivity.this)) {
+        if (!ManagerHelper.isInternetAvailable(SplashScreenActivity.this)) {
             Log.i(MyLog.SPLASH_SCREEN_ACTIVITY, "OFFLine");
             ManagerHelper.noInternetAccess(SplashScreenActivity.this);
             tryAgain.setVisibility(View.VISIBLE);
@@ -109,7 +106,7 @@ public class SplashScreenActivity extends MyActivity {
                         }
                     }, 155);
                     Log.i(MyLog.SPLASH_SCREEN_ACTIVITY, "Clicked on Try Again");
-                    if (ManagerHelper.isNOTOnline(SplashScreenActivity.this)) {
+                    if (!ManagerHelper.isInternetAvailable(SplashScreenActivity.this)) {
                         ManagerHelper.noInternetAccess(SplashScreenActivity.this);
                     } else {
                         tryAgain.setVisibility(View.GONE);
@@ -123,8 +120,7 @@ public class SplashScreenActivity extends MyActivity {
                 @Override
                 public void onResponse(boolean ok, Object obj) {
                     if (ok) {
-                        appInfo = (AppInfo) obj;
-                        checkVersionCode(appInfo);
+                        checkVersionCode((AppInfo) obj);
                     }
                 }
             });
@@ -134,7 +130,7 @@ public class SplashScreenActivity extends MyActivity {
     private void checkVersionCode(AppInfo applicationInformation) {
         try {
             PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            if (packageInfo.versionCode < appInfo.getData().get(0).getLatestVersion()) {
+            if (packageInfo.versionCode < applicationInformation.getData().get(0).getLatestVersion()) {
                 showDialogVersionChecker();
             } else {
                 new BackgroundTask().execute();

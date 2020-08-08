@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
-import ir.ac.sku.service.digiservice.model.DepartmentsModel;
+import ir.ac.sku.service.digiservice.api.office.DepartmentsModel;
 
 public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentsAdapter.MyViewHolder> {
 

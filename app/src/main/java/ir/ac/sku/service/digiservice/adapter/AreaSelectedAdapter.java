@@ -20,9 +20,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
-import ir.ac.sku.service.digiservice.activity.main.ItemSelectedActivity;
+import ir.ac.sku.service.digiservice.activity.main.SelectedResourceActivity;
 import ir.ac.sku.service.digiservice.config.MyAPI;
-import ir.ac.sku.service.digiservice.model.ResourcesModel;
+import ir.ac.sku.service.digiservice.api.office.ResourcesModel;
 
 public class AreaSelectedAdapter extends RecyclerView.Adapter<AreaSelectedAdapter.MyViewHolder> {
 
@@ -75,7 +75,7 @@ public class AreaSelectedAdapter extends RecyclerView.Adapter<AreaSelectedAdapte
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(context, ItemSelectedActivity.class);
+            Intent intent = new Intent(context, SelectedResourceActivity.class);
             intent.putExtra("id", data.get(getLayoutPosition()).getId());
             context.startActivity(intent);
         }

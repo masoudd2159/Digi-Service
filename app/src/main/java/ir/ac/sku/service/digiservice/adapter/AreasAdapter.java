@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.AreaSelectedActivity;
-import ir.ac.sku.service.digiservice.model.AreasModel;
+import ir.ac.sku.service.digiservice.api.office.AreasModel;
 
 public class AreasAdapter extends RecyclerView.Adapter<AreasAdapter.MyViewHolder> {
 

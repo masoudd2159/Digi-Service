@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     app:layout_gravity="center"
-    tools:context=".fragment.EventsFragment"
+    tools:context=".fragment.NewsFragment"
     tools:ignore="MissingPrefix">
 
     <androidx.recyclerview.widget.RecyclerView

@@ -1,40 +1,45 @@
 package ir.ac.sku.service.digiservice.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.adapter.SearchAdapter;
-import ir.ac.sku.service.digiservice.model.SearchModel;
+import ir.ac.sku.service.digiservice.api.search.SearchModel;
+import ir.ac.sku.service.digiservice.base.BaseFragment;
+import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 
-public class SearchFragment extends Fragment {
+@SuppressLint("LongLogTag")
+public class SearchFragment extends BaseFragment {
     //* Views
+    @BindView(R.id.fragmentSearch_SearchList) RecyclerView searchList;
     @BindView(R.id.fragmentSearch_EditTextSearch) EditText editTextSearch;
     @BindView(R.id.fragmentSearch_SearchImageViewButton) ImageView searchButton;
-    @BindView(R.id.fragmentSearch_SearchList) RecyclerView searchList;
-    private View rootView;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_search, container, false);
-        ButterKnife.bind(this, rootView);
+    //* View Inflater
+    @Override protected int getLayoutResource() {
+        return R.layout.fragment_search;
+    }
+
+    @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         showInputMethod();
         editTextSearch.requestFocus();
 
@@ -44,11 +49,10 @@ public class SearchFragment extends Fragment {
                 if (editTextSearch.length() > 0) {
                     setUpSearchData(editTextSearch.getText().toString().trim());
                 } else {
-                    Toast.makeText(rootView.getContext(), "لطفا عبارت مورد نظر را وارد کنید!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "لطفا عبارت مورد نظر را وارد کنید!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        return rootView;
     }
 
     private void setUpSearchData(String query) {
@@ -57,7 +61,10 @@ public class SearchFragment extends Fragment {
         params.put("filter", query);
         params.put("eventId", "0");
 
-        SearchModel.fetchFromWeb(rootView.getContext(), params, new MyHandler() {
+        Log.i(MyLog.SEARCH, "Query Search : " + params.get("filter"));
+        Log.i(MyLog.SEARCH, "Event Id : " + params.get("eventId"));
+
+        SearchModel.fetchFromWeb(getContext(), params, new MyHandler() {
             @Override
             public void onResponse(boolean ok, Object obj) {
                 if (ok) {
@@ -68,9 +75,9 @@ public class SearchFragment extends Fragment {
     }
 
     private void showData(SearchModel model) {
-        searchList.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(rootView.getContext(), R.anim.layout_animation_from_right));
-        searchList.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
-        searchList.setAdapter(new SearchAdapter(rootView.getContext(), model.getData()));
+        searchList.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_from_right));
+        searchList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        searchList.setAdapter(new SearchAdapter(getContext(), model.getData()));
     }
 
     private void showInputMethod() {

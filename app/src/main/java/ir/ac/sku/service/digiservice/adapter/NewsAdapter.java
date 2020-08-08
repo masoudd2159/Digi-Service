@@ -20,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.config.MyAPI;
-import ir.ac.sku.service.digiservice.model.NewsModel;
+import ir.ac.sku.service.digiservice.api.news.NewsModel;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
 

@@ -14,7 +14,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,18 +25,21 @@ import java.util.Map;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.config.MyLog;
 
+@SuppressLint("LongLogTag")
 public class ManagerHelper {
-    @SuppressLint("LongLogTag")
-    public static boolean isNOTOnline(Context context) {
-        Log.i(MyLog.DIGI_SERVICE, "Check device is Online");
-        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
-        return networkInfo == null || !networkInfo.isConnected();
+    public static boolean isInternetAvailable(Context context) {
+        if (context != null) {
+            Log.i(MyLog.UTILS, "Check device for Internet Available");
+            ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            return manager.getActiveNetworkInfo() != null
+                    && manager.getActiveNetworkInfo().isAvailable()
+                    && manager.getActiveNetworkInfo().isConnected();
+        }
+        return false;
     }
 
-    @SuppressLint("LongLogTag")
     public static void noInternetAccess(Context context) {
-        Log.i(MyLog.DIGI_SERVICE, "Open Dialog NO Internet Access");
+        Log.i(MyLog.UTILS, "Open Dialog NO Internet Access");
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_disconnect);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -48,7 +50,7 @@ public class ManagerHelper {
         wifi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(MyLog.DIGI_SERVICE, "on Wi-Fi Click");
+                Log.i(MyLog.UTILS, "on Wi-Fi Click");
                 IntentHelper.openWiFiSettingScreen(context);
             }
         });
@@ -56,7 +58,7 @@ public class ManagerHelper {
         data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(MyLog.DIGI_SERVICE, "on Mobile Data Click");
+                Log.i(MyLog.UTILS, "on Mobile Data Click");
                 IntentHelper.openDataUsageScreen(context);
             }
         });
