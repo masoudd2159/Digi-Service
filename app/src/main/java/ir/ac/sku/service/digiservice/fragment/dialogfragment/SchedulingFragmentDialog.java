@@ -15,6 +15,8 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -32,6 +34,7 @@ public class SchedulingFragmentDialog extends BaseDialogFragment {
     //* Views
     @BindView(R.id.dialogFragmentScheduling_WebView) WebView webView;
     @BindView(R.id.dialogFragmentScheduling_ButtonClose) Button close;
+    @BindView(R.id.dialogFragmentScheduling_AnimationView) LottieAnimationView loadingAnimationView;
 
     //* Dependence
     private int id;
@@ -52,6 +55,8 @@ public class SchedulingFragmentDialog extends BaseDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        loadingAnimationView.setVisibility(View.VISIBLE);
 
         if (getDialog() != null && getDialog().isShowing()) {
             Log.i(MyLog.SCHEDULING, "Dismiss Scheduling Dialog Fragment");
@@ -97,6 +102,7 @@ public class SchedulingFragmentDialog extends BaseDialogFragment {
                 if (ok) {
                     SchedulingModel schedulingModel = (SchedulingModel) obj;
                     if (schedulingModel.isOk()) {
+                        loadingAnimationView.setVisibility(View.INVISIBLE);
                         showWebView(schedulingModel.getData().get(0).getSchTable());
                     }
                 } else {

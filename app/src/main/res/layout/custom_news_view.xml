@@ -31,7 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/nav_header"
                 app:layout_gravity="center"
                 app:riv_corner_radius_top_left="@dimen/_16sdp"
                 app:riv_corner_radius_top_right="@dimen/_16sdp" />
@@ -55,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layoutDirection="ltr"
+            android:maxLines="10"
             android:padding="@dimen/_7sdp"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_12ssp" />
