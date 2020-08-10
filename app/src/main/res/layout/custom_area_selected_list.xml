@@ -3,40 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="15dp"
-    android:layout_marginTop="3dp"
-    android:layout_marginRight="15dp"
-    android:layout_marginBottom="4dp"
+    android:layout_marginLeft="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_3sdp"
+    android:layout_marginRight="@dimen/_8sdp"
+    android:layout_marginBottom="@dimen/_3sdp"
     android:background="@color/white"
-    android:padding="5dp"
-    app:cornerRadius="30dp"
+    android:padding="@dimen/_4sdp"
+    app:cornerRadius="@dimen/_24sdp"
     app:shadowColor="#FFC6C6"
-    app:shadowMargin="6dp"
-    app:shadowRadius="6dp">
+    app:shadowMargin="@dimen/_4sdp"
+    app:shadowRadius="@dimen/_4sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
-        android:padding="1dp">
+        android:padding="@dimen/_1sdp">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/customAreaSelectedList_ImageView"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_90sdp"
             android:padding="1dp"
             android:scaleType="fitXY"
             app:riv_border_color="#DDDDDD"
             app:riv_border_width="1dip"
             app:riv_corner_radius="8dip"
-            app:riv_mutate_background="true"/>
+            app:riv_mutate_background="true" />
 
         <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/customAreaSelectedList_TextView"
@@ -44,20 +42,19 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_gravity="right"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
+                android:layout_margin="@dimen/_5sdp"
                 android:gravity="right"
                 android:layoutDirection="rtl"
                 android:textColor="#2C2C2C"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_13ssp" />
 
             <ImageView
                 android:id="@+id/customAreaSelectedList_ImageViewMore"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/_8sdp"
                 android:src="@drawable/ic_more" />
 
         </RelativeLayout>

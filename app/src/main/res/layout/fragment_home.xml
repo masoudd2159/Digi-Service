@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="60dp"
+    android:layout_marginBottom="@dimen/_45sdp"
     tools:context=".fragment.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -26,7 +26,7 @@
             <me.relex.circleindicator.CircleIndicator2
                 android:id="@+id/fragmentHome_PagerIndicator"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layoutDirection="ltr"
@@ -46,12 +46,12 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/fragmentHome_AnimationView"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
         android:layout_gravity="bottom|center_horizontal"
         android:visibility="visible"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/loading" />
+        app:lottie_rawRes="@raw/loading_2" />
 
 </FrameLayout>

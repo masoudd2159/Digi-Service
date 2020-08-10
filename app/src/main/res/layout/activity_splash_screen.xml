@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/splashScreenActivity_RelativeLayout"
     android:layout_width="match_parent"
@@ -13,27 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/splashScreenActivity_LinearLayout_Bottom"
-        android:layout_marginBottom="256dp"
+        android:layout_marginBottom="@dimen/_185sdp"
         android:gravity="center"
         android:layoutDirection="ltr"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/_8sdp">
 
         <ImageView
             android:id="@+id/splashScreenActivity_ImageView_SkuIcon"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
             android:layout_gravity="center"
-            android:layout_margin="3dp"
+            android:layout_margin="@dimen/_4sdp"
             android:layoutDirection="ltr"
             android:src="@drawable/ic_sku" />
 
         <ImageView
             android:id="@+id/splashScreenActivity_ImageView_DigiServiceIcon"
-            android:layout_width="256dp"
-            android:layout_height="55dp"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center"
-            android:layout_margin="3dp"
+            android:layout_margin="@dimen/_4sdp"
             android:layoutDirection="ltr"
             android:src="@drawable/ic_digiservice" />
 
@@ -43,12 +42,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:gravity="center"
             android:text="@string/reservation_system"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
-            android:textSize="22sp" />
+            android:textSize="@dimen/_18ssp" />
 
     </LinearLayout>
 
@@ -62,10 +61,10 @@
 
         <ImageView
             android:id="@+id/splashScreenActivity_ImageView_ResponsiveIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
             android:layout_gravity="center"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/_16sdp"
             android:src="@drawable/ic_responsive"
             android:visibility="invisible" />
 
@@ -73,13 +72,14 @@
             android:id="@+id/splashScreenActivity_Button_TryAgain"
             style="@style/TextAppearance.AppCompat.Small"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_height="@dimen/_32sdp"
             android:layout_gravity="center"
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:layoutDirection="ltr"
             android:text="@string/try_again"
             android:textColor="@android:color/white"
+            android:textSize="@dimen/_12ssp"
             android:visibility="gone" />
     </LinearLayout>
 </RelativeLayout>

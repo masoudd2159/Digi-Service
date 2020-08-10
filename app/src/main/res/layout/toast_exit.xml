@@ -3,8 +3,8 @@
     android:id="@+id/toastExit_MainLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="60dp"
-    android:layout_marginRight="60dp"
+    android:layout_marginLeft="@dimen/_50sdp"
+    android:layout_marginRight="@dimen/_50sdp"
     android:background="@drawable/bg_exit"
     android:gravity="center"
     android:layoutDirection="ltr"
@@ -17,8 +17,8 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:layoutDirection="ltr"
-        android:padding="10dp"
+        android:padding="@dimen/_8sdp"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="@dimen/_13ssp" />
 
 </RelativeLayout>

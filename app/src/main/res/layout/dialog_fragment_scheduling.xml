@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:layoutDirection="ltr"
-    app:cardCornerRadius="25dp"
+    app:cardCornerRadius="@dimen/_20sdp"
     tools:ignore="MissingPrefix">
 
     <RelativeLayout
@@ -30,7 +30,7 @@
             android:layoutDirection="ltr"
             android:text="@string/close"
             android:textColor="@android:color/white"
-            android:textSize="17sp" />
+            android:textSize="@dimen/_15ssp" />
 
     </RelativeLayout>
 

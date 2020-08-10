@@ -13,12 +13,12 @@
         fontPath="fonts/IRANSansMobile_Black.ttf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="25dp"
-        android:paddingTop="10dp"
-        android:paddingRight="25dp"
+        android:paddingLeft="@dimen/_20sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingRight="@dimen/_20sdp"
         android:text="@string/office"
         android:textColor="@color/colorPrimary"
-        android:textSize="24sp" />
+        android:textSize="@dimen/_20ssp" />
 
 
     <com.yarolegovich.discretescrollview.DiscreteScrollView
@@ -31,7 +31,7 @@
     <me.relex.circleindicator.CircleIndicator2
         android:id="@+id/fragmentOffice_PagerIndicator"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_gravity="center"
         android:gravity="center"
         android:layoutDirection="ltr"
@@ -51,12 +51,12 @@
             android:id="@+id/fragmentOffice_RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="13dp"
-            android:layout_marginBottom="90dp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:layout_marginTop="3dp"
-            android:layout_marginRight="13dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp" />
+            android:layout_marginBottom="@dimen/_75sdp"
+            android:paddingLeft="@dimen/_4sdp"
+            android:paddingRight="@dimen/_4sdp" />
 
     </androidx.cardview.widget.CardView>
 

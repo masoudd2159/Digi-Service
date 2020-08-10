@@ -8,21 +8,21 @@
         android:id="@+id/customAreasListView_TextViewPersianTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
         android:ellipsize="end"
         android:layoutDirection="ltr"
-        android:padding="8dp"
+        android:padding="@dimen/_8sdp"
         android:singleLine="true"
         android:textColor="#3F3F3F"
-        android:textSize="16sp" />
+        android:textSize="@dimen/_13ssp" />
 
     <ImageView
         android:id="@+id/customAreasListView_ImageViewLine"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginRight="@dimen/_8sdp"
         android:background="#80949494" />
 
 </LinearLayout>

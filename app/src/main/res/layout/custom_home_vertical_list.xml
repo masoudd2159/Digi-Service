@@ -12,11 +12,11 @@
         fontPath="fonts/IRANSansMobile_Black.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="@dimen/_8sdp"
         android:layoutDirection="rtl"
-        android:padding="10dp"
+        android:padding="@dimen/_8sdp"
         android:textColor="@color/colorPrimary"
-        android:textSize="18sp" />
+        android:textSize="@dimen/_15ssp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/customHomeVerticalList_RecyclerViewHorizontal"

@@ -28,7 +28,7 @@
             android:theme="@style/MyTheme.Detail" />
         <activity
             android:name=".activity.main.MainActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/MyTheme.Detail"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -36,10 +36,10 @@
             android:screenOrientation="fullSensor" />
         <activity
             android:name=".activity.phoneLogin.LoginActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SplashScreenActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

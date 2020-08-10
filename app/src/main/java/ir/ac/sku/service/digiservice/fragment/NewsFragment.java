@@ -27,7 +27,7 @@ public class NewsFragment extends BaseFragment {
     //* View Inflater
     @Override
     protected int getLayoutResource() {
-        return R.layout.fragment_events;
+        return R.layout.fragment_news;
     }
 
     @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

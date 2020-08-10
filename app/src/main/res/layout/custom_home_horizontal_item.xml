@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/customHomeHorizontalView_ShadowView"
-    android:layout_width="190dp"
-    android:layout_height="250dp"
+    android:layout_width="@dimen/_160sdp"
+    android:layout_height="@dimen/_200sdp"
     android:background="@color/white"
-    android:padding="8dp"
-    app:cornerRadius="30dp"
+    android:padding="@dimen/_8sdp"
+    app:cornerRadius="@dimen/_25sdp"
     app:shadowColor="@color/colorPrimaryShadow"
-    app:shadowMargin="10dp"
-    app:shadowRadius="10dp"
+    app:shadowMargin="@dimen/_8sdp"
+    app:shadowRadius="@dimen/_8sdp"
     tools:ignore="MissingPrefix">
 
     <LinearLayout
@@ -24,8 +24,8 @@
         <ImageView
             android:id="@+id/customHomeHorizontalView_ImageView"
             android:layout_width="match_parent"
-            android:layout_height="145dp"
-            android:layout_margin="5dp"
+            android:layout_height="@dimen/_110sdp"
+            android:layout_margin="@dimen/_4sdp"
             android:scaleType="fitCenter"
             app:layout_gravity="center" />
 
@@ -35,22 +35,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="@dimen/_11ssp" />
 
         <ImageView
             android:id="@+id/customHomeHorizontalView_ImageViewMore"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
             android:layout_gravity="left"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_14sdp"
             android:src="@drawable/ic_more" />
 
     </LinearLayout>
