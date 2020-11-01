@@ -17,12 +17,12 @@ import butterknife.BindView;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.adapter.AreaSelectedAdapter;
 import ir.ac.sku.service.digiservice.api.office.ResourcesModel;
-import ir.ac.sku.service.digiservice.base.MyActivity;
+import ir.ac.sku.service.digiservice.base.BaseActivity;
 import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 
 @SuppressLint("LongLogTag")
-public class AreaSelectedActivity extends MyActivity {
+public class AreaSelectedActivity extends BaseActivity {
     //* Views
     @BindView(R.id.activityAreaSelected_TextViewTitle) TextView title;
     @BindView(R.id.activityAreaSelected_TextViewLabName) TextView labName;

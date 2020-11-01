@@ -54,7 +54,7 @@
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_marginTop="3dp"
-            android:layout_marginBottom="@dimen/_75sdp"
+            android:layout_marginBottom="@dimen/_80sdp"
             android:paddingLeft="@dimen/_4sdp"
             android:paddingRight="@dimen/_4sdp" />
 

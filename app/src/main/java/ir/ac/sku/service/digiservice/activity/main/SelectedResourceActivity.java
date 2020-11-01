@@ -22,7 +22,7 @@ import butterknife.BindView;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.adapter.ViewPagerAdapter;
 import ir.ac.sku.service.digiservice.api.selectedResource.SelectedResourceModel;
-import ir.ac.sku.service.digiservice.base.MyActivity;
+import ir.ac.sku.service.digiservice.base.BaseActivity;
 import ir.ac.sku.service.digiservice.config.MyAPI;
 import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.fragment.ItemSelectedTabFragment;
@@ -30,7 +30,7 @@ import ir.ac.sku.service.digiservice.fragment.dialogfragment.SchedulingFragmentD
 import ir.ac.sku.service.digiservice.util.MyHandler;
 
 @SuppressLint("LongLogTag")
-public class SelectedResourceActivity extends MyActivity {
+public class SelectedResourceActivity extends BaseActivity {
 
     //* Views
     @BindView(R.id.activityItemSelected_Head) TextView head;

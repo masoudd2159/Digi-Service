@@ -29,20 +29,21 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import ir.ac.sku.service.digiservice.R;
-import ir.ac.sku.service.digiservice.fragment.NewsFragment;
+import ir.ac.sku.service.digiservice.base.BaseActivity;
 import ir.ac.sku.service.digiservice.fragment.HomeFragment;
+import ir.ac.sku.service.digiservice.fragment.NewsFragment;
 import ir.ac.sku.service.digiservice.fragment.OfficesFragment;
 import ir.ac.sku.service.digiservice.fragment.SearchFragment;
 import ir.ac.sku.service.digiservice.util.ColoredSnackBar;
 import ir.ac.sku.service.digiservice.util.ConnectivityReceiver;
 import ir.ac.sku.service.digiservice.util.CustomToastExit;
-import ir.ac.sku.service.digiservice.base.MyActivity;
 
-public class MainActivity extends MyActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+@SuppressLint("NonConstantResourceId")
+public class MainActivity extends BaseActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
     //* Views
     @BindView(R.id.activityMain_ToolBar) Toolbar toolbar;
-    @BindView(R.id.activityMain_CoordinatorLayout_Holder) CoordinatorLayout holder;
+    @BindView(R.id.layout_content) CoordinatorLayout holder;
     @BindView(R.id.activityMain_ImageButtonDrawer) ImageButton drawerButton;
     @BindView(R.id.activityMain_DrawerLayout) DrawerLayout drawerLayout;
     @BindView(R.id.activityMain_DigiServiceIcon) ImageView digiServiceIcon;

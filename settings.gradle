@@ -1,2 +1,3 @@
+include ':CircularProgressButton'
 include ':app'
 rootProject.name='Digi Service'

@@ -42,7 +42,7 @@ public class AppInfo {
     @SuppressLint("LongLogTag")
     public static void fetchFromWeb(Context context, HashMap<String, String> params, MyHandler handler) {
         if (!ManagerHelper.isInternetAvailable(context)) {
-            Log.i(MyLog.SPLASH_SCREEN_ACTIVITY, "No Internet Access");
+            Log.i(MyLog.DIGI_SERVICE + AppInfo.class.getSimpleName(), "No Internet Access");
             ManagerHelper.noInternetAccess(context);
             return;
         }
@@ -51,7 +51,7 @@ public class AppInfo {
 
         RxApiCallHelper.call(observable, new RxApiCallback<JsonObject>() {
             @Override public void onSuccess(JsonObject jsonObject) {
-                Log.i(MyLog.SPLASH_SCREEN_ACTIVITY, "Object Successfully Receive");
+                Log.i(MyLog.DIGI_SERVICE + AppInfo.class.getSimpleName(), "Object Successfully Receive");
                 AppInfo response = new Gson().fromJson(jsonObject, AppInfo.class);
                 if (response.isOk()) {
                     handler.onResponse(true, response);

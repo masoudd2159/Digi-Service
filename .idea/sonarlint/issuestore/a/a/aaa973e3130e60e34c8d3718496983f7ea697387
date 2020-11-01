@@ -1,0 +1,21 @@
+
+Q
+java:S1128"/Remove this unused import 'android.app.Dialog'.(·‚Àžúÿÿÿÿ8““Ì—Ø.
+f
+java:S1128"DRemove this unused import 'android.graphics.drawable.ColorDrawable'.(ÖŸÂ«øÿÿÿÿ8““Ì—Ø.
+^
+java:S1128"<Remove this unused import 'ir.ac.sku.service.digiservice.R'.(¸ÑÄþÿÿÿÿ8““Ì—Ø.
+I
+java:S1874"3Remove this use of "isAvailable"; it is deprecated.(äÄ¯–
+m
+java:S2259-"P"NullPointerException" will be thrown when invoking method "noInternetAccess()".(ü•ÀŸ8““Ì—Ø.
+R
+java:S1874"<Remove this use of "getActiveNetworkInfo"; it is deprecated.(™€Çà
+T
+java:S1128	"2Remove this unused import 'android.widget.Button'.(²òžýÿÿÿÿ8““Ì—Ø.
+R
+java:S1874"<Remove this use of "getActiveNetworkInfo"; it is deprecated.(äÄ¯–
+I
+java:S1874"3Remove this use of "isConnected"; it is deprecated.(™€Çà
+W
+java:S1874"<Remove this use of "getActiveNetworkInfo"; it is deprecated.(Ñÿ×“þÿÿÿÿ

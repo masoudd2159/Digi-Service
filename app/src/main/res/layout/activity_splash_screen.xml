@@ -24,6 +24,7 @@
             android:layout_height="@dimen/_100sdp"
             android:layout_gravity="center"
             android:layout_margin="@dimen/_4sdp"
+            android:contentDescription="@string/reservation_system"
             android:layoutDirection="ltr"
             android:src="@drawable/ic_sku" />
 
@@ -33,6 +34,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center"
             android:layout_margin="@dimen/_4sdp"
+            android:contentDescription="@string/reservation_system"
             android:layoutDirection="ltr"
             android:src="@drawable/ic_digiservice" />
 
@@ -65,6 +67,7 @@
             android:layout_height="@dimen/_32sdp"
             android:layout_gravity="center"
             android:layout_margin="@dimen/_16sdp"
+            android:contentDescription="@string/reservation_system"
             android:src="@drawable/ic_responsive"
             android:visibility="invisible" />
 

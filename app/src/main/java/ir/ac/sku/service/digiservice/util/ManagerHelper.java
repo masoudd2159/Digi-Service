@@ -3,30 +3,24 @@ package ir.ac.sku.service.digiservice.util;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Map;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.config.MyLog;
+import ir.ac.sku.service.digiservice.fragment.dialogfragment.DialogFragmentNoInternetAccess;
 
 @SuppressLint("LongLogTag")
 public class ManagerHelper {
+    private ManagerHelper() {
+        throw new IllegalStateException("Manager Helper");
+    }
+
     public static boolean isInternetAvailable(Context context) {
         if (context != null) {
             Log.i(MyLog.UTILS, "Check device for Internet Available");
@@ -39,87 +33,21 @@ public class ManagerHelper {
     }
 
     public static void noInternetAccess(Context context) {
-        Log.i(MyLog.UTILS, "Open Dialog NO Internet Access");
-        final Dialog dialog = new Dialog(context);
-        dialog.setContentView(R.layout.dialog_disconnect);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-        Button wifi = dialog.findViewById(R.id.disconnect_WiFi);
-        Button data = dialog.findViewById(R.id.disconnect_MobileData);
-
-        wifi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(MyLog.UTILS, "on Wi-Fi Click");
-                IntentHelper.openWiFiSettingScreen(context);
-            }
-        });
-
-        data.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(MyLog.UTILS, "on Mobile Data Click");
-                IntentHelper.openDataUsageScreen(context);
-            }
-        });
-        dialog.show();
+        Log.i(MyLog.UTILS + ManagerHelper.class.getSimpleName(), "Open Dialog NO Internet Access");
+        FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+        new DialogFragmentNoInternetAccess().show(fragmentManager, "DialogFragmentNoInternetAccess");
     }
 
-    public static void successfulOperation(Context context, String successfulMessage) {
-    }
-
-    public static void unsuccessfulOperation(Context context, String unSuccessfulMessage) {
-    }
-
-    public static String enCodeParameters(Map<String, String> params) {
-        if (params != null) {
-            StringBuilder stringBuilder = new StringBuilder();
-            try {
-                for (String key : params.keySet()) {
-                    String value = params.get(key);
-                    if (stringBuilder.length() > 0) {
-                        stringBuilder.append("&");
-                    }
-                    stringBuilder.append(key);
-                    stringBuilder.append("=");
-                    stringBuilder.append(URLEncoder.encode(value, "UTF-8"));
-                }
-                return stringBuilder.toString();
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+    public static boolean checkInternetServices(Context context){
+        if (isInternetAvailable(context)) {
+            return true;
+        } else {
+            noInternetAccess(context);
+            return false;
         }
-        return "";
     }
 
-    public static ColorMatrixColorFilter getBlackWhiteFilter() {
-        ColorMatrix matrix = new ColorMatrix();
-        matrix.setSaturation(0);
-        return new ColorMatrixColorFilter(matrix);
-    }
-
-    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
-        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
-
-        final int color = 0xff424242;
-        final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-        final RectF rectF = new RectF(rect);
-        final float roundPx = pixels;
-
-        paint.setAntiAlias(true);
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(color);
-        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
-
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, rect, rect, paint);
-
-        return output;
-    }
-
-    public static String getStyle(String font_family, String font_size, String text_align, String fontColor) {
+    public static String getStyle(String fontFamily, String fontSize, String textAlign, String fontColor) {
         return "<style>" +
                 ".center {" +
                 "    max-width: 100%;" +
@@ -129,12 +57,12 @@ public class ManagerHelper {
                 "}" +
                 "@font-face {" +
                 "    font-family: font;" +
-                "    src: url(\"file:///android_asset/" + font_family + "\")" +
+                "    src: url(\"file:///android_asset/" + fontFamily + "\")" +
                 "}" +
                 "body {" +
                 "    font-family: font;" +
-                "    font-size: " + font_size + "px;" +
-                "    text-align: " + text_align + ";" +
+                "    font-size: " + fontSize + "px;" +
+                "    text-align: " + textAlign + ";" +
                 "    color: " + fontColor + ";" +
                 "}" +
                 "</style>";

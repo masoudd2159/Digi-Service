@@ -31,6 +31,7 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/_4sdp"
+                android:contentDescription="@string/disconnect_title"
                 android:layoutDirection="ltr"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/ic_no_connection" />

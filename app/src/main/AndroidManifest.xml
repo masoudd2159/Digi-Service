@@ -20,27 +20,23 @@
         tools:targetApi="n">
         <activity
             android:name=".activity.main.SelectedResourceActivity"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".activity.main.AreaSelectedActivity"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/MyTheme.Detail" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".activity.main.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MyTheme.Detail"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activity.phoneLogin.VerificationActivity"
+            android:name=".activity.phonelogin.VerificationActivity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".activity.phoneLogin.LoginActivity"
+            android:name=".activity.phonelogin.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SplashScreenActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

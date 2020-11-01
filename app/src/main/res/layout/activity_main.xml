@@ -47,7 +47,7 @@
             android:layoutDirection="ltr" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/activityMain_CoordinatorLayout_Holder"
+            android:id="@+id/layout_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/activityMain_ShadowView"

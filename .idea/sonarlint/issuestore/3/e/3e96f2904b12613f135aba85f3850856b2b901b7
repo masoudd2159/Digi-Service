@@ -1,0 +1,29 @@
+
+e
+java:S1871ÿ"IThis case's code block is the same as the block for the case on line 203.(Ý–Ò˜ÿÿÿÿÿ
+W	java:S125õ"<This block of commented-out lines of code should be removed.(Ö”Àúÿÿÿÿ
+„
+java:S3252´"hUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_SHORT".(ÏÃÏùÿÿÿÿ
+
+java:S3252¬"hUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_SHORT".(Í¹Î¸
+?
+java:S1604š"(Make this anonymous inner class a lambda(„ÑñŒ
+P
+java:S3516¤"9Refactor this method to not always return the same value.( “âØ
+„
+java:S3252¨"hUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_SHORT".(È–ýøüÿÿÿÿ
+W	java:S125ç"<This block of commented-out lines of code should be removed.(¡žÀ³ýÿÿÿÿ
+D
+java:S1604Ã"(Make this anonymous inner class a lambda(õßØµüÿÿÿÿ
+
+java:S3252¸"hUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_SHORT".(òûë¶
+„
+java:S3252¨"hUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_SHORT".(ê«×Ûþÿÿÿÿ
+R	java:S125Ø"<This block of commented-out lines of code should be removed.(©Ñ®Ä
+F
+java:S1874š"/Remove this use of "Handler"; it is deprecated.(„ÑñŒ
+V	java:S125d"<This block of commented-out lines of code should be removed.(¸€Á™ùÿÿÿÿ
+P
+java:S3516Å"9Refactor this method to not always return the same value.( “âØ
+„
+java:S3252°"hUse static access with "com.google.android.material.snackbar.BaseTransientBottomBar" for "LENGTH_SHORT".(ÖØ‘©ÿÿÿÿÿ
