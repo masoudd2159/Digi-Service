@@ -1,0 +1,27 @@
+
+U
+java:S1874‚"9Remove this use of "getColorStateList"; it is deprecated.(‚Ò…ùÿÿÿÿ
+E
+java:S1604@"(Make this anonymous inner class a lambda(Şü¾š8âÜŒÑÙ.
+J
+java:S1604k"(Make this anonymous inner class a lambda(ˆñöÿÿÿÿÿ8âÜŒÑÙ.
+E
+java:S1604P"(Make this anonymous inner class a lambda(âÁ®8âÜŒÑÙ.
+F
+java:S1604ñ"(Make this anonymous inner class a lambda(”äóç8âÜŒÑÙ.
+J
+java:S1604["(Make this anonymous inner class a lambda(Ÿú’øıÿÿÿÿ8âÜŒÑÙ.
+P
+java:S1874†"9Remove this use of "getColorStateList"; it is deprecated.(„©©Å
+J
+java:S1874‚"3Remove this use of "getDrawable"; it is deprecated.(ù¡ƒñ
+O
+java:S1874Í"3Remove this use of "getDrawable"; it is deprecated.(ôƒöÈÿÿÿÿÿ
+P
+java:S1874Š"9Remove this use of "getColorStateList"; it is deprecated.(ÆÄ†´
+L
+java:S1874–"0Remove this use of "getColor"; it is deprecated.(ìáœæøÿÿÿÿ
+V
+java:S1161Ç":Add the "@Override" annotation above this method signature(’Ì¹ªûÿÿÿÿ
+n
+java:S3776 "RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(·õîİüÿÿÿÿ

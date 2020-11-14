@@ -1,15 +1,6 @@
 
-l
-java:S1450"VRemove the "mParam1" field and declare it as a local variable in the relevant methods.(•Íï‘
-l
-java:S1450"VRemove the "mParam2" field and declare it as a local variable in the relevant methods.(¡ˆ€ 
-A
-java:S1068"+Remove this unused "mParam2" private field.(¡ˆ€ 
-M
-java:S1135"2Complete the task associated to this TODO comment.(ğï¢öúÿÿÿÿ
-M
-java:S1135)"2Complete the task associated to this TODO comment.(ßíŠÿÿÿÿÿ
-M
-java:S1135"2Complete the task associated to this TODO comment.(ÜûŠ—øÿÿÿÿ
-A
-java:S1068"+Remove this unused "mParam1" private field.(•Íï‘
+N
+java:S16021",Remove useless curly braces around statement(©ÑÑÓıÿÿÿÿ8ÊôÕ¡Ú.
+S
+java:S1128
+"6Remove this unused import 'android.provider.Settings'.(Š¯„8éÔ³÷Ù.

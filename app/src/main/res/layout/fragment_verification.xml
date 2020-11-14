@@ -1,28 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.VerificationFragment">
+    android:background="@color/white"
+    android:gravity="center"
+    android:layoutDirection="ltr"
+    app:layout_gravity="center"
+    tools:context=".fragment.VerificationFragment"
+    tools:ignore="MissingPrefix">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:layout_width="@dimen/_16sdp"
+        android:layout_height="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_64ssp"
+        android:layout_marginLeft="@dimen/_32sdp"
+        android:layout_marginRight="@dimen/_32sdp"
+        android:src="@drawable/ic_more_red" />
+
+    <LinearLayout
+        android:id="@+id/layout_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layoutDirection="ltr"
+        android:onClick="onClickItemViewWebSite"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/sku_icon"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/reservation_system"
+            android:layoutDirection="ltr"
+            android:src="@drawable/ic_sku" />
+
+        <ImageView
+            android:id="@+id/digiService_icon"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/reservation_system"
+            android:layoutDirection="ltr"
+            android:src="@drawable/ic_digiservice" />
+
+    </LinearLayout>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="VerificationFragment" />
+        android:layout_below="@id/layout_icon"
+        android:layout_marginLeft="@dimen/_24sdp"
+        android:layout_marginRight="@dimen/_24sdp"
+        android:fillViewport="true">
 
-    <Button
-        android:id="@+id/nav_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="next" />
+        <LinearLayout
+            android:id="@+id/layout_linear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_login"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/nav_btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:text="back" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_32sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_32sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:gravity="center"
+                android:text="@string/following_password"
+                android:textColor="@color/grey_95"
+                android:textSize="@dimen/_14ssp" />
 
-</FrameLayout>
+            <com.loopeer.shadow.ShadowView
+                android:id="@+id/shadowView_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:gravity="center"
+                app:cornerRadius="@dimen/_50sdp"
+                app:shadowColor="@color/yellow_900"
+                app:shadowMargin="@dimen/_4sdp"
+                app:shadowRadius="@dimen/_4sdp">
+
+                <EditText
+                    android:id="@+id/editText_password"
+                    fontPath="fonts/IRANSansMobile_Bold.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_42sdp"
+                    android:background="@android:color/transparent"
+                    android:gravity="right|center"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:paddingLeft="@dimen/_16sdp"
+                    android:paddingRight="@dimen/_16sdp"
+                    android:singleLine="true"
+                    android:textColorHint="@color/pink_100"
+                    android:textSize="@dimen/_12ssp" />
+
+            </com.loopeer.shadow.ShadowView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_16sdp">
+
+                <TextView
+                    android:id="@+id/textView_submitting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:text="@string/submitting"
+                    android:textColor="@color/grey_95"
+                    android:textSize="@dimen/_12ssp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView_submitting"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:padding="@dimen/_2sdp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="@dimen/_23sdp"
+                    app:cardElevation="@dimen/_2sdp">
+
+                    <ir.ac.sku.service.digiservice.circularprogressbutton.CircularProgressButton
+                        android:id="@+id/button_continue"
+                        fontPath="fonts/IRANSansMobile_Bold.ttf"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:includeFontPadding="false"
+                        android:onClick="onClickItemContinue"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_15ssp"
+                        app:cpb_colorIndicator="@color/colorPrimary"
+                        app:cpb_colorIndicatorBackground="@color/textColorSecondary"
+                        app:cpb_cornerRadius="@dimen/_23sdp"
+                        app:cpb_iconComplete="@drawable/ic_check_mark"
+                        app:cpb_selectorIdle="@color/colorPrimary"
+                        app:cpb_textError="buttonError"
+                        app:cpb_textIdle="@string/enter" />
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

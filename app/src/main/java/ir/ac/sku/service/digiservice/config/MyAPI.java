@@ -2,8 +2,8 @@ package ir.ac.sku.service.digiservice.config;
 
 public class MyAPI {
     //* Web Site URL
-    public static final String SKU                  = "https://www.sku.ac.ir";
-    public static final String DIGI_SERVICE         = "http://service.sku.ac.ir";
+    public static final String SKU                  = "https://www.sku.ac.ir/";
+    public static final String DIGI_SERVICE         = "http://service.sku.ac.ir/";
     public static final String BASE_URL             = "http://service.sku.ac.ir/tiidapi/";
 
     //* Web Service Digi Service
