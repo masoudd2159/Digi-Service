@@ -1,17 +1,13 @@
 package ir.ac.sku.service.digiservice.util;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.util.Log;
-import android.widget.Button;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.fragment.dialogfragment.DialogFragmentNoInternetAccess;
 
@@ -38,7 +34,7 @@ public class ManagerHelper {
         new DialogFragmentNoInternetAccess().show(fragmentManager, "DialogFragmentNoInternetAccess");
     }
 
-    public static boolean checkInternetServices(Context context){
+    public static boolean checkInternetServices(Context context) {
         if (isInternetAvailable(context)) {
             return true;
         } else {

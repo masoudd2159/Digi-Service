@@ -62,11 +62,13 @@
     <string name="have_an_account">حساب کاربری دارید؟</string>
     <string name="password">رمز عبور</string>
     <string name="enter">ورود</string>
+    <string name="buttonError">خطا!</string>
     <string name="enterU"><u>ورود</u></string>
     <string name="register">ثبت نام</string>
     <string name="registerU"><u>ثبت نام</u></string>
     <string name="personal_id">کد ملی</string>
     <string name="phone_number">شماره تلفن</string>
     <string name="continuation">ادامه</string>
+    <string name="email">پست الکترونیک</string>
 
 </resources>

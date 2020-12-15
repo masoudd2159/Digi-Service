@@ -1,7 +1,8 @@
 
-]
-java:S1128";Remove this unused import 'androidx.navigation.Navigation'.(ÄíÚÀÿÿÿÿÿ8ı¹à¦Ø.
-`
-java:S1128">Remove this unused import 'androidx.navigation.NavController'.(ˆç×ƒÿÿÿÿÿ8ı¹à¦Ø.
 J
-java:S1185"(Remove this method to simply inherit it.(¨Œşÿÿÿÿ8ı¹à¦Ø.
+java:S1185"(Remove this method to simply inherit it.(¨Œşÿÿÿÿ8ı¹à¦Ø.
+`
+java:S1128
+">Remove this unused import 'androidx.navigation.NavController'.(ˆç×ƒÿÿÿÿÿ8ı¹à¦Ø.
+]
+java:S1128";Remove this unused import 'androidx.navigation.Navigation'.(ÄíÚÀÿÿÿÿÿ8ı¹à¦Ø.

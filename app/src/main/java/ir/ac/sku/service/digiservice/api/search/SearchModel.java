@@ -54,7 +54,9 @@ public class SearchModel {
                 Log.i(MyLog.SEARCH, "Object Successfully Receive");
                 SearchModel response = new Gson().fromJson(jsonObject, SearchModel.class);
                 if (response.isOk()) {
-                    handler.onResponse(true, response);
+                    handler.onResponse(response.isOk(), response);
+                } else {
+                    Toast.makeText(context, response.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

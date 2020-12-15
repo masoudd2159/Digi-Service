@@ -12,6 +12,8 @@ import okhttp3.OkHttpClient;
 
 @SuppressLint("Registered")
 public class MyApplication extends Application {
+    public static final String APPLICATION_ID = "3";
+    public static final String API_KEY = "529169d4-9cc8-4b12-fb02-59d9567eaf5a";
     private static MyApplication appInstance;
     private static OkHttpClient mOkHttpClient;
 

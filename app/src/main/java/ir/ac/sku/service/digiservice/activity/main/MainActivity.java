@@ -2,27 +2,25 @@ package ir.ac.sku.service.digiservice.activity.main;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
@@ -34,35 +32,54 @@ import ir.ac.sku.service.digiservice.fragment.HomeFragment;
 import ir.ac.sku.service.digiservice.fragment.NewsFragment;
 import ir.ac.sku.service.digiservice.fragment.OfficesFragment;
 import ir.ac.sku.service.digiservice.fragment.SearchFragment;
-import ir.ac.sku.service.digiservice.util.ColoredSnackBar;
-import ir.ac.sku.service.digiservice.util.ConnectivityReceiver;
 import ir.ac.sku.service.digiservice.util.CustomToastExit;
 
 @SuppressLint("NonConstantResourceId")
-public class MainActivity extends BaseActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+public class MainActivity extends BaseActivity {
 
+    //* Fragments
+    private final FragmentManager fragmentManager = getSupportFragmentManager();
+    private final Fragment homeFragment = new HomeFragment();
+    private final Fragment newsFragment = new NewsFragment();
+    private final Fragment officesFragment = new OfficesFragment();
+    private final Fragment searchFragment = new SearchFragment();
     //* Views
-    @BindView(R.id.activityMain_ToolBar) Toolbar toolbar;
     @BindView(R.id.layout_content) CoordinatorLayout holder;
     @BindView(R.id.activityMain_ImageButtonDrawer) ImageButton drawerButton;
     @BindView(R.id.activityMain_DrawerLayout) DrawerLayout drawerLayout;
-    @BindView(R.id.activityMain_DigiServiceIcon) ImageView digiServiceIcon;
     @BindView(R.id.activityMain_NavigationView) NavigationView navigationView;
-    @BindView(R.id.activityMain_CoordinatorLayout_FragmentHolder) CoordinatorLayout fragmentHolder;
     @BindView(R.id.activityMain_BottomNavigationView) BottomNavigationView bottomNavigationView;
+    private Fragment active = homeFragment;
+
+    private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = item -> {
+        switch (item.getItemId()) {
+            case R.id.bottomNavigationViewTab_Home:
+                fragmentManager.beginTransaction().hide(active).show(homeFragment).commit();
+                active = homeFragment;
+                return true;
+
+            case R.id.bottomNavigationViewTab_News:
+                fragmentManager.beginTransaction().hide(active).show(newsFragment).commit();
+                active = newsFragment;
+                return true;
+
+            case R.id.bottomNavigationViewTab_Office:
+                fragmentManager.beginTransaction().hide(active).show(officesFragment).commit();
+                active = officesFragment;
+                return true;
+
+            case R.id.bottomNavigationViewTab_Search:
+                fragmentManager.beginTransaction().hide(active).show(searchFragment).commit();
+                active = searchFragment;
+                return true;
+            default:
+                break;
+        }
+        return false;
+    };
 
     //* Requirements
-    private boolean starter = false;
     private boolean doubleBackToExitPressedOnce = false;
-
-    //* Helper Class
-    private ConnectivityReceiver receiver;
-
-    //* Fragments
-    private HomeFragment homeFragment;
-    private NewsFragment newsFragment;
-    private OfficesFragment officesFragment;
-    private SearchFragment searchFragment;
 
     //* Set Content View
     @Override
@@ -73,46 +90,82 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setupFragments();
-
-        receiver = new ConnectivityReceiver();
-
+        setUpBottomNavigationView();
         setUpNavigationDrawerView();
-        setUpNavigationBottomView();
+    }
 
-        if (savedInstanceState == null) {
-            bottomNavigationView.setSelectedItemId(R.id.bottomNavigationViewTab_Home);
+    private void setUpBottomNavigationView() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        fragmentManager.beginTransaction().add(R.id.fragmentHolder, searchFragment, "4").hide(searchFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.fragmentHolder, officesFragment, "3").hide(officesFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.fragmentHolder, newsFragment, "2").hide(newsFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.fragmentHolder, homeFragment, "1").commit();
+    }
+
+    @SuppressLint("WrongConstant")
+    private void setUpNavigationDrawerView() {
+        drawerButton.setOnClickListener(v -> {
+            if (drawerLayout.isDrawerOpen(Gravity.END)) {
+                drawerLayout.closeDrawer(Gravity.END);
+            } else {
+                drawerLayout.openDrawer(Gravity.END);
+            }
+        });
+
+        getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            menuItem.setChecked(true);
+            switch (menuItem.getItemId()) {
+                case R.id.drawerNavigationViewTab_Questions:
+                    Snackbar.make(holder, "سوالات متداول", BaseTransientBottomBar.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawer(Gravity.END);
+                    return true;
+                case R.id.drawerNavigationViewTab_Guide:
+                    Snackbar.make(holder, "راهنمای سامانه", BaseTransientBottomBar.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawer(Gravity.END);
+                    return true;
+                case R.id.drawerNavigationViewTab_Rules:
+                    Snackbar.make(holder, "قوانین", BaseTransientBottomBar.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawer(Gravity.END);
+                    return true;
+                case R.id.drawerNavigationViewTab_Settings:
+                    Snackbar.make(holder, "تنظیمات", BaseTransientBottomBar.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawer(Gravity.END);
+                    return true;
+                case R.id.drawerNavigationViewTab_AboutUs:
+                    Snackbar.make(holder, "درباره ما", BaseTransientBottomBar.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawer(Gravity.END);
+                    return true;
+                default:
+                    return true;
+            }
+        });
+    }
+
+    @SuppressLint("WrongConstant")
+    @Override
+    public void onBackPressed() {
+        if (this.drawerLayout.isDrawerOpen(Gravity.END)) {
+            this.drawerLayout.closeDrawer(Gravity.END);
+        } else {
+            if (R.id.bottomNavigationViewTab_Home != bottomNavigationView.getSelectedItemId()) {
+                bottomNavigationView.setSelectedItemId(R.id.bottomNavigationViewTab_Home);
+            } else {
+                if (doubleBackToExitPressedOnce) {
+                    super.onBackPressed();
+                    finish();
+                    finishAffinity();
+                    finishAndRemoveTask();
+                    System.exit(0);
+                } else {
+                    this.doubleBackToExitPressedOnce = true;
+                    CustomToastExit.exit(MainActivity.this, "برای خروج برنامه دو بار کلید بازگشت را فشار دهید", Toast.LENGTH_SHORT).show();
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+                }
+            }
         }
-
-    }
-
-    private void setupFragments() {
-        homeFragment = new HomeFragment();
-        newsFragment = new NewsFragment();
-        officesFragment = new OfficesFragment();
-        searchFragment = new SearchFragment();
-
-        final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, homeFragment);
-        fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, newsFragment);
-        fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, officesFragment);
-        //fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, searchFragment);
-        fragmentTransaction.commit();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        receiver.setListener(this);
-        registerReceiver(receiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        receiver.setListener(null);
-        unregisterReceiver(receiver);
     }
 
     @Override
@@ -141,162 +194,5 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
             }
         }
         return ret;
-    }
-
-    private void setUpNavigationDrawerView() {
-        drawerButton.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("WrongConstant")
-            @Override
-            public void onClick(View v) {
-                if (drawerLayout.isDrawerOpen(Gravity.END)) {
-                    drawerLayout.closeDrawer(Gravity.END);
-                } else {
-                    drawerLayout.openDrawer(Gravity.END);
-                }
-            }
-        });
-
-        getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @SuppressLint("WrongConstant")
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                menuItem.setChecked(true);
-                switch (menuItem.getItemId()) {
-                    case R.id.drawerNavigationViewTab_Questions:
-                        Snackbar.make(holder, "سوالات متداول", Snackbar.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawer(Gravity.END);
-                        return true;
-                    case R.id.drawerNavigationViewTab_Guide:
-                        Snackbar.make(holder, "راهنمای سامانه", Snackbar.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawer(Gravity.END);
-                        return true;
-                    case R.id.drawerNavigationViewTab_Rules:
-                        Snackbar.make(holder, "قوانین", Snackbar.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawer(Gravity.END);
-                        return true;
-                    case R.id.drawerNavigationViewTab_Settings:
-                        Snackbar.make(holder, "تنظیمات", Snackbar.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawer(Gravity.END);
-                        return true;
-                    case R.id.drawerNavigationViewTab_AboutUs:
-                        Snackbar.make(holder, "درباره ما", Snackbar.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawer(Gravity.END);
-                        return true;
-                    default:
-                        return true;
-                }
-            }
-        });
-    }
-
-    private void setUpNavigationBottomView() {
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-                final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-
-                switch (menuItem.getItemId()) {
-                    case R.id.bottomNavigationViewTab_Home:
-                        fragmentTransaction.show(homeFragment);
-
-                        fragmentTransaction.hide(newsFragment);
-                        fragmentTransaction.hide(officesFragment);
-                        fragmentTransaction.hide(searchFragment);
-
-                        fragmentTransaction.commit();
-                        return true;
-                    case R.id.bottomNavigationViewTab_Event:
-                        if (!newsFragment.isAdded()) {
-                            fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, newsFragment);
-                        }
-                        /*fragmentTransaction.detach(newsFragment);
-                        fragmentTransaction.attach(newsFragment);*/
-                        fragmentTransaction.show(newsFragment);
-
-                        fragmentTransaction.hide(homeFragment);
-                        fragmentTransaction.hide(officesFragment);
-                        fragmentTransaction.hide(searchFragment);
-
-                        fragmentTransaction.commit();
-                        return true;
-                    case R.id.bottomNavigationViewTab_Office:
-                        if (!officesFragment.isAdded()) {
-                            fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, officesFragment);
-                        }
-
-                        /*fragmentTransaction.detach(officesFragment);
-                        fragmentTransaction.attach(officesFragment);*/
-                        fragmentTransaction.show(officesFragment);
-
-                        fragmentTransaction.hide(homeFragment);
-                        fragmentTransaction.hide(newsFragment);
-                        fragmentTransaction.hide(searchFragment);
-
-                        fragmentTransaction.commit();
-                        return true;
-                    case R.id.bottomNavigationViewTab_Search:
-                        if (!searchFragment.isAdded()) {
-                            fragmentTransaction.add(R.id.activityMain_CoordinatorLayout_FragmentHolder, searchFragment);
-                        }
-                        /*fragmentTransaction.detach(searchFragment);
-                        fragmentTransaction.attach(searchFragment);*/
-                        fragmentTransaction.show(searchFragment);
-
-                        fragmentTransaction.hide(homeFragment);
-                        fragmentTransaction.hide(newsFragment);
-                        fragmentTransaction.hide(officesFragment);
-
-                        fragmentTransaction.commit();
-                        return true;
-                    default:
-                        fragmentTransaction.show(homeFragment);
-                        fragmentTransaction.hide(newsFragment);
-                        fragmentTransaction.hide(officesFragment);
-                        fragmentTransaction.hide(searchFragment);
-                        fragmentTransaction.commit();
-                        return true;
-                }
-            }
-        });
-    }
-
-    @SuppressLint("WrongConstant")
-    @Override
-    public void onBackPressed() {
-        if (this.drawerLayout.isDrawerOpen(Gravity.END)) {
-            this.drawerLayout.closeDrawer(Gravity.END);
-        } else {
-            if (doubleBackToExitPressedOnce) {
-                super.onBackPressed();
-                finish();
-                finishAffinity();
-                finishAndRemoveTask();
-                System.exit(0);
-            } else {
-                this.doubleBackToExitPressedOnce = true;
-                CustomToastExit.exit(MainActivity.this, "برای خروج برنامه دو بار کلید بازگشت را فشار دهید", Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        doubleBackToExitPressedOnce = false;
-                    }
-                }, 2000);
-            }
-        }
-    }
-
-    @Override
-    public void onNetworkConnectionChange(boolean isConnected) {
-        if (starter) {
-            if (!isConnected) {
-                ColoredSnackBar.error(Snackbar.make(holder, "مشکلی در اتصال به اینترنت به وجود آمده!", Snackbar.LENGTH_SHORT)).show();
-            }
-        } else {
-            starter = true;
-        }
     }
 }

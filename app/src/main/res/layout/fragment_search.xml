@@ -35,8 +35,9 @@
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
             android:background="@drawable/bg_selected_circle_indicator"
-            android:padding="@dimen/_10sdp"
-            android:src="@drawable/ic_search" />
+            android:padding="@dimen/_14sdp"
+            android:src="@drawable/ic_search"
+            app:tint="@color/white" />
 
         <com.loopeer.shadow.ShadowView
             android:id="@+id/fragmentSearch_ShadowView"

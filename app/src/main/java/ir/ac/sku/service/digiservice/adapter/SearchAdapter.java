@@ -1,5 +1,6 @@
 package ir.ac.sku.service.digiservice.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -20,13 +21,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.SelectedResourceActivity;
-import ir.ac.sku.service.digiservice.config.MyAPI;
 import ir.ac.sku.service.digiservice.api.search.SearchModel;
+import ir.ac.sku.service.digiservice.config.MyAPI;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
 
-    private Context context;
-    private List<SearchModel.Data> modelData;
+    private final Context context;
+    private final List<SearchModel.Data> modelData;
 
     public SearchAdapter(Context context, List<SearchModel.Data> modelData) {
         this.context = context;
@@ -49,8 +50,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         return modelData.size();
     }
 
+    @SuppressLint("NonConstantResourceId")
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         @BindView(R.id.customAreaSelectedList_ImageView) RoundedImageView imageView;
         @BindView(R.id.customAreaSelectedList_TextView) TextView textView;
 

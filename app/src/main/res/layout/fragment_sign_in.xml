@@ -71,7 +71,7 @@
                 android:textSize="@dimen/_14ssp" />
 
             <com.loopeer.shadow.ShadowView
-                android:id="@+id/shadowView_phoneNumber"
+                android:id="@+id/shadowView_Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -84,14 +84,14 @@
                 app:shadowRadius="@dimen/_4sdp">
 
                 <EditText
-                    android:id="@+id/editText_phoneNumber"
+                    android:id="@+id/editText_Email"
                     fontPath="fonts/IRANSansMobile_Bold.ttf"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_42sdp"
                     android:background="@android:color/transparent"
                     android:gravity="right|center"
-                    android:hint="@string/phone_number"
-                    android:inputType="phone"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
                     android:paddingLeft="@dimen/_16sdp"
                     android:paddingRight="@dimen/_16sdp"
                     android:singleLine="true"
@@ -153,9 +153,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:padding="@dimen/_2sdp"
                     android:layout_centerVertical="true"
                     android:layout_marginBottom="@dimen/_20sdp"
+                    android:padding="@dimen/_2sdp"
                     app:cardBackgroundColor="@android:color/transparent"
                     app:cardCornerRadius="@dimen/_23sdp"
                     app:cardElevation="@dimen/_2sdp">
@@ -166,7 +166,7 @@
                         android:layout_width="@dimen/_90sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:includeFontPadding="false"
-                        android:onClick="onClickItemContinue"
+                        android:onClick="onClickItemSignIn"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_15ssp"
                         app:cpb_colorIndicator="@color/colorPrimary"
@@ -174,7 +174,7 @@
                         app:cpb_cornerRadius="@dimen/_23sdp"
                         app:cpb_iconComplete="@drawable/ic_check_mark"
                         app:cpb_selectorIdle="@color/colorPrimary"
-                        app:cpb_textError="buttonError"
+                        app:cpb_textError="@string/buttonError"
                         app:cpb_textIdle="@string/enter" />
 
                 </androidx.cardview.widget.CardView>

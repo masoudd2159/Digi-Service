@@ -1,13 +1,9 @@
 package ir.ac.sku.service.digiservice.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.Settings;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -21,6 +17,7 @@ import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.base.BaseFragment;
 import ir.ac.sku.service.digiservice.circularprogressbutton.CircularProgressButton;
 import ir.ac.sku.service.digiservice.config.MyAPI;
+import ir.ac.sku.service.digiservice.util.Tools;
 
 @SuppressLint("NonConstantResourceId")
 public class SignUpFragment extends BaseFragment {
@@ -56,14 +53,11 @@ public class SignUpFragment extends BaseFragment {
 
     @OnClick(R.id.layout_icon)
     public void onClickItemViewWebSite(View v) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(MyAPI.DIGI_SERVICE));
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setPackage("com.android.chrome");
-            try {
-                startActivity(intent);
-            } catch (ActivityNotFoundException ex) {
-                intent.setPackage(null);
-                startActivity(intent);
-            }
+        Tools.openWebViewActivity(getContext(), MyAPI.DIGI_SERVICE);
+    }
+
+    @OnClick(R.id.layout_register)
+    public void onClickItemSignIn(View view) {
+        Navigation.findNavController(view).navigate(R.id.action_signUpFragment_to_signInFragment);
     }
 }

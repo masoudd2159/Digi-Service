@@ -1,6 +1,3 @@
 
 N
-java:S16021",Remove useless curly braces around statement(©ÑÑÓıÿÿÿÿ8ÊôÕ¡Ú.
-S
-java:S1128
-"6Remove this unused import 'android.provider.Settings'.(Š¯„8éÔ³÷Ù.
+java:S1602/",Remove useless curly braces around statement(©ÑÑÓıÿÿÿÿ8ÊôÕ¡Ú.

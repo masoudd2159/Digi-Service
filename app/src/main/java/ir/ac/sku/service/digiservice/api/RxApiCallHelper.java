@@ -1,13 +1,11 @@
 package ir.ac.sku.service.digiservice.api;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 
 import ir.ac.sku.service.digiservice.config.MyLog;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class RxApiCallHelper {
@@ -24,17 +22,12 @@ public class RxApiCallHelper {
         return observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 //                .unsubscribeOn(Schedulers.io())
-                .subscribe(new Action1<T>() {
-                    @Override
-                    public void call(T t) {
-                        rxApiCallback.onSuccess(t);
-                    }
-                }, new Action1<Throwable>() {
-                    @SuppressLint("LongLogTag") @Override
-                    public void call(Throwable throwable) {
-                        rxApiCallback.onFailed(throwable.getMessage());
-                        Log.i(MyLog.DIGI_SERVICE, throwable.getMessage().toString());
-                    }
+                .subscribe(t -> {
+                    rxApiCallback.onSuccess(t);
+                    Log.i(MyLog.DIGI_SERVICE, t.toString());
+                }, throwable -> {
+                    rxApiCallback.onFailed(throwable.getMessage());
+                    Log.i(MyLog.DIGI_SERVICE, throwable.getMessage());
                 });
     }
 }

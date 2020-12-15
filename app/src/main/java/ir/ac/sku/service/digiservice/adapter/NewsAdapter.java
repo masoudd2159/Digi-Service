@@ -1,8 +1,6 @@
 package ir.ac.sku.service.digiservice.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +17,11 @@ import com.uncopt.android.widget.text.justify.JustifiedTextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
-import ir.ac.sku.service.digiservice.config.MyAPI;
 import ir.ac.sku.service.digiservice.api.news.NewsModel;
+import ir.ac.sku.service.digiservice.config.MyAPI;
+import ir.ac.sku.service.digiservice.util.Tools;
+
+import static ir.ac.sku.service.digiservice.config.MyAPI.DIGI_SERVICE_NEWS;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
 
@@ -74,9 +75,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("http://service.sku.ac.ir/News/" + String.valueOf(newsModel.getData().get(getLayoutPosition()).getId())));
-            context.startActivity(intent);
+            Tools.openWebViewActivity(context, DIGI_SERVICE_NEWS + newsModel.getData().get(getLayoutPosition()).getId());
         }
     }
 }

@@ -1,5 +1,6 @@
 package ir.ac.sku.service.digiservice.base;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -18,14 +19,23 @@ import androidx.fragment.app.DialogFragment;
 
 import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
+import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.util.SharedPreferencesUtils;
 
+@SuppressLint("NonConstantResourceId")
 public abstract class BaseDialogFragment extends AppCompatDialogFragment {
 
-    public SharedPreferencesUtils preferencesUtils;
     public BaseActivity baseActivity;
-    public String TAG = getClass().getSimpleName();
     protected OnDialogItemClick mOnDialogItemClick;
+    private SharedPreferencesUtils preferencesUtils;
+
+    public String getTagLog() {
+        return MyLog.DIGI_SERVICE + getClass().getSimpleName();
+    }
+
+    public SharedPreferencesUtils getPreferencesUtils() {
+        return preferencesUtils;
+    }
 
     public abstract int getLayoutResource();
 

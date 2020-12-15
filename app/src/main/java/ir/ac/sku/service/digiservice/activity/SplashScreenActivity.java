@@ -20,7 +20,6 @@ import ir.ac.sku.service.digiservice.activity.main.MainActivity;
 import ir.ac.sku.service.digiservice.activity.phonelogin.LoginActivity;
 import ir.ac.sku.service.digiservice.api.appInfo.AppInfo;
 import ir.ac.sku.service.digiservice.base.BaseActivity;
-import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.util.ManagerHelper;
 
 @SuppressLint("NonConstantResourceId")
@@ -42,7 +41,7 @@ public class SplashScreenActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(MyLog.DIGI_SERVICE + TAG, "___Splash Screen___");
+        Log.i(getTagLog(), "___Splash Screen___");
         changeStatusBarColor();
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
@@ -63,14 +62,14 @@ public class SplashScreenActivity extends BaseActivity {
                 }
             });
         } else {
-            Log.i(MyLog.DIGI_SERVICE + TAG, "Device Offline");
+            Log.i(getTagLog(), "Device Offline");
             ManagerHelper.noInternetAccess(this);
             tryAgain.setVisibility(View.VISIBLE);
             tryAgain.setOnClickListener(v -> {
                 tryAgain.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
                 new Handler(Looper.getMainLooper()).postDelayed(() -> tryAgain.setBackgroundColor(getResources().getColor(R.color.colorPrimary)), 155);
                 if (ManagerHelper.checkInternetServices(this)) {
-                    Log.i(MyLog.DIGI_SERVICE + TAG, "Device Online");
+                    Log.i(getTagLog(), "Device Online");
                     tryAgain.setVisibility(View.INVISIBLE);
                     getDataFromServer();
                 }
@@ -98,7 +97,7 @@ public class SplashScreenActivity extends BaseActivity {
     private void startHomeActivity() {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             if (!isFinishing()) {
-                if (preferencesUtils.isStartSigningKey()) {
+                if (getPreferencesUtils().isStartSigningKey()) {
                     startActivity(null, LoginActivity.class);
                 } else {
                     startActivity(null, MainActivity.class);

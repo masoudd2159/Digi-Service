@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import butterknife.BindView;
@@ -33,12 +34,18 @@ public abstract class BaseActivity
         extends AppCompatActivity
         implements ConnectivityReceiver.ConnectivityReceiverListener {
 
-    public static final int SETTINGS_ACTION = 1;
-    public String TAG = getClass().getSimpleName();
-    public SharedPreferencesUtils preferencesUtils;
     @Nullable @BindView(R.id.layout_content) View snackBarLayout;
+    private SharedPreferencesUtils preferencesUtils;
     private ConnectivityReceiver receiver;
     private boolean starter = false;
+
+    public String getTagLog() {
+        return MyLog.DIGI_SERVICE + getClass().getSimpleName();
+    }
+
+    public SharedPreferencesUtils getPreferencesUtils() {
+        return preferencesUtils;
+    }
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -58,13 +65,15 @@ public abstract class BaseActivity
 
     protected abstract int getLayoutResource();
 
-    @Override protected void onResume() {
+    @Override
+    protected void onResume() {
         super.onResume();
         receiver.setListener(this);
         registerReceiver(receiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
     }
 
-    @Override protected void onDestroy() {
+    @Override
+    protected void onDestroy() {
         super.onDestroy();
         receiver.setListener(null);
         unregisterReceiver(receiver);
@@ -73,16 +82,16 @@ public abstract class BaseActivity
     @Override
     public void onNetworkConnectionChange(boolean isConnected) {
         if (starter && !isConnected) {
-            Log.i(MyLog.DIGI_SERVICE + TAG, "Network NOT Connected");
+            Log.i(MyLog.DIGI_SERVICE + getTagLog(), "Network NOT Connected");
             if (snackBarLayout != null)
-                ColoredSnackBar.error(Snackbar.make(snackBarLayout, getResources().getString(R.string.connection_fail), Snackbar.LENGTH_SHORT)).show();
+                ColoredSnackBar.error(Snackbar.make(snackBarLayout, getResources().getString(R.string.connection_fail), BaseTransientBottomBar.LENGTH_SHORT)).show();
             else
                 Toast.makeText(this, getResources().getString(R.string.connection_fail), Toast.LENGTH_SHORT).show();
         } else starter = true;
     }
 
     public void changeStatusBarColor() {
-        Log.i(MyLog.DIGI_SERVICE + TAG, "Change Status Bar");
+        Log.i(MyLog.DIGI_SERVICE + getTagLog(), "Change Status Bar");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -94,7 +103,7 @@ public abstract class BaseActivity
         Intent intent = new Intent(this, cls);
         if (bundle != null)
             intent.putExtras(bundle);
-        startActivityForResult(intent, SETTINGS_ACTION);
+        startActivity(intent);
     }
 
     @Override

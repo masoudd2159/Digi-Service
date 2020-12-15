@@ -40,7 +40,7 @@
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/activityMain_CoordinatorLayout_FragmentHolder"
+            android:id="@+id/fragmentHolder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/activityMain_ToolBar"
@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:layoutDirection="ltr"
+                android:layoutDirection="rtl"
                 android:theme="@style/Widget.BottomNavigationView"
                 app:itemBackground="@color/white"
                 app:labelVisibilityMode="auto"

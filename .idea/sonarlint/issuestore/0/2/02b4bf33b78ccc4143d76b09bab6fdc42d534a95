@@ -1,7 +1,3 @@
 
 P
-java:S1874T"3Remove this use of "versionCode"; it is deprecated.(ÆŸâ¡8ßç‰¢Ø.
-R
-java:S1874F"0Remove this use of "getColor"; it is deprecated.(æÿ­µùÿÿÿÿ8ôŽÊ§Ø.
-R
-java:S1874G"0Remove this use of "getColor"; it is deprecated.(¦ó’‹ûÿÿÿÿ8ôŽÊ§Ø.
+java:S1874S"3Remove this use of "versionCode"; it is deprecated.(ÆŸâ¡8ßç‰¢Ø.

@@ -17,7 +17,6 @@ import androidx.annotation.Nullable;
 import butterknife.BindView;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.base.BaseDialogFragment;
-import ir.ac.sku.service.digiservice.config.MyLog;
 
 @SuppressLint("NonConstantResourceId")
 public class DialogFragmentNoInternetAccess extends BaseDialogFragment {
@@ -33,24 +32,24 @@ public class DialogFragmentNoInternetAccess extends BaseDialogFragment {
     public void onViewCreated(@NonNull View rootView, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
         wifi.setOnClickListener(view -> {
-            Log.i(MyLog.DIGI_SERVICE + TAG, "on Wi-Fi Click");
+            Log.i(getTagLog(), "on Wi-Fi Click");
             openWiFiSettingScreen(baseActivity);
         });
 
         data.setOnClickListener(view -> {
-            Log.i(MyLog.DIGI_SERVICE + TAG, "on Mobile Data Click");
+            Log.i(getTagLog(), "on Mobile Data Click");
             openDataUsageScreen(baseActivity);
         });
     }
 
 
     private void openWiFiSettingScreen(Context context) {
-        Log.i(MyLog.DIGI_SERVICE + TAG, "Open WiFi Setting Screen");
+        Log.i(getTagLog(), "Open WiFi Setting Screen");
         context.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
     }
 
     private void openDataUsageScreen(Context context) {
-        Log.i(MyLog.DIGI_SERVICE + TAG, "Open Data Usage Screen");
+        Log.i(getTagLog(), "Open Data Usage Screen");
         context.startActivity(new Intent().setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity")));
     }
 

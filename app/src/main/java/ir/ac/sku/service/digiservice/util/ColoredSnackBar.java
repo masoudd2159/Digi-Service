@@ -14,10 +14,6 @@ public class ColoredSnackBar {
     private static final int ORANGE = 0xFFFF8D35;
     private static final int GREEN = 0xFF00CE2C;
     private static final int RED = 0xFFFF0000;
-    private static final int COLOR_PRIMARY = 0xFFCE2A2A;
-    private static final int COLOR_PRIMARY_DARK = 0xFFBD2626;
-    private static final int COLOR_ACCENT = 0xFFD99F2C;
-    private static final int COLOR_ACCENT_DARK = 0xFFE6A82F;
 
     private static View getSnackBarLayout(Snackbar snackbar) {
         if (snackbar != null)

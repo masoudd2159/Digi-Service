@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/bottomNavigationViewTab_Search"
-        fontPath="fonts/IRANSans.ttf"
-        android:enabled="true"
-        android:icon="@drawable/ic_search"
-        android:title="@string/search" />
+        android:id="@+id/bottomNavigationViewTab_Home"
+        android:icon="@drawable/ic_home_"
+        android:title="@string/home" />
 
     <item
-        android:id="@+id/bottomNavigationViewTab_Office"
-        fontPath="fonts/IRANSans.ttf"
-        android:icon="@drawable/ic_offices"
-        android:title="@string/office" />
-
-    <item
-        android:id="@+id/bottomNavigationViewTab_Event"
-        fontPath="fonts/IRANSans.ttf"
+        android:id="@+id/bottomNavigationViewTab_News"
         android:icon="@drawable/ic_calendar"
         android:title="@string/news" />
 
     <item
-        android:id="@+id/bottomNavigationViewTab_Home"
-        fontPath="fonts/IRANSans.ttf"
-        android:icon="@drawable/ic_home_"
-        android:title="@string/home" />
+        android:id="@+id/bottomNavigationViewTab_Office"
+        android:icon="@drawable/ic_offices"
+        android:title="@string/office" />
+
+    <item
+        android:id="@+id/bottomNavigationViewTab_Search"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search" />
 
 </menu>

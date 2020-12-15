@@ -20,6 +20,7 @@ import ir.ac.sku.service.digiservice.activity.main.MainActivity;
 import ir.ac.sku.service.digiservice.base.BaseFragment;
 import ir.ac.sku.service.digiservice.circularprogressbutton.CircularProgressButton;
 import ir.ac.sku.service.digiservice.config.MyAPI;
+import ir.ac.sku.service.digiservice.util.Tools;
 
 @SuppressLint("NonConstantResourceId")
 public class VerificationFragment extends BaseFragment {
@@ -55,14 +56,6 @@ public class VerificationFragment extends BaseFragment {
 
     @OnClick(R.id.layout_icon)
     public void onClickItemViewWebSite(View v) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(MyAPI.DIGI_SERVICE));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setPackage("com.android.chrome");
-        try {
-            startActivity(intent);
-        } catch (ActivityNotFoundException ex) {
-            intent.setPackage(null);
-            startActivity(intent);
-        }
+        Tools.openWebViewActivity(getContext(), MyAPI.DIGI_SERVICE);
     }
 }
