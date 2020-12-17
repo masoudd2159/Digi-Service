@@ -104,7 +104,7 @@ public class SignInFragment extends BaseFragment {
             LoginModel response = (LoginModel) obj;
             if (ok) {
                 sendBtn.setProgress(CircularProgressButton.SUCCESS_STATE_PROGRESS);
-                //getPreferencesUtils().setStartSigningKey(false);
+                getPreferencesUtils().setStartSigningKey(false);
                 new Handler(Looper.getMainLooper()).postDelayed(() -> startActivity(null, MainActivity.class), 512);
             } else {
                 Toast.makeText(getContext(), response.getMessage(), Toast.LENGTH_SHORT).show();
@@ -114,7 +114,7 @@ public class SignInFragment extends BaseFragment {
     }
 
     @OnClick(R.id.layout_register)
-    public void onClickItemSignUp(View view){
+    public void onClickItemSignUp(View view) {
         Navigation.findNavController(view).navigate(R.id.action_signInFragment_to_signUpFragment);
     }
 

@@ -64,13 +64,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         public void bind(NewsModel.Data data) {
             title.setText(data.getTitle().toString().trim());
             body.setText(data.getBody().toString().trim());
-            Glide
-                    .with(context)
-                    .load(MyAPI.DIGI_SERVICE + data.getPicture())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .skipMemoryCache(true)
-                    .into(picture)
-            ;
+            Tools.displayImageOriginal(context,picture,MyAPI.DIGI_SERVICE + data.getPicture());
         }
 
         @Override

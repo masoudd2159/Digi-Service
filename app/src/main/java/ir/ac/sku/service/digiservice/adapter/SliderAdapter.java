@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.config.MyAPI;
+import ir.ac.sku.service.digiservice.util.Tools;
 
 public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.MyViewHolder> {
 
@@ -55,13 +56,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.MyViewHold
         }
 
         public void bind(String url) {
-            Glide
-                    .with(context)
-                    .load(MyAPI.DIGI_SERVICE + url)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .skipMemoryCache(true)
-                    .into(imageView)
-            ;
+            Tools.displayImageOriginal(context,imageView,MyAPI.DIGI_SERVICE + url);
         }
     }
 }

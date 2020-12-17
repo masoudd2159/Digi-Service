@@ -2,6 +2,6 @@
 c
 java:S1128"FRemove this unused import 'android.content.ActivityNotFoundException'.(Û‚ž¨8æ‰®ëã.
 N
-java:S16022",Remove useless curly braces around statement(©ÑÑÓýÿÿÿÿ8É¸Ù£Ú.
-N
 java:S1128",Remove this unused import 'android.net.Uri'.(òêû‘ýÿÿÿÿ8æ‰®ëã.
+N
+java:S16022",Remove useless curly braces around statement(©ÑÑÓýÿÿÿÿ8É¸Ù£Ú.

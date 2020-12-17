@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".activity.ActivityWebView"></activity>
+        <activity android:name=".activity.ActivityWebView" />
         <activity
             android:name=".activity.main.SelectedResourceActivity"
             android:screenOrientation="portrait" />

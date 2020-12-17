@@ -61,7 +61,6 @@ public abstract class BaseDialogFragment extends AppCompatDialogFragment {
             WindowManager.LayoutParams layoutParams = getDialog().getWindow().getAttributes();
             layoutParams.dimAmount = 0.7f;
             getDialog().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-            getDialog().setCancelable(false);
         }
 
         return view;

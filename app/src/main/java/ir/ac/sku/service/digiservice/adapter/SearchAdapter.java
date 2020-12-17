@@ -23,6 +23,7 @@ import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.SelectedResourceActivity;
 import ir.ac.sku.service.digiservice.api.search.SearchModel;
 import ir.ac.sku.service.digiservice.config.MyAPI;
+import ir.ac.sku.service.digiservice.util.Tools;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
 
@@ -63,12 +64,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
         void bind(SearchModel.Data data) {
             textView.setText(data.getLabName());
-            Glide
-                    .with(context)
-                    .load(MyAPI.DIGI_SERVICE + data.getPicture())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imageView)
-            ;
+            Tools.displayImageOriginal(context,imageView,MyAPI.DIGI_SERVICE + data.getPicture());
         }
 
         @Override

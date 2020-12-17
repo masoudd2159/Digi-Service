@@ -27,6 +27,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import ir.ac.sku.service.digiservice.R;
+import ir.ac.sku.service.digiservice.activity.SplashScreenActivity;
 import ir.ac.sku.service.digiservice.base.BaseActivity;
 import ir.ac.sku.service.digiservice.fragment.HomeFragment;
 import ir.ac.sku.service.digiservice.fragment.NewsFragment;
@@ -136,6 +137,14 @@ public class MainActivity extends BaseActivity {
                     return true;
                 case R.id.drawerNavigationViewTab_AboutUs:
                     Snackbar.make(holder, "درباره ما", BaseTransientBottomBar.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawer(Gravity.END);
+                    return true;
+                case R.id.drawerNavigationViewTab_Logout:
+                    if (!getPreferencesUtils().isStartSigningKey()) {
+                        getPreferencesUtils().clearSharedPreferences();
+                        startActivity(null, SplashScreenActivity.class);
+                        finish();
+                    }
                     drawerLayout.closeDrawer(Gravity.END);
                     return true;
                 default:

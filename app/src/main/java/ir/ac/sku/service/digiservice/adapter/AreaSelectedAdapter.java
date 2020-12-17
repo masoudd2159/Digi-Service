@@ -23,6 +23,7 @@ import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.SelectedResourceActivity;
 import ir.ac.sku.service.digiservice.config.MyAPI;
 import ir.ac.sku.service.digiservice.api.office.ResourcesModel;
+import ir.ac.sku.service.digiservice.util.Tools;
 
 public class AreaSelectedAdapter extends RecyclerView.Adapter<AreaSelectedAdapter.MyViewHolder> {
 
@@ -65,12 +66,7 @@ public class AreaSelectedAdapter extends RecyclerView.Adapter<AreaSelectedAdapte
 
         void bind(ResourcesModel.Data dataModel) {
             textView.setText(dataModel.getTitle());
-            Glide
-                    .with(context)
-                    .load(MyAPI.DIGI_SERVICE + dataModel.getPicture())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imageView)
-            ;
+            Tools.displayImageOriginal(context,imageView,MyAPI.DIGI_SERVICE + dataModel.getPicture());
         }
 
         @Override

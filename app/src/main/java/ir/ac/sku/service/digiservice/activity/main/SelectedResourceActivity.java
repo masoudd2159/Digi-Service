@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 import androidx.viewpager.widget.ViewPager;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.HashMap;
@@ -24,16 +22,15 @@ import ir.ac.sku.service.digiservice.adapter.ViewPagerAdapter;
 import ir.ac.sku.service.digiservice.api.selectedResource.SelectedResourceModel;
 import ir.ac.sku.service.digiservice.base.BaseActivity;
 import ir.ac.sku.service.digiservice.config.MyAPI;
-import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.fragment.ItemSelectedTabFragment;
 import ir.ac.sku.service.digiservice.fragment.dialogfragment.SchedulingFragmentDialog;
-import ir.ac.sku.service.digiservice.util.MyHandler;
+import ir.ac.sku.service.digiservice.util.Tools;
 
-@SuppressLint("LongLogTag")
+@SuppressLint("NonConstantResourceId")
 public class SelectedResourceActivity extends BaseActivity {
 
     //* Views
-    @BindView(R.id.activityItemSelected_Head) TextView head;
+    @SuppressLint("NonConstantResourceId") @BindView(R.id.activityItemSelected_Head) TextView head;
     @BindView(R.id.activityItemSelected_Title) TextView title;
     @BindView(R.id.activityItemSelected_Picture) ImageView picture;
     @BindView(R.id.activityItemSelected_applying) Button applying;
@@ -59,16 +56,13 @@ public class SelectedResourceActivity extends BaseActivity {
     private void setUpData() {
         HashMap<String, String> params = new HashMap<>();
         params.put("id", String.valueOf(getIntent().getExtras().getInt("id")));
-        Log.i(MyLog.SELECTED_RESOURCES, "Id : " + params.get("id"));
+        Log.i(getTagLog(), "Id : " + params.get("id"));
 
-        SelectedResourceModel.fetchFromWeb(SelectedResourceActivity.this, params, new MyHandler() {
-            @Override
-            public void onResponse(boolean ok, Object obj) {
-                if (ok) {
-                    SelectedResourceModel selectedResourceModel = (SelectedResourceModel) obj;
-                    if (selectedResourceModel.isOk()) {
-                        showData(selectedResourceModel.getData().get(0));
-                    }
+        SelectedResourceModel.fetchFromWeb(SelectedResourceActivity.this, params, (ok, obj) -> {
+            if (ok) {
+                SelectedResourceModel selectedResourceModel = (SelectedResourceModel) obj;
+                if (selectedResourceModel.isOk()) {
+                    showData(selectedResourceModel.getData().get(0));
                 }
             }
         });
@@ -78,15 +72,7 @@ public class SelectedResourceActivity extends BaseActivity {
     private void showData(SelectedResourceModel.Data dataModel) {
         if (dataModel.isActived()) {
             title.setText(dataModel.getLabName());
-
-            Glide
-                    .with(SelectedResourceActivity.this)
-                    .load(MyAPI.DIGI_SERVICE + dataModel.getPicture())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .skipMemoryCache(true)
-                    .into(picture)
-            ;
-
+            Tools.displayImageOriginal(SelectedResourceActivity.this, picture, MyAPI.DIGI_SERVICE + dataModel.getPicture());
             head.setText("مسئول آزمایشگاه " + dataModel.getHead());
 
             adapter.addFragment(ItemSelectedTabFragment.newInstance(dataModel.getDescription()), getString(R.string.pagerTitle_1));
@@ -100,12 +86,7 @@ public class SelectedResourceActivity extends BaseActivity {
                 tabLayout.getTabAt(i).setCustomView(textView);
             }
 
-            scheduling.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    showDialogScheduling(dataModel.getId(), dataModel.getSchTable());
-                }
-            });
+            scheduling.setOnClickListener(view -> showDialogScheduling(dataModel.getId(), dataModel.getSchTable()));
 
         } else {
             Toast.makeText(this, "فعلا این منبع در دسترس نیست !", Toast.LENGTH_SHORT).show();
@@ -114,7 +95,7 @@ public class SelectedResourceActivity extends BaseActivity {
     }
 
     private void showDialogScheduling(int id, String schTable) {
-        Log.i(MyLog.SELECTED_RESOURCES, "Dialog Scheduling");
+        Log.i(getTagLog(), "Dialog Scheduling");
         SchedulingFragmentDialog fragment = new SchedulingFragmentDialog(id, schTable);
         fragment.show(getSupportFragmentManager(), "addUserPersonalInfo");
 

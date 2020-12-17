@@ -1,38 +1,40 @@
 
-b
-java:S1874…"?Remove this use of "FLAG_TRANSLUCENT_STATUS"; it is deprecated.(¿™¡’ûÿÿÿÿ8±»€¸ã.
-S
-java:S1874a"6Remove this use of "setColorFilter"; it is deprecated.(ì®Æá8±»€¸ã.
-E	java:S108b")Either remove or fill this block of code.(”ı¾8±»€¸ã.
-`
-java:S1874"=Remove this use of "getSystemUiVisibility"; it is deprecated.(”µÀûşÿÿÿÿ8±»€¸ã.
 `
 java:S1874–"=Remove this use of "getSystemUiVisibility"; it is deprecated.(”µÀûşÿÿÿÿ8±»€¸ã.
+M
+java:S1874t"0Remove this use of "getColor"; it is deprecated.(ÿÛù€8±»€¸ã.
+j
+java:S1874"GRemove this use of "SYSTEM_UI_FLAG_LIGHT_STATUS_BAR"; it is deprecated.(ñ¸ßïøÿÿÿÿ8±»€¸ã.
+a
+java:S1874j"?Remove this use of "FLAG_TRANSLUCENT_STATUS"; it is deprecated.(¿™¡’ûÿÿÿÿ8±»€¸ã.
+\
+java:S1118)":Add a private constructor to hide the implicit public one.(ïÅ¼•ıÿÿÿÿ8±»€¸ã.
+[
+java:S1874"=Remove this use of "setSystemUiVisibility"; it is deprecated.(¥ççÉ8±»€¸ã.
+h	java:S112Ô"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÓÍûÉã.
 [
 java:S1874˜"=Remove this use of "setSystemUiVisibility"; it is deprecated.(¥ççÉ8±»€¸ã.
 T
 java:S1874¿"6Remove this use of "setColorFilter"; it is deprecated.(ì®Æá8±»€¸ã.
-a
-java:S1874j"?Remove this use of "FLAG_TRANSLUCENT_STATUS"; it is deprecated.(¿™¡’ûÿÿÿÿ8±»€¸ã.
-a
-java:S1874s"?Remove this use of "FLAG_TRANSLUCENT_STATUS"; it is deprecated.(¿™¡’ûÿÿÿÿ8±»€¸ã.
-h	java:S112Ô"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÓÍûÉã.
 s	java:S117¦"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰¥¼—ÿÿÿÿÿ8±»€¸ã.
-R
-java:S1874k"0Remove this use of "getColor"; it is deprecated.(†¢Îùÿÿÿÿ8±»€¸ã.
-M
-java:S1874t"0Remove this use of "getColor"; it is deprecated.(ÿÛù€8±»€¸ã.
 N
 java:S1874†"0Remove this use of "getColor"; it is deprecated.(ÿÛù€8±»€¸ã.
-a
-java:S1874|"?Remove this use of "FLAG_TRANSLUCENT_STATUS"; it is deprecated.(¿™¡’ûÿÿÿÿ8±»€¸ã.
 j
 java:S1874—"GRemove this use of "SYSTEM_UI_FLAG_LIGHT_STATUS_BAR"; it is deprecated.(ñ¸ßïøÿÿÿÿ8±»€¸ã.
+S
+java:S1874a"6Remove this use of "setColorFilter"; it is deprecated.(ì®Æá8±»€¸ã.
+|
+java:S2637Ñ"YParameter 2 to this call is marked "android.annotation.NonNull" but null could be passed.(½ÅÈ¿úÿÿÿÿ8Ù¿šèæ.
+a
+java:S1874|"?Remove this use of "FLAG_TRANSLUCENT_STATUS"; it is deprecated.(¿™¡’ûÿÿÿÿ8±»€¸ã.
+`
+java:S1874"=Remove this use of "getSystemUiVisibility"; it is deprecated.(”µÀûşÿÿÿÿ8±»€¸ã.
 d
 java:S2259Ò"FA "NullPointerException" could be thrown; "textHash" is nullable here.(î ®8¨ÀËã.
-[
-java:S1874"=Remove this use of "setSystemUiVisibility"; it is deprecated.(¥ççÉ8±»€¸ã.
-\
-java:S1118)":Add a private constructor to hide the implicit public one.(ïÅ¼•ıÿÿÿÿ8±»€¸ã.
-j
-java:S1874"GRemove this use of "SYSTEM_UI_FLAG_LIGHT_STATUS_BAR"; it is deprecated.(ñ¸ßïøÿÿÿÿ8±»€¸ã.
+R
+java:S1874k"0Remove this use of "getColor"; it is deprecated.(†¢Îùÿÿÿÿ8±»€¸ã.
+a
+java:S1874s"?Remove this use of "FLAG_TRANSLUCENT_STATUS"; it is deprecated.(¿™¡’ûÿÿÿÿ8±»€¸ã.
+b
+java:S1874…"?Remove this use of "FLAG_TRANSLUCENT_STATUS"; it is deprecated.(¿™¡’ûÿÿÿÿ8±»€¸ã.
+E	java:S108b")Either remove or fill this block of code.(”ı¾8±»€¸ã.

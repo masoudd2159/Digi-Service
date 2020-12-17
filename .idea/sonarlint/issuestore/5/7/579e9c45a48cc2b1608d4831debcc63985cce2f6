@@ -1,0 +1,9 @@
+
+\
+java:S1128"GRemove this unused import 'androidx.fragment.app.FragmentPagerAdapter'.(ş÷S
+W
+java:S1874"ARemove this use of "FragmentStatePagerAdapter"; it is deprecated.(ûŠÃ
+e
+java:S1874"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(úàŸøÿÿÿÿ
+\
+java:S1874"ARemove this use of "FragmentStatePagerAdapter"; it is deprecated.(’“±Õşÿÿÿÿ

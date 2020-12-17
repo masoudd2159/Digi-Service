@@ -23,6 +23,7 @@ import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.SelectedResourceActivity;
 import ir.ac.sku.service.digiservice.config.MyAPI;
 import ir.ac.sku.service.digiservice.api.home.HomePageModel;
+import ir.ac.sku.service.digiservice.util.Tools;
 
 class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.MyViewHolder> {
 
@@ -63,13 +64,7 @@ class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.MyViewHol
 
         void bind(HomePageModel.Data itemsModel) {
             resourceTitle.setText(itemsModel.getLabName());
-            Glide
-                    .with(context)
-                    .load(MyAPI.DIGI_SERVICE + itemsModel.getPicture())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .skipMemoryCache(true)
-                    .into(resourcePicture)
-            ;
+            Tools.displayImageOriginal(context,resourcePicture,MyAPI.DIGI_SERVICE + itemsModel.getPicture());
         }
 
         @Override
