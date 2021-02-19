@@ -1,5 +1,6 @@
 package ir.ac.sku.service.digiservice.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,9 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +19,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.activity.main.SelectedResourceActivity;
-import ir.ac.sku.service.digiservice.config.MyAPI;
 import ir.ac.sku.service.digiservice.api.home.HomePageModel;
+import ir.ac.sku.service.digiservice.config.MyAPI;
 import ir.ac.sku.service.digiservice.util.Tools;
 
+@SuppressLint("NonConstantResourceId")
 class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.MyViewHolder> {
 
     private Context context;
@@ -64,7 +63,7 @@ class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.MyViewHol
 
         void bind(HomePageModel.Data itemsModel) {
             resourceTitle.setText(itemsModel.getLabName());
-            Tools.displayImageOriginal(context,resourcePicture,MyAPI.DIGI_SERVICE + itemsModel.getPicture());
+            Tools.displayImageOriginal(context, resourcePicture, MyAPI.DIGI_SERVICE + itemsModel.getPicture());
         }
 
         @Override

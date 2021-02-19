@@ -1,27 +1,27 @@
 
+R
+java:S1874G"0Remove this use of "getColor"; it is deprecated.(ô×€Àúÿÿÿÿ8ŒåÀã.
+M
+java:S1874F"0Remove this use of "getColor"; it is deprecated.(òëŒ8ŒåÀã.
+s
+java:S1450 "VRemove the "toolbar" field and declare it as a local variable in the relevant methods.(ş®º—8»¬¸ã.
+X
+java:S1874M"6Remove this use of "setColorFilter"; it is deprecated.(åÿ™úÿÿÿÿ8»¬¸ã.
 N
 java:S1874‘"0Remove this use of "getColor"; it is deprecated.(¿““Ú8ŒåÀã.
 v	java:S116$"URename this field "lyt_parent" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥È³úøÿÿÿÿ8»¬¸ã.
+v	java:S116&"URename this field "from_notif" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à—É¾øÿÿÿÿ8»¬¸ã.
+R
+java:S1874M"0Remove this use of "getColor"; it is deprecated.(åÿ™úÿÿÿÿ8ŒåÀã.
 S
 java:S1874F"6Remove this use of "setColorFilter"; it is deprecated.(òëŒ8»¬¸ã.
-M
-java:S1874F"0Remove this use of "getColor"; it is deprecated.(òëŒ8ŒåÀã.
-r	java:S117("QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éì«®üÿÿÿÿ8»¬¸ã.
-m	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ƒí8»¬¸ã.
-{
-java:S1450$"YRemove the "lyt_parent" field and declare it as a local variable in the relevant methods.(¥È³úøÿÿÿÿ8»¬¸ã.
+R
+java:S1874S"0Remove this use of "getColor"; it is deprecated.(ãê°´øÿÿÿÿ8ŒåÀã.
 W
 java:S1161{":Add the "@Override" annotation above this method signature(Ú—…8»¬¸ã.
 H
 java:S5411Ÿ"*Use the primitive boolean expression here.(ˆñş‚8»¬¸ã.
-R
-java:S1874M"0Remove this use of "getColor"; it is deprecated.(åÿ™úÿÿÿÿ8ŒåÀã.
-R
-java:S1874S"0Remove this use of "getColor"; it is deprecated.(ãê°´øÿÿÿÿ8ŒåÀã.
-R
-java:S1874G"0Remove this use of "getColor"; it is deprecated.(ô×€Àúÿÿÿÿ8ŒåÀã.
-s
-java:S1450 "VRemove the "toolbar" field and declare it as a local variable in the relevant methods.(ş®º—8»¬¸ã.
-v	java:S116&"URename this field "from_notif" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à—É¾øÿÿÿÿ8»¬¸ã.
-X
-java:S1874M"6Remove this use of "setColorFilter"; it is deprecated.(åÿ™úÿÿÿÿ8»¬¸ã.
+m	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ƒí8»¬¸ã.
+{
+java:S1450$"YRemove the "lyt_parent" field and declare it as a local variable in the relevant methods.(¥È³úøÿÿÿÿ8»¬¸ã.
+r	java:S117("QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éì«®üÿÿÿÿ8»¬¸ã.

@@ -1,13 +1,13 @@
 
+R
+java:S1874"<Remove this use of "getActiveNetworkInfo"; it is deprecated.(äÄ¯–
+I
+java:S1874"3Remove this use of "isAvailable"; it is deprecated.(äÄ¯–
 m
 java:S2259)"P"NullPointerException" will be thrown when invoking method "noInternetAccess()".(ü•ÀŸ8““Ì—Ø.
-W
-java:S1874"<Remove this use of "getActiveNetworkInfo"; it is deprecated.(Ñÿ×“şÿÿÿÿ
 R
 java:S1874"<Remove this use of "getActiveNetworkInfo"; it is deprecated.(™€Çà
 I
 java:S1874"3Remove this use of "isConnected"; it is deprecated.(™€Çà
-I
-java:S1874"3Remove this use of "isAvailable"; it is deprecated.(äÄ¯–
-R
-java:S1874"<Remove this use of "getActiveNetworkInfo"; it is deprecated.(äÄ¯–
+W
+java:S1874"<Remove this use of "getActiveNetworkInfo"; it is deprecated.(Ñÿ×“şÿÿÿÿ

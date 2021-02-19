@@ -1,7 +1,7 @@
 
-z
-java:S1104"XMake baseActivity a static final constant or non-public and provide accessors if needed.(ûæÇØıÿÿÿÿ8›Ó—Ø.
 T
 java:S1874L"2Remove this use of "getMetrics"; it is deprecated.(˜›äİüÿÿÿÿ8ƒÑ«çÜ.
+z
+java:S1104"XMake baseActivity a static final constant or non-public and provide accessors if needed.(ûæÇØıÿÿÿÿ8›Ó—Ø.
 [
 java:S1874L"9Remove this use of "getDefaultDisplay"; it is deprecated.(˜›äİüÿÿÿÿ8ƒÑ«çÜ.

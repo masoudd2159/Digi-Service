@@ -1,8 +1,3 @@
 
-x
-java:S1905Y"VRemove this unnecessary cast to "org.sonar.java.resolve.Symbols$UnknownType@16ba4271".(Ü›û›úÿÿÿÿ8œÃä.
-]	java:S125k"<This block of commented-out lines of code should be removed.(Ë‚»Ôıÿÿÿÿ8°¿¶ãã.
 r
 java:S1192Q"PDefine a constant instead of duplicating this literal "&applicationId=" 3 times.(Ïèµöúÿÿÿÿ8˜ü¨ãã.
-x
-java:S1905h"VRemove this unnecessary cast to "org.sonar.java.resolve.Symbols$UnknownType@16ba4271".(Ü›û›úÿÿÿÿ8œÃä.

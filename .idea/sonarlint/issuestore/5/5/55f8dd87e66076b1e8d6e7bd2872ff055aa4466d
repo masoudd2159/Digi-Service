@@ -1,7 +1,7 @@
 
-Z
-java:S1874`"=Remove this use of "setSystemUiVisibility"; it is deprecated.(ú••É8Ë»Ô•Ø.
 a
 java:S1874`"DRemove this use of "SYSTEM_UI_FLAG_LAYOUT_STABLE"; it is deprecated.(ú••É8Ë»Ô•Ø.
 e
 java:S1874`"HRemove this use of "SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN"; it is deprecated.(ú••É8Ë»Ô•Ø.
+Z
+java:S1874`"=Remove this use of "setSystemUiVisibility"; it is deprecated.(ú••É8Ë»Ô•Ø.

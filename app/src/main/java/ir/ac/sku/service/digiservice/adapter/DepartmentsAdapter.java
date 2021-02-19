@@ -1,5 +1,6 @@
 package ir.ac.sku.service.digiservice.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import butterknife.ButterKnife;
 import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.api.office.DepartmentsModel;
 
+@SuppressLint("NonConstantResourceId")
 public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentsAdapter.MyViewHolder> {
 
     private Context context;

@@ -44,13 +44,13 @@ public class MainActivity extends BaseActivity {
     private final Fragment newsFragment = new NewsFragment();
     private final Fragment officesFragment = new OfficesFragment();
     private final Fragment searchFragment = new SearchFragment();
+    private Fragment active = homeFragment;
     //* Views
     @BindView(R.id.layout_content) CoordinatorLayout holder;
     @BindView(R.id.activityMain_ImageButtonDrawer) ImageButton drawerButton;
     @BindView(R.id.activityMain_DrawerLayout) DrawerLayout drawerLayout;
     @BindView(R.id.activityMain_NavigationView) NavigationView navigationView;
     @BindView(R.id.activityMain_BottomNavigationView) BottomNavigationView bottomNavigationView;
-    private Fragment active = homeFragment;
 
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = item -> {
         switch (item.getItemId()) {

@@ -10,18 +10,9 @@ import rx.schedulers.Schedulers;
 
 public class RxApiCallHelper {
 
-    public static <T> Subscription call(Observable<T> observable, final RxApiCallback<T> rxApiCallback) {
-        if (observable == null) {
-            throw new IllegalArgumentException("Observable must not be null.");
-        }
-
-        if (rxApiCallback == null) {
-            throw new IllegalArgumentException("Callback must not be null.");
-        }
-
+    public static <T> Subscription call(Observable<T> observable, RxApiCallback<T> rxApiCallback) {
         return observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-//                .unsubscribeOn(Schedulers.io())
                 .subscribe(t -> {
                     rxApiCallback.onSuccess(t);
                     Log.i(MyLog.DIGI_SERVICE, t.toString());

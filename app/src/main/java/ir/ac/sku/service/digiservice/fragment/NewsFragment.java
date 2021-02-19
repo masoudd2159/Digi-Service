@@ -1,6 +1,5 @@
 package ir.ac.sku.service.digiservice.fragment;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -17,7 +16,6 @@ import ir.ac.sku.service.digiservice.R;
 import ir.ac.sku.service.digiservice.adapter.NewsAdapter;
 import ir.ac.sku.service.digiservice.api.news.NewsModel;
 import ir.ac.sku.service.digiservice.base.BaseFragment;
-import ir.ac.sku.service.digiservice.util.MyHandler;
 
 public class NewsFragment extends BaseFragment {
 
@@ -39,13 +37,9 @@ public class NewsFragment extends BaseFragment {
         HashMap<String, String> params = new HashMap<>();
         params.put("eventId", eventId);
 
-        NewsModel.fetchFromWeb(getContext(), params, new MyHandler() {
-            @SuppressLint("LongLogTag")
-            @Override
-            public void onResponse(boolean ok, Object obj) {
-                if (ok) {
-                    setUpView((NewsModel) obj);
-                }
+        NewsModel.fetchFromWeb(getContext(), params, (ok, obj) -> {
+            if (ok) {
+                setUpView((NewsModel) obj);
             }
         });
     }

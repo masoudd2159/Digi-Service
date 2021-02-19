@@ -34,7 +34,7 @@ import ir.ac.sku.service.digiservice.config.MyLog;
 import ir.ac.sku.service.digiservice.util.MyHandler;
 import me.relex.circleindicator.CircleIndicator2;
 
-@SuppressLint("LongLogTag")
+@SuppressLint({"LongLogTag", "NonConstantResourceId"})
 public class OfficesFragment extends BaseFragment implements
         DiscreteScrollView.OnItemChangedListener<DepartmentsAdapter.MyViewHolder>,
         DiscreteScrollView.ScrollStateChangeListener<DepartmentsAdapter.MyViewHolder> {

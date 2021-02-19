@@ -131,3 +131,9 @@ s
 Capp/src/main/java/ir/ac/sku/service/digiservice/util/MyHandler.java,2\9\292506753ae16435edef5e97edb778e5b219c222
 v
 Fapp/src/main/java/ir/ac/sku/service/digiservice/util/IntentHelper.java,a\f\af154a38840866b81a3e30e424b91120692e898d
+‡
+Wapp/src/main/java/ir/ac/sku/service/digiservice/activity/main/AreaSelectedActivity.java,c\c\cc17198d47d42cec0121139f6a564cd453e76b52
+‹
+[app/src/main/java/ir/ac/sku/service/digiservice/activity/main/SelectedResourceActivity.java,f\0\f03d4ab070db0003c99ca3a69a4425efdf78738a
+
+Oapp/src/main/java/ir/ac/sku/service/digiservice/api/appInfo/AppInfoService.java,4\5\45822c331d0a6bd57b09a7ad3928deac747eb0f8
